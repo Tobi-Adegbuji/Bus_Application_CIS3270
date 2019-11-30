@@ -1,0 +1,44 @@
+.loginInput{
+	
+	-fx-border-style: hidden hidden solid hidden; 
+	
+	-fx-border-width: 3px;
+	
+	-fx-border-color: white; 
+	
+	-fx-background-color: none; 
+	
+	-fx-text-fill: white; 
+	
+	
+}
+
+.loginButton{
+	
+	-fx-font-weight: bolder;
+	
+	
+}
+
+.notify{
+	
+	
+	-fx-text-fill: red;
+	
+	
+}
+
+.registerInput{
+	
+	-fx-border-style: hidden hidden solid hidden; 
+	
+	-fx-border-width: 3px;
+	
+	-fx-border-color: black; 
+	
+	-fx-background-color: none; 
+	
+	-fx-text-fill: black; 
+	
+	
+}

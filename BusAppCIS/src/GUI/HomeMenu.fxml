@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1269.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.HomeMenuController">
+   <top>
+      <AnchorPane prefHeight="50.0" prefWidth="1319.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <Button layoutX="1066.0" layoutY="17.0" mnemonicParsing="false" onAction="#logOut" prefHeight="17.0" prefWidth="57.0" text="Log Out" textFill="#eeebeb">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="300.0" prefWidth="399.0" BorderPane.alignment="CENTER" />
+   </center>
+   <left>
+      <AnchorPane prefHeight="550.0" prefWidth="502.0" style="-fx-background-image: url(https://images.unsplash.com/photo-1541880846903-67b7b971a0c6?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80); -fx-background-size: auto; -fx-background-position: 30% 60%;" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

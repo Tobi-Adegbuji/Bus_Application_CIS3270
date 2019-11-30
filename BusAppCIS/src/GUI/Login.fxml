@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="582.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginController">
+   <children>
+      <AnchorPane prefHeight="750.0" prefWidth="450.0" style="-fx-background-color: black; -fx-background-position: center bottom; -fx-opacity: .8;" styleClass="mainBackground" stylesheets="@application.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView blendMode="LIGHTEN" fitHeight="730.0" fitWidth="582.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../../BusImages/Login_Image.jpg" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="20.0" layoutY="50.0" prefHeight="565.0" prefWidth="422.0" style="-fx-background-color: rgba(0,0,0,0.5); -fx-background-radius: 10;" styleClass="transparentBackground" stylesheets="@application.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <TextField fx:id="user" alignment="CENTER" layoutX="88.0" layoutY="218.0" prefHeight="50.0" prefWidth="246.0" promptText="Username" styleClass="loginInput" stylesheets="@application.css">
+                     <font>
+                        <Font name="Franklin Gothic Book" size="25.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+                  <Button fx:id="login" alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="377.0" mnemonicParsing="false" onAction="#login" prefHeight="62.0" prefWidth="125.0" style="-fx-background-color: green;" styleClass="loginButton" stylesheets="@application.css" text="Login" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="register" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="377.0" mnemonicParsing="false" onAction="#register" prefHeight="62.0" prefWidth="125.0" style="-fx-background-color: mediumblue;" styleClass="loginButton" stylesheets="@application.css" text="Register" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="109.0" layoutY="461.0" text="Forgot Password?" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="200.0" fitWidth="282.0" layoutX="111.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../BusImages/8a74982e-2b5d-4ebb-9109-703f9f2da3f5_200x200.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="pass" alignment="CENTER" layoutX="85.0" layoutY="314.0" prefHeight="35.0" prefWidth="246.0" promptText="Password" styleClass="loginInput">
+                     <font>
+                        <Font name="Franklin Gothic Book" size="25.0" />
+                     </font>
+                  </PasswordField>
+                  <Label fx:id="notify" layoutX="46.0" layoutY="192.0" prefHeight="32.0" prefWidth="354.0" style="-fx-background-color: none;" styleClass="notify">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <BoxBlur height="0.0" width="0.0" />
+         </effect>
+      </AnchorPane>
+      <Label fx:id="isConnected" layoutX="14.0" layoutY="732.0" prefHeight="16.0" prefWidth="298.0" style="-fx-background-color: black;" text="Status" textFill="#fbff00" />
+   </children>
+</AnchorPane>
