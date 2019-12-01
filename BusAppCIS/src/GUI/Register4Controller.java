@@ -11,29 +11,27 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-public class Register2Controller {
+public class Register4Controller {
 
 	@FXML
 public Button back; 
 	
-	//BACK TO FIRST REGISTER PAGE 
 	@FXML
-	public void backToRegister(ActionEvent event) throws IOException, SQLException  {
+	public void backToRegister3(ActionEvent event) throws IOException, SQLException  {
 	
-	    back.getScene().setRoot(FXMLLoader.load(getClass().getResource("Register.fxml")));
+	    back.getScene().setRoot(FXMLLoader.load(getClass().getResource("Register3.fxml")));
 
 		
 	}
 	
 	
 	@FXML
-	public void toRegister3(ActionEvent event) throws IOException, SQLException  {
+	public void toLogin(ActionEvent event) throws IOException, SQLException  {
 	
 		
 		
-		 Parent registerParent = FXMLLoader.load(getClass().getResource("Register3.fxml")); 
+		 Parent registerParent = FXMLLoader.load(getClass().getResource("Login.fxml")); 
 		 
 		 Scene registerScene = new Scene(registerParent); 
 		 
@@ -45,6 +43,5 @@ public Button back;
 		 
 		
 	}
-	
 	
 }
