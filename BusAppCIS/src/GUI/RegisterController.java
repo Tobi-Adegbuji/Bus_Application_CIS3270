@@ -29,26 +29,25 @@ public class RegisterController {
 	@FXML
 	private TextField city;
 	@FXML
-	private TextField address; 
+	private TextField address;
 	@FXML
-	private TextField country; 
+	private TextField country;
 	@FXML
-	private TextField state; 
+	private TextField state;
 	@FXML
-	private TextField zipcode; 
+	private TextField zipcode;
 	@FXML
-	private TextField username; 
+	private TextField username;
 	@FXML
-	private TextField password; 
+	private TextField password;
 	@FXML
-	private TextField securityQuestion; 
+	private TextField securityQuestion;
 	@FXML
-	private TextField securityAnswer; 
+	private TextField securityAnswer;
 	@FXML
-	private TextField ssn; 
-	
-	
-	//Takes you back to login 
+	private TextField ssn;
+
+	// Takes you back to login
 	@FXML
 	public void backToLogin(ActionEvent event) throws IOException, SQLException {
 
@@ -63,13 +62,11 @@ public class RegisterController {
 
 	}
 
-	
-	
 	@FXML
 	public void complete(ActionEvent event) throws IOException, SQLException {
 
 		register();
-		
+
 		Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
 
 		Scene loginScene = new Scene(loginParent);
@@ -80,44 +77,25 @@ public class RegisterController {
 		window.setResizable(false);
 
 	}
-	
-	
-	//Checks page
-	public void register() {		
-		
+
+	// Checks page
+	public void register() {
+
 		try {
-			
-			SQLMethods.toRegister(ssn.getText(), firstName.getText(), lastName.getText(), email.getText(), city.getText(), address.getText(), country.getText(), 
-					state.getText(), zipcode.getText(), username.getText(), password.getText(), securityQuestion.getText(), securityAnswer.getText(), "1000");
-			
+
+			SQLMethods.toRegister(ssn.getText(), firstName.getText(), lastName.getText(), email.getText(),
+					city.getText(), address.getText(), country.getText(), state.getText(), zipcode.getText(),
+					username.getText(), password.getText(), securityQuestion.getText(), securityAnswer.getText(),
+					"1000");
+
 			System.out.println("Complete");
-			
-			
-		}
-		catch(Exception e) {
-			
+
+		} catch (Exception e) {
+
 			System.out.println("There is an issue with your login");
-			
+
 		}
-		
 
-		
-		
 	}
-
-
-
-
-
-
-
-	
-
-	
-	
-	
-	
-	
-	
 
 }
