@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Logic.RegisterController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="489.0" pickOnBounds="true">
          <image>
@@ -34,7 +34,7 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <TextField alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="firstName" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="25.0" />
                </font>
@@ -44,7 +44,7 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <TextField alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="lastName" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="25.0" />
                </font>
@@ -54,7 +54,7 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <TextField alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="email" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="25.0" />
                </font>
@@ -64,7 +64,7 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <TextField alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="phoneNumber" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="25.0" />
                </font>

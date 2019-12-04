@@ -1,4 +1,4 @@
-package classes;
+package Logic;
 
 public abstract class User {
 

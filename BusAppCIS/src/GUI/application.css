@@ -42,3 +42,19 @@
 	
 	
 }
+
+.passwordRecover{
+	
+	-fx-border-style: hidden hidden solid hidden; 
+	
+	-fx-border-width: 3px;
+	
+	-fx-border-color: white; 
+	
+	-fx-background-color: none; 
+	
+	-fx-text-fill: white; 
+	
+	
+}
+	

@@ -1,4 +1,4 @@
-package GUI;
+package Logic;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,27 +11,36 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-public class Register3Controller {
+public class Register2Controller {
 
 	@FXML
 public Button back; 
 	
+	
+	
 	//BACK TO FIRST REGISTER PAGE 
 	@FXML
-	public void backToRegister2(ActionEvent event) throws IOException, SQLException  {
+	public void backToRegister(ActionEvent event) throws IOException, SQLException  {
 	
-	    back.getScene().setRoot(FXMLLoader.load(getClass().getResource("Register2.fxml")));
+		
+		System.out.println();
+		
+	    back.getScene().setRoot(FXMLLoader.load(getClass().getResource("/GUI/Register.fxml")));
 
+	    
+	    
 		
 	}
 	
+	
 	@FXML
-	public void toRegister4(ActionEvent event) throws IOException, SQLException  {
+	public void toRegister3(ActionEvent event) throws IOException, SQLException  {
 	
 		
 		
-		 Parent registerParent = FXMLLoader.load(getClass().getResource("Register4.fxml")); 
+		 Parent registerParent = FXMLLoader.load(getClass().getResource("/GUI/Register3.fxml")); 
 		 
 		 Scene registerScene = new Scene(registerParent); 
 		 

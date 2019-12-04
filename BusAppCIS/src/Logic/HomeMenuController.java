@@ -1,8 +1,9 @@
-package GUI;
+package Logic;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,17 +11,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-public class RegisterController {
-
+public class HomeMenuController  {
+		
 	
 	@FXML
-	public void backToLogin(ActionEvent event) throws IOException, SQLException  {
+	public void logOut(ActionEvent event) throws IOException, SQLException  {
 	
 		
 		
-		 Parent loginParent = FXMLLoader.load(getClass().getResource("Login.fxml")); 
+		 Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml")); 
 		 
 		 Scene loginScene = new Scene(loginParent); 
 		 
@@ -33,7 +33,7 @@ public class RegisterController {
 	}
 	
 	@FXML
-	public void toRegister2(ActionEvent event) throws IOException, SQLException  {
+	public void register2(ActionEvent event) throws IOException, SQLException  {
 	
 		
 		
@@ -43,7 +43,6 @@ public class RegisterController {
 		 
 		 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		 
-
 		 window.setScene(registerScene);
 		 window.setResizable(false);
 		 
@@ -51,8 +50,8 @@ public class RegisterController {
 	}
 	
 
-	
-	
-	
+	 
+
+
 	
 }

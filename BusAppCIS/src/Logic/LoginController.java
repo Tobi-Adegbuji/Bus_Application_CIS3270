@@ -1,4 +1,4 @@
-package GUI;
+package Logic;
 
 
 import java.io.IOException;
@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import database.SQLConnection;
+import database.SQLMethods;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,9 +55,9 @@ public class LoginController extends Application implements Initializable {
 
 		this.window = window;
 
-		Parent root = FXMLLoader.load(getClass().getResource("Login.fxml")); // WHERE GUI IS DESIGNED (SceneBuilder) 
+		Parent root = FXMLLoader.load(getClass().getResource("/GUI/login.fxml")); // WHERE GUI IS DESIGNED (SceneBuilder) 
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/GUI/application.css").toExternalForm());
 		window.setScene(scene);
 		window.setResizable(false);
 		window.setTitle("Edge Xpress Login");
@@ -89,12 +90,14 @@ public class LoginController extends Application implements Initializable {
 	@FXML
 	public void login(ActionEvent event) throws IOException, SQLException {
 
-		//You can use username for username and password for password to login
-		System.out.println(verify(user.getText(),pass.getText()));
 		
-		if(verify(user.getText(),pass.getText())) {
+		
+		//You can use username for username and password for password to login
+		System.out.println(SQLMethods.verify(user.getText(),pass.getText()));
+		
+		if(SQLMethods.verify(user.getText(),pass.getText())) {
 			
-			Parent mainMenu = FXMLLoader.load(getClass().getResource("HomeMenu.fxml")); //LOADS NEW FXML DOCUMENT INTO mainMenu
+			Parent mainMenu = FXMLLoader.load(getClass().getResource("/GUI/HomeMenu.fxml")); //LOADS NEW FXML DOCUMENT INTO mainMenu
 
 			Scene mainMenuScene = new Scene(mainMenu); //This puts mainMenu control into new scene
 
@@ -119,47 +122,7 @@ public class LoginController extends Application implements Initializable {
 
 	//CHECKS IF USERNAME AND PASSWORD IS IN DATABASE
 	
-	public boolean verify(String username, String password) {
-		
-		Connection con = SQLConnection.connector();
-		PreparedStatement preparedStatement; 
-		ResultSet resultSet; 
-		String query = "SELECT * FROM Customer WHERE username = ? AND password = ?"; 
-		
-		try { 
-			
-			preparedStatement = con.prepareStatement(query);
-			
-			preparedStatement.setString(1, username);
-
-			preparedStatement.setString(2, password);
-
-			
-			resultSet = preparedStatement.executeQuery();
-			
-			if(resultSet.next()) {
-				
-				return true; 
-				
-			}
-			else {
-				return false; 
-				
-			}
-			
-			
-		}
-		catch(Exception e) {
-			
-			return false;
-			
-		}
-		finally {
-			
-			
-		}
-		
-	}
+	
 	
 	
 	//-------------
@@ -172,7 +135,7 @@ public class LoginController extends Application implements Initializable {
 	
 		
 		
-		 Parent registerParent = FXMLLoader.load(getClass().getResource("Register.fxml")); 
+		 Parent registerParent = FXMLLoader.load(getClass().getResource("/GUI/Register.fxml")); 
 		 
 		 Scene registerScene = new Scene(registerParent); 
 		 
