@@ -132,6 +132,16 @@
                   <Font size="18.0" />
                </font>
             </TextField>
+            <Label prefHeight="38.0" prefWidth="194.0" text="SSN">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="ssn" alignment="CENTER" prefHeight="30.0" prefWidth="193.0" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
          </children>
          <padding>
             <Insets left="15.0" right="15.0" />
@@ -175,16 +185,6 @@
                </font>
             </Label>
             <TextField fx:id="securityAnswer" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </TextField>
-            <Label prefHeight="38.0" prefWidth="194.0" text="SSN">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="ssn" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="18.0" />
                </font>

@@ -2,32 +2,75 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1269.0" 
-xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.HomeMenuController">
-   <top>
-      <AnchorPane prefHeight="50.0" prefWidth="1319.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.HomeMenuController">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="489.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../BusImages/register2.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="530.0" layoutY="32.0" text="Home">
+         <font>
+            <Font name="System Bold" size="37.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="245.0" fitWidth="181.0" layoutX="284.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../BusImages/8a74982e-2b5d-4ebb-9109-703f9f2da3f5_200x200.png" />
+         </image>
+      </ImageView>
+      <Button alignment="CENTER" layoutX="1170.0" layoutY="23.0" mnemonicParsing="false" onAction="#logOut" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: mediumblue;" text="Log Out" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <padding>
+            <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <GridPane alignment="CENTER" hgap="50.0" layoutX="582.0" layoutY="161.0" prefHeight="478.0" prefWidth="600.0" vgap="40.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Button layoutX="1066.0" layoutY="17.0" mnemonicParsing="false" onAction="#logOut" prefHeight="17.0" prefWidth="57.0" text="Log Out" textFill="#eeebeb">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: black;" styleClass="mainMenuButton" stylesheets="@application.css" text="Book Rides" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
-                  <Font size="15.0" />
-               </font></Button>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+               <padding>
+                  <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: black;" text="Delete Rides" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+               <padding>
+                  <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: black;" text="View All Rides" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+               <padding>
+                  <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+               </padding>
+            </Button>
          </children>
-      </AnchorPane>
-   </top>
-   <bottom>
-      <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
-   </bottom>
-   <center>
-      <AnchorPane prefHeight="300.0" prefWidth="399.0" BorderPane.alignment="CENTER" />
-   </center>
-   <left>
-      <AnchorPane prefHeight="550.0" prefWidth="502.0" style="-fx-background-image: url(https://images.unsplash.com/photo-1541880846903-67b7b971a0c6?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80); -fx-background-size: auto; -fx-background-position: 30% 60%;" BorderPane.alignment="CENTER" />
-   </left>
-</BorderPane>
+      </GridPane>
+   </children>
+</AnchorPane>
