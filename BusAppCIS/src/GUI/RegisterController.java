@@ -27,8 +27,22 @@ public class RegisterController {
 	private TextField email;
 	@FXML
 	private TextField phoneNumber;
-	
-	private String fn, ln, em, pn;
+	@FXML
+	private TextField address; 
+	@FXML
+	private TextField country; 
+	@FXML
+	private TextField state; 
+	@FXML
+	private TextField zipcode; 
+	@FXML
+	private TextField username; 
+	@FXML
+	private TextField password; 
+	@FXML
+	private TextField securityQuestion; 
+	@FXML
+	private TextField securityAnswer; 
 	
 	
 	//Takes you back to login 
@@ -47,23 +61,6 @@ public class RegisterController {
 	}
 
 	
-	
-	//Takes you to second register page
-	@FXML
-	public void toRegister2(ActionEvent event) throws IOException, SQLException {
-
-		
-
-			Parent registerParent = FXMLLoader.load(getClass().getResource("/GUI/Register2.fxml"));
-
-			Scene registerScene = new Scene(registerParent);
-
-			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-			window.setScene(registerScene);
-			window.setResizable(false);
-	
-	}
 	
 	@FXML
 	public void complete(ActionEvent event) throws IOException, SQLException {
@@ -92,30 +89,7 @@ public class RegisterController {
 
 
 
-	
-	//Getters so we  can pass information to the next scene ---------------------------------------------
-	
-	public String getFn() {
-		return fn;
-	}
 
-
-
-	public String getLn() {
-		return ln;
-	}
-
-
-
-	public String getEm() {
-		return em;
-	}
-
-
-
-	public String getPn() {
-		return pn;
-	}
 
 
 	
