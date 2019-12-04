@@ -8,7 +8,7 @@ public class Customer extends User {
 		id = 12345678;
 	}
 	
-	public Customer(int id, int ssn, String firstName, String lastName, String email, int phone, String address,
+	public Customer(int id, int ssn, String firstName, String lastName, String email, String phone, String address,
 			 String city, int zipCode, String state, String country, String userName, 
 			 String password, String securityQuestion, String securityAnswer) {
 		super(ssn, firstName, lastName, email, phone, address, city, zipCode, state, country, userName,

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Logic.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RegisterController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="489.0" pickOnBounds="true">
          <image>
@@ -27,46 +27,46 @@
             <Image url="@../../BusImages/8a74982e-2b5d-4ebb-9109-703f9f2da3f5_200x200.png" />
          </image>
       </ImageView>
-      <VBox layoutX="741.0" layoutY="88.0" prefHeight="264.0" prefWidth="308.0" spacing="20.0">
+      <VBox layoutX="523.0" layoutY="83.0" prefHeight="377.0" prefWidth="203.0" spacing="20.0">
          <children>
             <Label prefHeight="35.0" prefWidth="136.0" text="First Name">
                <font>
-                  <Font name="System Bold" size="26.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
             <TextField fx:id="firstName" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
-                  <Font size="25.0" />
+                  <Font size="18.0" />
                </font>
             </TextField>
             <Label prefHeight="35.0" prefWidth="129.0" text="Last Name">
                <font>
-                  <Font name="System Bold" size="26.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
             <TextField fx:id="lastName" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
-                  <Font size="25.0" />
+                  <Font size="18.0" />
                </font>
             </TextField>
             <Label prefHeight="35.0" prefWidth="129.0" text="Email">
                <font>
-                  <Font name="System Bold" size="26.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
             <TextField fx:id="email" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
-                  <Font size="25.0" />
+                  <Font size="18.0" />
                </font>
             </TextField>
             <Label prefHeight="38.0" prefWidth="194.0" text="Phone Number">
                <font>
-                  <Font name="System Bold" size="26.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
             <TextField fx:id="phoneNumber" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
                <font>
-                  <Font size="25.0" />
+                  <Font size="18.0" />
                </font>
             </TextField>
          </children>
@@ -82,7 +82,7 @@
             <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
-      <Button alignment="CENTER" layoutX="1101.0" layoutY="644.0" mnemonicParsing="false" onAction="#toRegister2" prefHeight="58.0" prefWidth="103.0" style="-fx-border-color: black; -fx-background-color: green;" text="Next" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="1059.0" layoutY="644.0" mnemonicParsing="false" onAction="#complete" prefHeight="58.0" prefWidth="145.0" style="-fx-border-color: black; -fx-background-color: green;" text="Sign Up!" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -90,5 +90,99 @@
             <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
+      <VBox layoutX="776.0" layoutY="83.0" prefHeight="377.0" prefWidth="203.0" spacing="20.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="136.0" text="Address">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="firstName1" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="129.0" text="Country">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="lastName1" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="129.0" text="State">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="email1" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="38.0" prefWidth="194.0" text="Zip Code">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="phoneNumber1" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+         </children>
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="1037.0" layoutY="83.0" prefHeight="377.0" prefWidth="203.0" spacing="20.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="136.0" text="Username">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="firstName2" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="129.0" text="Password">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="lastName2" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="30.0" prefWidth="172.0" text="Security Question">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="email2" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="38.0" prefWidth="194.0" text="Answer">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="phoneNumber2" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+         </children>
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>

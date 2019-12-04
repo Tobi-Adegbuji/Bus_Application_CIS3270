@@ -1,4 +1,4 @@
-package Logic;
+package GUI;
 
 
 import java.io.IOException;

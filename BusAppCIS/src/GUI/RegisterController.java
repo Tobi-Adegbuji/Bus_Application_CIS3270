@@ -1,4 +1,4 @@
-package Logic;
+package GUI;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -28,12 +28,10 @@ public class RegisterController {
 	@FXML
 	private TextField phoneNumber;
 	
-//	String fName = this.firstName.getText();
-//	String lName = this.lastName.getText();
-//	String em = this.email.getText();
-//	String pNumber = this.phoneNumber.getText();
+	private String fn, ln, em, pn;
 	
-
+	
+	//Takes you back to login 
 	@FXML
 	public void backToLogin(ActionEvent event) throws IOException, SQLException {
 
@@ -48,12 +46,13 @@ public class RegisterController {
 
 	}
 
+	
+	
+	//Takes you to second register page
 	@FXML
 	public void toRegister2(ActionEvent event) throws IOException, SQLException {
 
-		if (isPageComplete()) {
-			
-			
+		
 
 			Parent registerParent = FXMLLoader.load(getClass().getResource("/GUI/Register2.fxml"));
 
@@ -63,26 +62,61 @@ public class RegisterController {
 
 			window.setScene(registerScene);
 			window.setResizable(false);
-		}
+	
+	}
+	
+	@FXML
+	public void complete(ActionEvent event) throws IOException, SQLException {
 
-		else {
+		Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
 
-			System.out.println("Page not complete");
-		}
+		Scene loginScene = new Scene(loginParent);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(loginScene);
+		window.setResizable(false);
 
 	}
-
-	public boolean isPageComplete() {
-
 	
-
-//		System.out.println(fName + " " + em + " " + lName + " " + pNumber); // Test Code
+	
+	//Checks page
+	public boolean checkPage() {		
 		
 		
-
 		return true;
 
+		
 	}
+
+
+
+
+	
+	//Getters so we  can pass information to the next scene ---------------------------------------------
+	
+	public String getFn() {
+		return fn;
+	}
+
+
+
+	public String getLn() {
+		return ln;
+	}
+
+
+
+	public String getEm() {
+		return em;
+	}
+
+
+
+	public String getPn() {
+		return pn;
+	}
+
 
 	
 

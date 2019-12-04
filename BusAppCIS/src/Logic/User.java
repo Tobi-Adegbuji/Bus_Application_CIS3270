@@ -3,18 +3,18 @@ package Logic;
 public abstract class User {
 
 	 private String firstName, lastName, address, city, state, country,  
-	userName, password, email, securityQuestion, securityAnswer; 
+	userName, password, email, securityQuestion, securityAnswer,phone; 
 	
 	 private int zipCode, ssn; 
 	
-	 private long phone;
+	 
 	
 	 User() { 
 		
 		 this.firstName = "firstName";
 		 this.lastName = "lastName";
 		 this.email = "testuser@fake.com";
-		 this.phone = 404909000; //phone number is to long for data type long
+		 this.phone = "4049090000"; 
 		 this.ssn = 123456789;
 		 this.address = "address";
 		 this.city = "City";
@@ -28,7 +28,7 @@ public abstract class User {
 	
 	 }
 	 
-	 User(int ssn, String firstName, String lastName, String email, int phone, String address,
+	 User(int ssn, String firstName, String lastName, String email, String phone, String address,
 			 String city, int zipCode, String state, String country, String userName, 
 			 String password, String securityQuestion, String securityAnswer) { 
 		 
@@ -137,11 +137,11 @@ public abstract class User {
 			this.securityAnswer = securityAnswer;
 		}
 
-		public Long getPhone() {
+		public String getPhone() {
 			return phone;
 		}
 
-		public void setPhone(Long phone) {
+		public void setPhone(String phone) {
 			this.phone = phone;
 		}
 

@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="582.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Logic.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="582.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1"
+ xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginController">
    <children>
       <AnchorPane prefHeight="750.0" prefWidth="450.0" style="-fx-background-color: black; -fx-background-position: center bottom; -fx-opacity: .8;" styleClass="mainBackground" stylesheets="@application.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

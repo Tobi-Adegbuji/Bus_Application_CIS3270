@@ -1,4 +1,4 @@
-package Logic;
+package GUI;
 
 public class ForgotPasswordController {
 
