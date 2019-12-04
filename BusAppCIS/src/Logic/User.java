@@ -3,7 +3,7 @@ package Logic;
 public abstract class User {
 
 	 private String firstName, lastName, address, city, state, country,  
-	userName, password, email, securityQuestion, securityAnswer,phone; 
+	userName, password, email, securityQuestion, securityAnswer; 
 	
 	 private int zipCode, ssn; 
 	
@@ -14,7 +14,6 @@ public abstract class User {
 		 this.firstName = "firstName";
 		 this.lastName = "lastName";
 		 this.email = "testuser@fake.com";
-		 this.phone = "4049090000"; 
 		 this.ssn = 123456789;
 		 this.address = "address";
 		 this.city = "City";
@@ -28,14 +27,13 @@ public abstract class User {
 	
 	 }
 	 
-	 User(int ssn, String firstName, String lastName, String email, String phone, String address,
+	 User(int ssn, String firstName, String lastName, String email, String address,
 			 String city, int zipCode, String state, String country, String userName, 
 			 String password, String securityQuestion, String securityAnswer) { 
 		 
 		 this.firstName = firstName;
 		 this.lastName = lastName;
 		 this.email = email;
-		 this.phone = phone;
 		 this.ssn = ssn;
 		 this.address = address;
 		 this.city = city;
@@ -137,13 +135,6 @@ public abstract class User {
 			this.securityAnswer = securityAnswer;
 		}
 
-		public String getPhone() {
-			return phone;
-		}
-
-		public void setPhone(String phone) {
-			this.phone = phone;
-		}
 
 		public int getZipCode() {
 			return zipCode;

@@ -52,8 +52,9 @@ public class SQLMethods {
 		
 		
 		
-		@FXML
-		public void toLogin(ActionEvent event) throws IOException, SQLException  {
+		
+		public static void toRegister(String ssn, String firstName, String lastName, String email, String city, String address, String country, String state, 
+				String zipcode, String username, String password, String securityQuestion, String securityAnswer, String id) throws Exception  {
 		
 			
 			Connection con = SQLConnection.connector(); 
@@ -64,8 +65,7 @@ public class SQLMethods {
 					"(ssn" + 
 					",firstName" + 
 					",lastName" + 
-					",email" + 
-					",phone" + 
+					",email" +  
 					",username" + 
 					",password" + 
 					",street" + 
@@ -78,45 +78,69 @@ public class SQLMethods {
 					",id" + 
 					")" + 
 					"values" + 
-					"(123456789" + 
-					",'Alex'" + 
-					",'Bugnon'" + 
-					",'alexbugnon@gmail.com'" + 
-					",'1234567890'" + 
-					",'username'" + 
-					",'passwrd'" + 
-					",'1454 Alley Rd'" + 
-					",'Atlanta'" + 
-					",'GA'" + 
-					",'United States of America'" + 
-					",'30000'" + 
-					",'What is your mom\'s name?'" + 
-					",'Elizabeth'" + 
-					",'1234'" + 
+					"(?" + 
+					",?" + 
+					",?" + 
+					",?" + 
+					",?" + 
+					",?" + 
+					",?" + 
+					",?" + 
+					",?" + 
+					",?" + 
+					",?" + 
+					",?" + 
+					",?" + 
+					",?" + 
 					")"; 
-			
-			ps = con.prepareStatement("");
-			
-			
 			try {
-		
-			 Parent registerParent = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml")); 
-			 
-			 Scene registerScene = new Scene(registerParent); 
-			 
-			 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			 
+			ps = con.prepareStatement(query);
+			
+			ps.setString(1, String.valueOf(ssn));
 
-			 window.setScene(registerScene);
-			 window.setResizable(false);
-			 
+			ps.setString(2, firstName);
+			
+			ps.setString(3, lastName);
+			
+			ps.setString(4, email);
+			
+			ps.setString(5, username);
+			
+			ps.setString(6, password);
+			
+			ps.setString(7, address);
+			
+			ps.setString(8, city);
+			
+			ps.setString(9, state);
+			
+			ps.setString(10, country);
+			
+			ps.setString(11, String.valueOf(zipcode));
+			
+			ps.setString(12, securityQuestion);
+			
+			ps.setString(13, securityAnswer);
+			
+			ps.setString(14, String.valueOf(id));
+			
+			
+			ps.executeUpdate();
+			
+			System.out.println("User was registered");
+			
 			}
-			catch(Exception e) {
+			catch(SQLException e) {
 				
-				
+				throw new SQLException(); 
 				
 			}
-		
-	}
+			finally {
+				
+				con.close();
+				
+			}
+			
+		}
 
 }

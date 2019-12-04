@@ -59,12 +59,12 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Label prefHeight="38.0" prefWidth="194.0" text="Phone Number">
+            <Label prefHeight="38.0" prefWidth="194.0" text="City">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="phoneNumber" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="city" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="18.0" />
                </font>
@@ -97,7 +97,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="firstName1" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="address" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="18.0" />
                </font>
@@ -107,7 +107,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="lastName1" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="country" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="18.0" />
                </font>
@@ -117,7 +117,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="email1" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="state" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="18.0" />
                </font>
@@ -127,7 +127,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="phoneNumber1" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="zipcode" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="18.0" />
                </font>
@@ -144,7 +144,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="firstName2" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="username" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="18.0" />
                </font>
@@ -154,7 +154,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="lastName2" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="password" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="18.0" />
                </font>
@@ -164,7 +164,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="email2" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="securityQuestion" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="18.0" />
                </font>
@@ -174,7 +174,17 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="phoneNumber2" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
+            <TextField fx:id="securityAnswer" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="38.0" prefWidth="194.0" text="SSN">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="ssn" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
                <font>
                   <Font size="18.0" />
                </font>
