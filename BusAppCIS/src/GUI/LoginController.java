@@ -96,17 +96,31 @@ public class LoginController extends Application implements Initializable {
 
 		if (SQLMethods.verify(user.getText(), pass.getText())) {
 
-			Parent mainMenu = FXMLLoader.load(getClass().getResource("/GUI/HomeMenu.fxml")); // LOADS NEW FXML DOCUMENT
-																								// INTO mainMenu
+			if (user.getText().equals("adm1n")) { // admin is spelled adm1n to increase security
 
-			Scene mainMenuScene = new Scene(mainMenu); // This puts mainMenu control into new scene
+				Parent mainMenu = FXMLLoader.load(getClass().getResource("/GUI/AdminHomeMenu.fxml")); // LOADS NEW FXML
+				// DOCUMENT
+				// INTO mainMenu
 
-			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Getting the current window
-																						// being used
+				Scene mainMenuScene = new Scene(mainMenu); // This puts mainMenu control into new scene
 
-			window.setScene(mainMenuScene); // putting a new scene into the current window
-			window.setResizable(false); // Allows size of window to be resized if user wants
+				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Getting the current window
+				// being used
 
+				window.setScene(mainMenuScene); // putting a new scene into the current window
+				window.setResizable(false); // Does not allow size of window to be resized.
+
+			} else {
+
+				Parent mainMenu = FXMLLoader.load(getClass().getResource("/GUI/HomeMenu.fxml")); 
+
+				Scene mainMenuScene = new Scene(mainMenu); 
+
+				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow(); 
+
+				window.setScene(mainMenuScene); 
+				window.setResizable(false); 
+			}
 		} else {
 
 			notify.setText("Invalid Username or Password");
@@ -152,7 +166,4 @@ public class LoginController extends Application implements Initializable {
 		return notify;
 	}
 
-	
-	
-	
 }

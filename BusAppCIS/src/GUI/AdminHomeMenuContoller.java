@@ -3,7 +3,6 @@ package GUI;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class HomeMenuController  {
-		
-	
+public class AdminHomeMenuContoller {
+
 	@FXML
 	public void logOut(ActionEvent event) throws IOException, SQLException  {
 	
@@ -31,11 +29,5 @@ public class HomeMenuController  {
 		 
 		
 	}
-	
-	
-
-	 
-
-
 	
 }

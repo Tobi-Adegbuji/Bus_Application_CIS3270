@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
@@ -29,11 +30,14 @@ public class ForgotPasswordController {
 	@FXML
 	private Label answerLabel;
 	@FXML
-	private Button answerSubmit = new Button(); 
-	
+	private Button answerSubmit = new Button();
+	@FXML
+	private Label questionTitle;
+	@FXML 
+	private ImageView image; 
+		
+	// Goes back to login screen
 
-	//Goes back to login screen 
-	
 	@FXML
 	public void backToLogin(ActionEvent event) throws IOException, SQLException {
 
@@ -47,55 +51,53 @@ public class ForgotPasswordController {
 		window.setResizable(false);
 
 	}
-	
-	
-	
-	//Displays security question in GUI
+
+	// Displays security question in GUI
 	@FXML
 	public void securityQuestion(ActionEvent event) throws SQLException, IOException {
-		
-		String securityQuestion = SQLMethods.retrieveSecurityQuestion(username.getText()); 
-		
-		if(securityQuestion == null) {
+
+		String securityQuestion = SQLMethods.retrieveSecurityQuestion(username.getText());
+
+		if (securityQuestion == null) {
+
+			this.questionTitle.setText("Secuirty Question");
 			
 			this.question.setText("This username is not located in our system.");
-			
-		}
-		else {
-			
+
+		} else {
+
+			this.questionTitle.setText("Security Question");
+
 			this.question.setText(securityQuestion);
-			
-						
+
 		}
-		
-		
+
 	}
-	
-	//Checks if answer is correct and if it is, it takes you back to login screen
-	@FXML 
-	public void checkAnswer(ActionEvent event)  throws SQLException, IOException {
-		
-		
+
+	// Checks if answer is correct and if it is, it takes you back to login screen
+	@FXML
+	public void checkAnswer(ActionEvent event) throws SQLException, IOException {
+
 		String user = username.getText();
-		
-		if(SQLMethods.retrieveAnswer(username.getText()).equals(userAnswer.getText()) ) {
+
+		if (SQLMethods.retrieveAnswer(username.getText()).equals(userAnswer.getText())) {
 			
-			
+
 			answerLabel.setText("Enter a new password");
-			
+
 			userAnswer.setText("");
-			
+
 			userAnswer.setPromptText("Enter a new password");
-			
+
 			answerSubmit.setStyle("-fx-background-color: darkred");
-			
+
 			answerSubmit.setOnAction(e -> {
-				
+
 				try {
 					SQLMethods.newPassword(userAnswer.getText(), user);
-					
+
 					answerLabel.setText("Password Updated");
-					
+
 					Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
 
 					Scene loginScene = new Scene(loginParent);
@@ -104,31 +106,19 @@ public class ForgotPasswordController {
 
 					window.setScene(loginScene);
 					window.setResizable(false);
-					
-					
-					
+
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
+
 			});
-				
-		}
-		else {
+
+		} else {
 			userAnswer.setText("");
 			userAnswer.setPromptText("Try Again");
-			
+
 		}
-		
-		
+
 	}
-
-
-	
-	
-	
-	
-	
-	
 
 }
