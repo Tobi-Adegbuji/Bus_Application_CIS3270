@@ -2,7 +2,7 @@ package Logic;
 
 public class Bus {
 
-	private int seatingCapacity; 
+	private int seatingCapacity, busID; 
 	
 	public int getSeatingCapacity() {
 		return this.seatingCapacity;

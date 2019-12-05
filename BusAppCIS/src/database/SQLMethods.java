@@ -13,10 +13,9 @@ import javafx.stage.Stage;
 
 public class SQLMethods {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	//HAVE TO CLOSE CONNECTIONS STILL 
+	
 
-	}
 
 	// Checks if username and password is in database
 	public static boolean verify(String username, String password) throws SQLException {
@@ -31,6 +30,33 @@ public class SQLMethods {
 		preparedStatement.setString(1, username);
 
 		preparedStatement.setString(2, password);
+
+		resultSet = preparedStatement.executeQuery();
+
+		if (resultSet.next()) {
+
+			return true;
+
+		} else {
+			return false;
+
+		}
+	}
+	
+	
+	public static boolean isAdmin(String username) throws SQLException {
+
+		Connection con = SQLConnection.connector();
+		PreparedStatement preparedStatement;
+		ResultSet resultSet;
+		String query = "SELECT * FROM Customer WHERE username = ? and admin_access = ?";
+
+		preparedStatement = con.prepareStatement(query);
+
+		preparedStatement.setString(1, username);
+
+		preparedStatement.setString(2, "Y");
+
 
 		resultSet = preparedStatement.executeQuery();
 
@@ -135,16 +161,16 @@ public class SQLMethods {
 	// Creates a new customer.
 	public static void toRegister(String ssn, String firstName, String lastName, String email, String city,
 			String address, String country, String state, String zipcode, String username, String password,
-			String securityQuestion, String securityAnswer, String id) throws Exception {
+			String securityQuestion, String securityAnswer, String id, String admin_access) throws Exception {
 
 		Connection con = SQLConnection.connector();
 		PreparedStatement ps;
 		ResultSet rs;
 
-		String query = "insert into Customer" + "(ssn" + ",firstName" + ",lastName" + ",email" + ",username"
-				+ ",password" + ",street" + ",city" + ",state" + ",country" + ",zip" + ",security_question"
-				+ ",security_answer" + ",id" + ")" + "values" + "(?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?"
-				+ ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ")";
+		String query = "insert into Customer" + "(ssn" + ",first_name" + ",last_Name" + ",email" + ",username"
+				+ ",password" + ",address" + ",city" + ",state" + ",country" + ",zip" + ",security_question"
+				+ ",security_answer" + ",id" + ",admin_access" + ")" + "values" + "(?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?"
+				+ ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ")";
 		try {
 			ps = con.prepareStatement(query);
 
@@ -175,6 +201,8 @@ public class SQLMethods {
 			ps.setString(13, securityAnswer);
 
 			ps.setString(14, id);
+			
+			ps.setString(15, admin_access);
 
 			ps.executeUpdate();
 
@@ -182,7 +210,7 @@ public class SQLMethods {
 
 		} catch (SQLException e) {
 
-			throw new SQLException();
+			e.printStackTrace();;
 
 		} finally {
 

@@ -1,21 +1,20 @@
 package Logic;
 
 
-public class Trip {
+public class TripSchedule {
 
-	private int tripNumber, numofPass, capacity;
-	private String fromStation, toStation, departureDate, arrivalDate, 
-	departureTime, arrivalTime;
+	private int tripNumber, numofPass; 
+	private String fromStation, toStation, departureDate,  
+	departureTime, arrivalTime, bus;
 	
 	
 	
 	
-	public Trip(int tripNumber, int capacity, int numofPass, String fromStation, String toStation, 
-			String departureDate, String arrivalDate, String departureTime, String arrivalTime ) {
+	public TripSchedule(int tripNumber, int numofPass, String fromStation, String toStation, 
+			String departureDate, String departureTime, String arrivalTime, String bus ) {
 		
-		this.arrivalDate = arrivalDate;
 		this.arrivalTime = arrivalTime;
-		this.capacity = capacity;
+		this.bus = bus; 
 		this.departureDate = departureDate;
 		this.departureTime = departureTime;
 		this.fromStation = fromStation;
@@ -52,22 +51,6 @@ public class Trip {
 	public void setNumofPass(int numofPass) {
 		this.numofPass = numofPass;
 	}
-
-
-
-
-	public int getCapacity() {
-		return capacity;
-	}
-
-
-
-
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
-
-
 
 
 	public String getFromStation() {
@@ -111,21 +94,6 @@ public class Trip {
 
 
 
-
-	public String getArrivalDate() {
-		return arrivalDate;
-	}
-
-
-
-
-	public void setArrivalDate(String arrivalDate) {
-		this.arrivalDate = arrivalDate;
-	}
-
-
-
-
 	public String getDepartureTime() {
 		return departureTime;
 	}
@@ -149,6 +117,20 @@ public class Trip {
 
 	public void setArrivalTime(String arrivalTime) {
 		this.arrivalTime = arrivalTime;
+	}
+
+
+
+
+	public String getBus() {
+		return bus;
+	}
+
+
+
+
+	public void setBus(String bus) {
+		this.bus = bus;
 	}
 	
 

@@ -15,7 +15,7 @@
    <children>
       <AnchorPane prefHeight="750.0" prefWidth="450.0" style="-fx-background-color: black; -fx-background-position: center bottom; -fx-opacity: .8;" styleClass="mainBackground" stylesheets="@application.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView blendMode="LIGHTEN" fitHeight="724.0" fitWidth="601.0" pickOnBounds="true" smooth="false">
+            <ImageView blendMode="LIGHTEN" fitHeight="724.0" fitWidth="594.0" pickOnBounds="true" smooth="false">
                <image>
                   <Image url="@../../BusImages/Login_Image.jpg" />
                </image>
@@ -35,7 +35,7 @@
                         <Font size="22.0" />
                      </font>
                   </Button>
-                  <Button fx:id="register" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="386.0" mnemonicParsing="false" onAction="#register" prefHeight="62.0" prefWidth="125.0" style="-fx-background-color: mediumblue;" styleClass="loginButton" stylesheets="@application.css" text="Register" textFill="WHITE">
+                  <Button fx:id="register" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="386.0" mnemonicParsing="false" onAction="#register" prefHeight="62.0" prefWidth="125.0" style="-fx-background-color: navy;" styleClass="loginButton" stylesheets="@application.css" text="Register" textFill="WHITE">
                      <font>
                         <Font size="22.0" />
                      </font>

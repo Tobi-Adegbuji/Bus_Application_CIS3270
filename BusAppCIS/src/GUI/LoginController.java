@@ -91,16 +91,14 @@ public class LoginController extends Application implements Initializable {
 	@FXML
 	public void login(ActionEvent event) throws IOException, SQLException {
 
-		// You can use username for username and password for password to login
-		System.out.println(SQLMethods.verify(user.getText(), pass.getText()));
 
+		
+		
 		if (SQLMethods.verify(user.getText(), pass.getText())) {
 
-			if (user.getText().equals("adm1n")) { // admin is spelled adm1n to increase security
+			if (SQLMethods.isAdmin(user.getText())) { //Checks if user has admin access in database
 
-				Parent mainMenu = FXMLLoader.load(getClass().getResource("/GUI/AdminHomeMenu.fxml")); // LOADS NEW FXML
-				// DOCUMENT
-				// INTO mainMenu
+				Parent mainMenu = FXMLLoader.load(getClass().getResource("/GUI/AdminHomeMenu.fxml")); // LOADS NEW FXML DOCUMENT INTO mainMenu
 
 				Scene mainMenuScene = new Scene(mainMenu); // This puts mainMenu control into new scene
 

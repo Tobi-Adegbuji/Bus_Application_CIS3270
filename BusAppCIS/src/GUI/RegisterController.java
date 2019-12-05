@@ -86,13 +86,13 @@ public class RegisterController {
 			SQLMethods.toRegister(ssn.getText(), firstName.getText(), lastName.getText(), email.getText(),
 					city.getText(), address.getText(), country.getText(), state.getText(), zipcode.getText(),
 					username.getText(), password.getText(), securityQuestion.getText(), securityAnswer.getText(),
-					"1000");
+					"1000", "N");
 
 			System.out.println("Complete");
 
 		} catch (Exception e) {
-
-			System.out.println("There is an issue with your login");
+			e.printStackTrace();
+			System.out.println("There is an issue");
 
 		}
 
