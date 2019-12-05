@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.HomeMenuController">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1300.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../BusImages/view_rides.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="542.0" layoutY="26.0" text="My Rides" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+      <Button alignment="CENTER" layoutX="1170.0" layoutY="23.0" mnemonicParsing="false" onAction="#logOut" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: navy;" text="Log Out" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <padding>
+            <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="1126.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../BusImages/logout.png" />
+         </image>
+      </ImageView>
+      <TableView layoutX="220.0" layoutY="127.0" opacity="0.68" prefHeight="548.0" prefWidth="860.0" style="-fx-background-color: WHITE;">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

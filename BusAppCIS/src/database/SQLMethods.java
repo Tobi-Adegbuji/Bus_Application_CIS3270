@@ -88,7 +88,7 @@ public class SQLMethods {
 
 		if (resultSet.next()) {
 
-			return resultSet.getNString(13);
+			return resultSet.getNString(12);
 
 		} else {
 			return null;
@@ -97,7 +97,7 @@ public class SQLMethods {
 	}
 	
 	
-	//Retrieves Security Question 
+	//Retrieves Security Answer
 		public static String retrieveAnswer(String username) throws SQLException {
 
 			Connection con = SQLConnection.connector();
@@ -113,7 +113,7 @@ public class SQLMethods {
 
 			if (resultSet.next()) {
 
-				return resultSet.getNString(14);
+				return resultSet.getNString(13);
 
 			} else {
 				

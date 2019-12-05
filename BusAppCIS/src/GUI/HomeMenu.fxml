@@ -46,7 +46,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: black;" styleClass="mainMenuButton" stylesheets="@application.css" text="Book Rides" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewMyRides" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: black;" styleClass="mainMenuButton" stylesheets="@application.css" text="View My Rides" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>
@@ -54,7 +54,7 @@
                   <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
                </padding>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: black;" text="Delete Rides" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: black;" text="Book Rides" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>
@@ -62,7 +62,7 @@
                   <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
                </padding>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: black;" text="View All Rides" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: darkgreen;" text="View Account" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>

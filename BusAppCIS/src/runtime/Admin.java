@@ -1,4 +1,4 @@
-package Logic;
+package runtime;
 
 public class Admin extends Customer {
 	
