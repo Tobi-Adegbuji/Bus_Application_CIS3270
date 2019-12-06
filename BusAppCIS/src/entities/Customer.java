@@ -2,25 +2,20 @@ package entities;
 
 public class Customer extends User {
 
-	private int id; 
-	
-	public Customer() {
-		id = 12345678;
+	public Customer(int ssn, String firstName, String lastName, String email, String username, String password,
+			String address, String city, String state, String country, String zip, String securityQuestion,
+			String securityAnswer, String id, String adminAccess) {
+		super(ssn, firstName, lastName, email, username, password, address, city, state, country, zip, securityQuestion,
+				securityAnswer, id, adminAccess);
 	}
+
+//Getters and setters are already defined in super class 
 	
-	public Customer(int id, int ssn, String firstName, String lastName, String email, String address,
-			 String city, int zipCode, String state, String country, String userName, 
-			 String password, String securityQuestion, String securityAnswer) {
+	@Override
+	public String toString() {
 		
-		super(ssn, firstName, lastName, email, address, city, zipCode, state, country, userName,
-				password, securityQuestion, securityAnswer);
-		this.id = id;
+		return getFirstName() + " " + getLastName() + " " + getUsername() + " " + getSsn(); 
 		
-		
-	}
-	
-	public int getId() {
-		return id;
 	}
 	
 	

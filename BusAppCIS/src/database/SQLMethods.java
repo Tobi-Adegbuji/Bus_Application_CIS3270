@@ -6,8 +6,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
 import entities.BusSchedule;
+import entities.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -69,6 +72,36 @@ public class SQLMethods {
 
 		} else {
 			return false;
+
+		}
+	}
+
+	// we need to make
+	public static Customer getCustomerInfo(String username) throws SQLException {
+
+		Customer customer;
+
+		Connection con = SQLConnection.connector();
+		PreparedStatement preparedStatement;
+		ResultSet rs;
+		String query = "SELECT * FROM Customer WHERE username = ?";
+
+		preparedStatement = con.prepareStatement(query);
+
+		preparedStatement.setString(1, username);
+
+		rs = preparedStatement.executeQuery();
+
+		if (rs.next()) {
+
+			return customer = new Customer(Integer.parseInt(rs.getString("ssn")), rs.getString("first_name"),
+					rs.getString("last_name"), rs.getString("email"), rs.getString("username"),
+					rs.getString("password"), rs.getString("address"), rs.getString("city"), rs.getString("state"),
+					rs.getString("country"), rs.getString("zip"), rs.getString("security_question"),
+					rs.getString("security_answer"), rs.getString("id"), rs.getString("admin_access"));
+
+		} else {
+			return null;
 
 		}
 	}
@@ -218,6 +251,7 @@ public class SQLMethods {
 
 	}
 
+	// Returns bus schedule records in an observable list to populate the tableview
 	public static ObservableList<BusSchedule> getBusScheduleInfo() throws Exception {
 
 		Connection con = SQLConnection.connector();
@@ -235,21 +269,20 @@ public class SQLMethods {
 			rs = st.executeQuery(query);
 
 			while (rs.next()) {
-				
-				listOfAllRides.add(new BusSchedule(rs.getString("from_station"), rs.getString("to_station"), rs.getDate("departure_date"),
-						rs.getDate("arrival_date"), rs.getTimestamp("departure_time"),
-						rs.getTimestamp("arrival_time"), rs.getString("passenger_no"), getCapacity(rs.getString("bus_ID"))));
+
+				listOfAllRides.add(new BusSchedule(rs.getString("from_station"), rs.getString("to_station"),
+						rs.getDate("departure_date"), rs.getDate("arrival_date"), rs.getTimestamp("departure_time"),
+						rs.getTimestamp("arrival_time"), rs.getString("passenger_no"),
+						getCapacity(rs.getString("bus_ID"))));
 
 			}
 
 		} finally {
-			
-			con.close();	
+
+			con.close();
 		}
-		
+
 		return listOfAllRides;
-
-
 
 	}
 
@@ -274,6 +307,24 @@ public class SQLMethods {
 			return null;
 
 		}
+	}
+
+	
+	
+	//Inserts new record into customer schedule table
+	
+	public static void bookRide() {
+		
+		Connection con = SQLConnection.connector();
+		PreparedStatement ps; 
+		
+		
+		
+		
+	}
+
+	public void addToCustomerSchedule(ObservableList<BusSchedule> ride) {
+
 	}
 
 }

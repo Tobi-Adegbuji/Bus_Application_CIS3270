@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 
 import database.SQLMethods;
 import entities.BusSchedule;
+import entities.Customer;
+import entities.CustomerSchedule;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +29,7 @@ import javafx.stage.Stage;
 public class BookRidesController implements Initializable {
 
 	
-	@FXML private TableView<BusSchedule> tableView; //The tableView is expecting customerSchedule objects
+	@FXML private TableView<BusSchedule> tableView; //The tableView is expecting BusSchedule objects
 	@FXML private TableColumn<BusSchedule, String> fromColumn;
 	@FXML private TableColumn<BusSchedule, String> toColumn;
 	@FXML private TableColumn<BusSchedule, Date> departureDateColumn;
@@ -37,7 +39,7 @@ public class BookRidesController implements Initializable {
 	@FXML private TableColumn<BusSchedule, String> numberOfPassengersColumn;
 	@FXML private TableColumn<BusSchedule, String> busCapacity;
 	
-	
+	private Customer customer; 
 	
 	
 	@Override
@@ -80,6 +82,26 @@ public class BookRidesController implements Initializable {
 		
 	}
 	
+	//must grab a customer and add it to their customer schedule 
+	@FXML
+	public void bookRide(){
+		
+		ObservableList<BusSchedule> allRides, rowSelected;
+		
+		allRides = tableView.getItems();
+		
+		rowSelected = tableView.getSelectionModel().getSelectedItems(); 
+		
+		System.out.println(rowSelected);
+		
+		
+		
+		
+		
+		
+	}
+	
+	
 	@FXML
 	public void logOut(ActionEvent event) throws IOException, SQLException {
 
@@ -94,8 +116,26 @@ public class BookRidesController implements Initializable {
 
 	}
 	
+	@FXML
+	public void home(ActionEvent event) throws IOException, SQLException {
+
+		Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/HomeMenu.fxml"));
+
+		Scene loginScene = new Scene(loginParent);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(loginScene);
+		window.setResizable(false);
+
+	}	
 	
 	
+	public void passCustomerInfo(Customer c) {
+		
+		this.customer = c; 
+		
+	}
 	
 	
 	

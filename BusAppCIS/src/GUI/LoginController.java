@@ -11,6 +11,8 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import database.SQLConnection;
 import database.SQLMethods;
+import entities.Admin;
+import entities.Customer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -91,14 +93,13 @@ public class LoginController extends Application implements Initializable {
 	@FXML
 	public void login(ActionEvent event) throws IOException, SQLException {
 
-
-		
-		
 		if (SQLMethods.verify(user.getText(), pass.getText())) {
 
-			if (SQLMethods.isAdmin(user.getText())) { //Checks if user has admin access in database
+			if (SQLMethods.isAdmin(user.getText())) { // Checks if user has admin access in database
 
-				Parent mainMenu = FXMLLoader.load(getClass().getResource("/GUI/AdminHomeMenu.fxml")); // LOADS NEW FXML DOCUMENT INTO mainMenu
+				Parent mainMenu = FXMLLoader.load(getClass().getResource("/GUI/AdminHomeMenu.fxml")); // LOADS NEW FXML
+																										// DOCUMENT INTO
+																										// mainMenu
 
 				Scene mainMenuScene = new Scene(mainMenu); // This puts mainMenu control into new scene
 
@@ -110,14 +111,25 @@ public class LoginController extends Application implements Initializable {
 
 			} else {
 
-				Parent mainMenu = FXMLLoader.load(getClass().getResource("/GUI/HomeMenu.fxml")); 
+				
+				// Takes you to customer home menu
+				
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/HomeMenu.fxml"));
+				
+				Parent mainMenu = loader.load();
+ 
+				HomeMenuController hmc = loader.getController(); 
 
-				Scene mainMenuScene = new Scene(mainMenu); 
+				//This method sets the customer object in home menu controller  
+				
+				hmc.passCustomerInfo(createCustomer());
+				
+				Scene mainMenuScene = new Scene(mainMenu);
 
-				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow(); 
+				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-				window.setScene(mainMenuScene); 
-				window.setResizable(false); 
+				window.setScene(mainMenuScene);
+				window.setResizable(false);
 			}
 		} else {
 
@@ -126,6 +138,26 @@ public class LoginController extends Application implements Initializable {
 		}
 
 	}
+
+	// Retrieves a customers information so it can be passed from scene to scene
+	public Customer createCustomer() {
+
+		try {
+			return SQLMethods.getCustomerInfo(user.getText());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+
+	}
+
+	// Retrieves admin information temporarily
+//		public Admin createAdmin() {
+//			
+//			
+//			
+//		}
 
 	// TAKES YOU TO SIGNUP PAGE
 

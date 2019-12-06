@@ -67,8 +67,7 @@ public class DatabaseSetup {
 			" PRIMARY KEY (station_name))";
 	
 	String customer_schedule = "CREATE TABLE Customer_Schedule" +
-			"(customer_schedule_ID INTEGER not NULL AUTO_INCREMENT," +  
-			" SSN INTEGER(9) not NULL, " +
+			"(SSN INTEGER(9) not NULL, " +
 			" schedule_ID INTEGER not NULL, " +
 			" passenger_no VARCHAR(25) not NULL, " +
 			" from_station VARCHAR(50) not NULL, " +
@@ -78,7 +77,7 @@ public class DatabaseSetup {
 			" arrival_time DATETIME not NULL, " +
 			" departure_time DATETIME not NULL, " +
 			" delete_flag VARCHAR(1) not NULL default '0', " + //if this value is 1, the user deleted the schedule. 
-			" PRIMARY KEY (customer_schedule_ID) , " +
+			" PRIMARY KEY (SSN, schedule_ID) , " +
 			" FOREIGN KEY (SSN) REFERENCES Customer(SSN), " +
 			" FOREIGN KEY (schedule_ID) REFERENCES Bus_Schedule(schedule_ID)" +
 			")"; 
@@ -95,7 +94,7 @@ public class DatabaseSetup {
 	try {
 		statement = connection.createStatement();
 		
-		statement.executeUpdate(busSchedule); 
+		statement.executeUpdate(customer_schedule); 
 
 		System.out.println("Table Created");
 		 

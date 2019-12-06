@@ -74,7 +74,7 @@
             <Insets left="15.0" right="15.0" />
          </padding>
       </VBox>
-      <Button alignment="CENTER" layoutX="573.0" layoutY="644.0" mnemonicParsing="false" onAction="#backToLogin" prefHeight="58.0" prefWidth="103.0" style="-fx-border-color: black; -fx-background-color: mediumblue;" text="Back" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="573.0" layoutY="644.0" mnemonicParsing="false" onAction="#backToLogin" prefHeight="58.0" prefWidth="103.0" style="-fx-border-color: black; -fx-background-color: navy;" text="Back" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -82,7 +82,7 @@
             <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
-      <Button alignment="CENTER" layoutX="1059.0" layoutY="644.0" mnemonicParsing="false" onAction="#complete" prefHeight="58.0" prefWidth="145.0" style="-fx-border-color: black; -fx-background-color: green;" text="Sign Up!" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="1059.0" layoutY="644.0" mnemonicParsing="false" onAction="#complete" prefHeight="58.0" prefWidth="145.0" style="-fx-border-color: black; -fx-background-color: darkgreen;" text="Sign Up!" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>

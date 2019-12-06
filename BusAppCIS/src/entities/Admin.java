@@ -1,34 +1,17 @@
 package entities;
 
 public class Admin extends Customer {
-	
-	// default constructor 
-	public Admin() {
-		
-	}
-	// lengthy constructor 
-	public Admin(int id, int ssn, String firstName, String lastName, String email, String address,
-			 String city, int zipCode, String state, String country, String userName, 
-			 String password, String securityQuestion, String securityAnswer) {
-		super(id, ssn, firstName, lastName, email, address, city, zipCode, state, country, userName,
-				password, securityQuestion, securityAnswer);
-	}
-	
-	
-	//edit user
-	public void editUser() {
-		
-	}
 
-	//update bus trips
-	public void updateTrip() {
-		
+	
+	public Admin(int ssn, String firstName, String lastName, String email, String username, String password,
+			String address, String city, String state, String country, String zip, String securityQuestion,
+			String securityAnswer, String id, String adminAccess) {
+		super(ssn, firstName, lastName, email, username, password, address, city, state, country, zip, securityQuestion,
+				securityAnswer, id, adminAccess);
 	}
 	
-	//remove trips
-	public void deleteTrip() {
-		
-	}
+	//Getters and setters are defined in super class
+	
 	
 	
 }

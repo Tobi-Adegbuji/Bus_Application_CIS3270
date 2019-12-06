@@ -35,7 +35,7 @@
             <Image url="@../../BusImages/logout.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableView" layoutX="220.0" layoutY="127.0" opacity="0.68" prefHeight="548.0" prefWidth="860.0" style="-fx-background-color: WHITE;">
+      <TableView fx:id="tableView" layoutX="398.0" layoutY="128.0" opacity="0.68" prefHeight="548.0" prefWidth="860.0" style="-fx-background-color: WHITE;">
         <columns>
           <TableColumn fx:id="fromColumn" prefWidth="83.0" text="From" />
           <TableColumn fx:id="toColumn" minWidth="0.0" prefWidth="79.0" text="To" />
@@ -47,7 +47,15 @@
             <TableColumn fx:id="busCapacity" minWidth="0.0" prefWidth="98.0" text="Bus Capacity" />
         </columns>
       </TableView>
-      <Button alignment="CENTER" layoutX="24.0" layoutY="23.0" mnemonicParsing="false" onAction="#logOut" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: darkgreen;" text="Home" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="24.0" layoutY="23.0" mnemonicParsing="false" onAction="#home" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: darkgreen;" text="Home" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <padding>
+            <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <Button alignment="CENTER" layoutX="784.0" layoutY="685.0" mnemonicParsing="false" onAction="#bookRide" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Book" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

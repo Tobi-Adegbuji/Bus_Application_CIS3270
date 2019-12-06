@@ -44,6 +44,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewMyRides" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: black;" styleClass="mainMenuButton" stylesheets="@application.css" text="View My Rides" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -70,6 +71,11 @@
                   <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
                </padding>
             </Button>
+            <Label fx:id="greet" alignment="CENTER" prefHeight="17.0" prefWidth="637.0" style="-fx-wrap-text: true;" text="Welcome " GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
       <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="1126.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">

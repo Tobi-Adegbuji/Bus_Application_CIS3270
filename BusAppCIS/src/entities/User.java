@@ -2,156 +2,152 @@ package entities;
 
 public abstract class User {
 
-	 private String firstName, lastName, address, city, state, country,  
-	userName, password, email, securityQuestion, securityAnswer; 
-	
-	 private int zipCode, ssn; 
-	
-	 
-	
-	 User() { 
-		
-		 this.firstName = "firstName";
-		 this.lastName = "lastName";
-		 this.email = "testuser@fake.com";
-		 this.ssn = 123456789;
-		 this.address = "address";
-		 this.city = "City";
-		 this.zipCode = 92335;
-		 this.state = "State";
-		 this.country = "Country";
-		 this.userName = "userName";
-		 this.password = "password";
-		 this.securityQuestion = "Security Question";
-		 this.securityAnswer = "securityAnswer";
-	
-	 }
-	 
-	 User(int ssn, String firstName, String lastName, String email, String address,
-			 String city, int zipCode, String state, String country, String userName, 
-			 String password, String securityQuestion, String securityAnswer) { 
-		 
-		 this.firstName = firstName;
-		 this.lastName = lastName;
-		 this.email = email;
-		 this.ssn = ssn;
-		 this.address = address;
-		 this.city = city;
-		 this.zipCode = zipCode;
-		 this.state = state;
-		 this.country = country;
-		 this.userName = userName;
-		 this.password = password;
-		 this.securityQuestion = securityQuestion;
-		 this.securityAnswer = securityAnswer;
-		 
-	 }
-	 
-	 public String getFirstName() {
-			return firstName;
-		}
+	private int ssn;
 
-		public void setFirstName(String firstName) {
-			this.firstName = firstName;
-		}
+	private String firstName, lastName, email, username, password, address, city, state, country, zip, securityQuestion,
+			securityAnswer, id, adminAccess;
 
-		public String getLastName() {
-			return lastName;
-		}
+	public User(int ssn, String firstName, String lastName, String email, String username, String password,
+			String address, String city, String state, String country, String zip, String securityQuestion,
+			String securityAnswer, String id, String adminAccess) {
 
-		public void setLastName(String lastName) {
-			this.lastName = lastName;
-		}
+		this.ssn = ssn;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+		this.zip = zip;
+		this.securityQuestion = securityQuestion;
+		this.securityAnswer = securityAnswer;
+		this.id = id;
+		this.adminAccess = adminAccess;
+	}
 
-		public String getAddress() {
-			return address;
-		}
+	// Getters and Setters
 
-		public void setAddress(String address) {
-			this.address = address;
-		}
+	public int getSsn() {
+		return ssn;
+	}
 
-		public String getCity() {
-			return city;
-		}
+	public void setSsn(int ssn) {
+		this.ssn = ssn;
+	}
 
-		public void setCity(String city) {
-			this.city = city;
-		}
+	public String getFirstName() {
+		return firstName;
+	}
 
-		public String getState() {
-			return state;
-		}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-		public void setState(String state) {
-			this.state = state;
-		}
+	public String getLastName() {
+		return lastName;
+	}
 
-		public String getCountry() {
-			return country;
-		}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-		public void setCountry(String country) {
-			this.country = country;
-		}
+	public String getEmail() {
+		return email;
+	}
 
-		public String getUserName() {
-			return userName;
-		}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-		public void setUserName(String userName) {
-			this.userName = userName;
-		}
+	public String getUsername() {
+		return username;
+	}
 
-		public String getPassword() {
-			return password;
-		}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-		public void setPassword(String password) {
-			this.password = password;
-		}
+	public String getPassword() {
+		return password;
+	}
 
-		public String getEmail() {
-			return email;
-		}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-		public void setEmail(String email) {
-			this.email = email;
-		}
+	public String getAddress() {
+		return address;
+	}
 
-		public String getSecurityQuestion() {
-			return securityQuestion;
-		}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-		public void setSecurityQuestion(String securityQuestion) {
-			this.securityQuestion = securityQuestion;
-		}
+	public String getCity() {
+		return city;
+	}
 
-		public String getSecurityAnswer() {
-			return securityAnswer;
-		}
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-		public void setSecurityAnswer(String securityAnswer) {
-			this.securityAnswer = securityAnswer;
-		}
+	public String getState() {
+		return state;
+	}
 
+	public void setState(String state) {
+		this.state = state;
+	}
 
-		public int getZipCode() {
-			return zipCode;
-		}
+	public String getCountry() {
+		return country;
+	}
 
-		public void setZipCode(int zipCode) {
-			this.zipCode = zipCode;
-		}
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
-		public int getSsn() {
-			return ssn;
-		}
+	public String getZip() {
+		return zip;
+	}
 
-		public void setSsn(int ssn) {
-			this.ssn = ssn;
-		}
-	 
-	 
-	
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public String getSecurityQuestion() {
+		return securityQuestion;
+	}
+
+	public void setSecurityQuestion(String securityQuestion) {
+		this.securityQuestion = securityQuestion;
+	}
+
+	public String getSecurityAnswer() {
+		return securityAnswer;
+	}
+
+	public void setSecurityAnswer(String securityAnswer) {
+		this.securityAnswer = securityAnswer;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getAdminAccess() {
+		return adminAccess;
+	}
+
+	public void setAdminAccess(String adminAccess) {
+		this.adminAccess = adminAccess;
+	}
+
 }
