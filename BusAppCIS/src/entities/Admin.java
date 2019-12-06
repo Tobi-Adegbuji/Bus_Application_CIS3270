@@ -1,4 +1,4 @@
-package runtime;
+package entities;
 
 public class Admin extends Customer {
 	

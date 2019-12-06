@@ -1,20 +1,25 @@
-package runtime;
+package entities;
 
-public class busStation {
+
+
+//repeat code!! busStation replaces this class
+
+
+public class Location {
 
 	private String cityName;
 	private String stateName;
 	private String cityAcronymn;
 	
-	// default location is Atlanta, Georgia
-	public busStation() {
+	
+	// defualt location is Atlanta, Georgia
+	public Location() {
 		stateName = "Georgia";
 		cityName = "Atlanta";
-		//City Acronym can be used as ID for bus stations since it is unique (only one busStation per city)
 		cityAcronymn = "ATL";
 	}
 	
-	public busStation(String cityName, String stateName, String cityAcronymn) {
+	public Location(String cityName, String stateName, String cityAcronymn) {
 		this.cityName = cityName;
 		this.stateName = stateName;
 		this.cityAcronymn = cityAcronymn;
@@ -50,6 +55,7 @@ public class busStation {
 				"City: " + this.cityName + "\n" +
 				"City Acronymn: " + this.cityAcronymn;
 	}
+	
 	
 	
 }

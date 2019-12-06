@@ -2,7 +2,14 @@ package database;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 
+import entities.BusSchedule;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +20,7 @@ import javafx.stage.Stage;
 
 public class SQLMethods {
 
-	//HAVE TO CLOSE CONNECTIONS STILL 
-	
-
+	// HAVE TO CLOSE CONNECTIONS STILL
 
 	// Checks if username and password is in database
 	public static boolean verify(String username, String password) throws SQLException {
@@ -42,8 +47,7 @@ public class SQLMethods {
 
 		}
 	}
-	
-	
+
 	public static boolean isAdmin(String username) throws SQLException {
 
 		Connection con = SQLConnection.connector();
@@ -57,7 +61,6 @@ public class SQLMethods {
 
 		preparedStatement.setString(2, "Y");
 
-
 		resultSet = preparedStatement.executeQuery();
 
 		if (resultSet.next()) {
@@ -70,9 +73,7 @@ public class SQLMethods {
 		}
 	}
 
-	
-	
-	//Retrieves Security Question 
+	// Retrieves Security Question
 	public static String retrieveSecurityQuestion(String username) throws SQLException {
 
 		Connection con = SQLConnection.connector();
@@ -95,68 +96,65 @@ public class SQLMethods {
 
 		}
 	}
-	
-	
-	//Retrieves Security Answer
-		public static String retrieveAnswer(String username) throws SQLException {
 
-			Connection con = SQLConnection.connector();
-			PreparedStatement preparedStatement;
-			ResultSet resultSet;
-			String query = "SELECT * FROM Customer WHERE username = ?";
+	// Retrieves Security Answer
+	public static String retrieveAnswer(String username) throws SQLException {
 
-			preparedStatement = con.prepareStatement(query);
+		Connection con = SQLConnection.connector();
+		PreparedStatement preparedStatement;
+		ResultSet resultSet;
+		String query = "SELECT * FROM Customer WHERE username = ?";
 
-			preparedStatement.setString(1, username);
+		preparedStatement = con.prepareStatement(query);
 
-			resultSet = preparedStatement.executeQuery();
+		preparedStatement.setString(1, username);
 
-			if (resultSet.next()) {
+		resultSet = preparedStatement.executeQuery();
 
-				return resultSet.getNString(13);
+		if (resultSet.next()) {
 
-			} else {
-				
-				System.out.println("There is an issue");
-				
-				return null;
+			return resultSet.getNString(13);
 
-			}
+		} else {
+
+			System.out.println("There is an issue");
+
+			return null;
+
 		}
+	}
 
-	//Updates password 
-	
-		public static void newPassword(String password, String username) throws Exception {
+	// Updates password
 
-			Connection con = SQLConnection.connector();
-			PreparedStatement ps;
-			ResultSet rs;
+	public static void newPassword(String password, String username) throws Exception {
 
-			String query = "UPDATE Customer SET password = ? WHERE username = ?";
-			try {
-				ps = con.prepareStatement(query);
+		Connection con = SQLConnection.connector();
+		PreparedStatement ps;
+		ResultSet rs;
 
-				ps.setString(1, password);
+		String query = "UPDATE Customer SET password = ? WHERE username = ?";
+		try {
+			ps = con.prepareStatement(query);
 
-				ps.setString(2, username);
+			ps.setString(1, password);
 
-				ps.executeUpdate();
+			ps.setString(2, username);
 
-				System.out.println("Password was updated.");
+			ps.executeUpdate();
 
-			} catch (SQLException e) {
+			System.out.println("Password was updated.");
 
-				throw new SQLException();
+		} catch (SQLException e) {
 
-			} finally {
+			throw new SQLException();
 
-				con.close();
+		} finally {
 
-			}
+			con.close();
 
 		}
 
-	
+	}
 
 	// Creates a new customer.
 	public static void toRegister(String ssn, String firstName, String lastName, String email, String city,
@@ -165,12 +163,11 @@ public class SQLMethods {
 
 		Connection con = SQLConnection.connector();
 		PreparedStatement ps;
-		ResultSet rs;
 
 		String query = "insert into Customer" + "(ssn" + ",first_name" + ",last_Name" + ",email" + ",username"
 				+ ",password" + ",address" + ",city" + ",state" + ",country" + ",zip" + ",security_question"
-				+ ",security_answer" + ",id" + ",admin_access" + ")" + "values" + "(?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?"
-				+ ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ")";
+				+ ",security_answer" + ",id" + ",admin_access" + ")" + "values" + "(?" + ",?" + ",?" + ",?" + ",?"
+				+ ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ",?" + ")";
 		try {
 			ps = con.prepareStatement(query);
 
@@ -201,7 +198,7 @@ public class SQLMethods {
 			ps.setString(13, securityAnswer);
 
 			ps.setString(14, id);
-			
+
 			ps.setString(15, admin_access);
 
 			ps.executeUpdate();
@@ -210,7 +207,8 @@ public class SQLMethods {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();;
+			e.printStackTrace();
+			;
 
 		} finally {
 
@@ -218,6 +216,64 @@ public class SQLMethods {
 
 		}
 
+	}
+
+	public static ObservableList<BusSchedule> getBusScheduleInfo() throws Exception {
+
+		Connection con = SQLConnection.connector();
+		Statement st;
+		ResultSet rs;
+
+		ObservableList<BusSchedule> listOfAllRides = FXCollections.observableArrayList();
+
+		String query = "SELECT * FROM Bus_Schedule";
+
+		try {
+
+			st = con.createStatement();
+
+			rs = st.executeQuery(query);
+
+			while (rs.next()) {
+				
+				listOfAllRides.add(new BusSchedule(rs.getString("from_station"), rs.getString("to_station"), rs.getDate("departure_date"),
+						rs.getDate("arrival_date"), rs.getTimestamp("departure_time"),
+						rs.getTimestamp("arrival_time"), rs.getString("passenger_no"), getCapacity(rs.getString("bus_ID"))));
+
+			}
+
+		} finally {
+			
+			con.close();	
+		}
+		
+		return listOfAllRides;
+
+
+
+	}
+
+	public static String getCapacity(String busID) throws SQLException {
+
+		Connection con = SQLConnection.connector();
+		PreparedStatement preparedStatement;
+		ResultSet resultSet;
+		String query = "SELECT capacity FROM Bus WHERE bus_ID = ?";
+
+		preparedStatement = con.prepareStatement(query);
+
+		preparedStatement.setString(1, busID);
+
+		resultSet = preparedStatement.executeQuery();
+
+		if (resultSet.next()) {
+
+			return resultSet.getString(1);
+
+		} else {
+			return null;
+
+		}
 	}
 
 }

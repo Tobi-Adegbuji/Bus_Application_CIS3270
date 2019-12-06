@@ -42,17 +42,17 @@ public class DatabaseSetup {
 	String busSchedule = "CREATE TABLE Bus_Schedule" +
 	"(schedule_ID INTEGER not NULL AUTO_INCREMENT ," +  //Automatically increments the PK
 	" bus_ID INTEGER(3), " +
-	" station_ID INTEGER(1), " +
 	" passenger_no VARCHAR(25), " +
 	" from_station VARCHAR(50), " +
 	" to_station VARCHAR(50), " +
 	" arrival_date DATE, " +
 	" departure_date DATE, " +
-	" arrival_time DATE, " +
-	" departure_time DATE, " +
+	" arrival_time DATETIME, " +
+	" departure_time DATETIME, " +
 	" PRIMARY KEY (schedule_ID)," +
 	" FOREIGN KEY (bus_ID) REFERENCES Bus(bus_ID), " +
-	" FOREIGN KEY (station_ID) REFERENCES Bus_Station(station_ID)" +
+	" FOREIGN KEY (from_station) REFERENCES Bus_Station(station_name), " +
+	" FOREIGN KEY (to_station) REFERENCES Bus_Station(station_name)" +
 	")"; 
 
 
@@ -62,10 +62,9 @@ public class DatabaseSetup {
 			" PRIMARY KEY (bus_ID))";
 	
 	String bus_station = "CREATE TABLE Bus_Station" +
-			"(station_ID INTEGER(1) not NULL ," +  
-			" station_name VARCHAR(26), " +
+			"(station_name VARCHAR(26) not NULL, " +
 			" station_acronym VARCHAR(5), " +
-			" PRIMARY KEY (station_ID))";
+			" PRIMARY KEY (station_name))";
 	
 	String customer_schedule = "CREATE TABLE Customer_Schedule" +
 			"(customer_schedule_ID INTEGER not NULL AUTO_INCREMENT," +  
@@ -76,8 +75,8 @@ public class DatabaseSetup {
 			" to_station VARCHAR(50) not NULL, " +
 			" arrival_date DATE not NULL, " +
 			" departure_date DATE not NULL, " +
-			" arrival_time DATE not NULL, " +
-			" departure_time DATE not NULL, " +
+			" arrival_time DATETIME not NULL, " +
+			" departure_time DATETIME not NULL, " +
 			" delete_flag VARCHAR(1) not NULL default '0', " + //if this value is 1, the user deleted the schedule. 
 			" PRIMARY KEY (customer_schedule_ID) , " +
 			" FOREIGN KEY (SSN) REFERENCES Customer(SSN), " +
@@ -86,7 +85,7 @@ public class DatabaseSetup {
 	
 	
 	
-	String dropCustomer = "DROP TABLE Customer_Schedule"; 
+	String dropCustomer = "DROP TABLE Bus_Schedule"; 
 
 	
 	
@@ -96,7 +95,7 @@ public class DatabaseSetup {
 	try {
 		statement = connection.createStatement();
 		
-		statement.executeUpdate(customer_schedule); 
+		statement.executeUpdate(busSchedule); 
 
 		System.out.println("Table Created");
 		 

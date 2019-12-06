@@ -47,5 +47,23 @@ public class AdminHomeMenuContoller {
 			 
 			
 		}
+		
+		@FXML
+		public void bookRides(ActionEvent event) throws IOException, SQLException  {
+		
+			
+			
+			 Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/BookRides.fxml")); 
+			 
+			 Scene loginScene = new Scene(loginParent); 
+			 
+			 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			 
+			 window.setScene(loginScene);
+			 window.setResizable(false);
+			 
+			
+		}
+		
 	
 }

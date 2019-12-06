@@ -12,51 +12,49 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class HomeMenuController  {
-		
-	
+public class HomeMenuController {
+
 	@FXML
-	public void logOut(ActionEvent event) throws IOException, SQLException  {
-	
-		
-		
-		 Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml")); 
-		 
-		 Scene loginScene = new Scene(loginParent); 
-		 
-		 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		 
-		 window.setScene(loginScene);
-		 window.setResizable(false);
-		 
-		
+	public void logOut(ActionEvent event) throws IOException, SQLException {
+
+		Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
+
+		Scene loginScene = new Scene(loginParent);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(loginScene);
+		window.setResizable(false);
+
 	}
-	
-	
-	
-	//Takes you to view my rides screen 
+
+	// Takes you to view my rides screen
 	@FXML
-	public void viewMyRides(ActionEvent event) throws IOException, SQLException  {
-	
-		
-		
-		 Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/ViewMyRides.fxml")); 
-		 
-		 Scene loginScene = new Scene(loginParent); 
-		 
-		 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		 
-		 window.setScene(loginScene);
-		 window.setResizable(false);
-		 
-		
+	public void viewMyRides(ActionEvent event) throws IOException, SQLException {
+
+		Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/ViewMyRides.fxml"));
+
+		Scene loginScene = new Scene(loginParent);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(loginScene);
+		window.setResizable(false);
+
 	}
-	
-	
-	
 
-	 
+	@FXML
+	public void bookRides(ActionEvent event) throws IOException, SQLException {
 
+		Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/BookRides.fxml"));
 
-	
+		Scene loginScene = new Scene(loginParent);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(loginScene);
+		window.setResizable(false);
+
+	}
+
 }

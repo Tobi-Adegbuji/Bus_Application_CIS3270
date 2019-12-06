@@ -54,7 +54,7 @@
                   <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
                </padding>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: black;" text="Book Rides" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#bookRides" prefHeight="150.0" prefWidth="298.0" style="-fx-border-color: black; -fx-background-color: black;" text="Book Rides" textAlignment="JUSTIFY" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>
