@@ -38,13 +38,14 @@
       <TableView fx:id="tableView" layoutX="398.0" layoutY="128.0" opacity="0.68" prefHeight="548.0" prefWidth="860.0" style="-fx-background-color: WHITE;">
         <columns>
           <TableColumn fx:id="fromColumn" prefWidth="83.0" text="From" />
-          <TableColumn fx:id="toColumn" minWidth="0.0" prefWidth="79.0" text="To" />
-            <TableColumn fx:id="departureDateColumn" prefWidth="105.0" text="Departure Date" />
-            <TableColumn fx:id="arriavalDateColumn" prefWidth="93.0" text="Arrival Date" />
+          <TableColumn fx:id="toColumn" minWidth="0.0" prefWidth="66.0" text="To" />
+            <TableColumn fx:id="departureDateColumn" prefWidth="112.0" text="Departure Date" />
+            <TableColumn fx:id="arriavalDateColumn" prefWidth="99.0" text="Arrival Date" />
             <TableColumn fx:id="arrivalTimeColumn" prefWidth="97.0" text="Arrival Time" />
             <TableColumn fx:id="departureTimeColumn" prefWidth="114.0" text="Departure Time" />
-            <TableColumn fx:id="numberOfPassengersColumn" prefWidth="146.0" text="Number of Passengers" />
-            <TableColumn fx:id="busCapacity" minWidth="0.0" prefWidth="98.0" text="Bus Capacity" />
+            <TableColumn fx:id="numberOfPassengersColumn" prefWidth="137.0" text="Number of Passengers" />
+            <TableColumn fx:id="busCapacity" minWidth="0.0" prefWidth="81.0" text="Bus Capacity" />
+            <TableColumn fx:id="scheduleIDColumn" text="Schedule ID" />
         </columns>
       </TableView>
       <Button alignment="CENTER" layoutX="24.0" layoutY="23.0" mnemonicParsing="false" onAction="#home" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: darkgreen;" text="Home" textAlignment="JUSTIFY" textFill="WHITE">

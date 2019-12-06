@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class BookRidesController implements Initializable {
@@ -38,6 +39,7 @@ public class BookRidesController implements Initializable {
 	@FXML private TableColumn<BusSchedule, Timestamp> arrivalTimeColumn;
 	@FXML private TableColumn<BusSchedule, String> numberOfPassengersColumn;
 	@FXML private TableColumn<BusSchedule, String> busCapacity;
+	@FXML private TableColumn<BusSchedule, String> scheduleIDColumn;
 	
 	private Customer customer; 
 	
@@ -61,6 +63,8 @@ public class BookRidesController implements Initializable {
 
 		busCapacity.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("capacity")); 
 		
+		scheduleIDColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("scheduleID")); 
+
 		
 		tableView.setItems(getSchedule());
 
@@ -82,19 +86,41 @@ public class BookRidesController implements Initializable {
 		
 	}
 	
-	//must grab a customer and add it to their customer schedule 
+	//must grab a customer and add them to customer schedule 
 	@FXML
-	public void bookRide(){
+	public void bookRide() throws IOException{
 		
-		ObservableList<BusSchedule> allRides, rowSelected;
+		ObservableList<BusSchedule> allRides, ridesSelected;
 		
 		allRides = tableView.getItems();
 		
-		rowSelected = tableView.getSelectionModel().getSelectedItems(); 
-		
-		System.out.println(rowSelected);
+		ridesSelected = tableView.getSelectionModel().getSelectedItems(); 
 		
 		
+		System.out.println(ridesSelected.get(0).getFromStation());
+		
+		System.out.println(ridesSelected.get(0).getToStation());
+
+		
+		
+
+		try {
+			SQLMethods.bookRide(String.valueOf(customer.getSsn()),  ridesSelected.get(0).getScheduleID(), ridesSelected.get(0).getNumberOfPassengers(),
+					ridesSelected.get(0).getFromStation(),ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(),
+					ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(), ridesSelected.get(0).getDepartureTime(), 
+					"0");
+		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
+			
+			AlreadyScehduledAlertBoxController alert = new AlreadyScehduledAlertBoxController();
+			
+			alert.display();
+			
+			
+		}catch(SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
 		
 		
 		

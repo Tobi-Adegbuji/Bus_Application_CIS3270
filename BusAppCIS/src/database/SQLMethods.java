@@ -24,6 +24,12 @@ import javafx.stage.Stage;
 public class SQLMethods {
 
 	// HAVE TO CLOSE CONNECTIONS STILL
+	//HAVE TO MAKE EVERY METHOD THROW EXCEPTION TO LOGIC PART OF PROJECT(which is the controllers) 
+	//Controllers should handle any of the exceptions
+	
+	
+	
+	
 
 	// Checks if username and password is in database
 	public static boolean verify(String username, String password) throws SQLException {
@@ -273,7 +279,7 @@ public class SQLMethods {
 				listOfAllRides.add(new BusSchedule(rs.getString("from_station"), rs.getString("to_station"),
 						rs.getDate("departure_date"), rs.getDate("arrival_date"), rs.getTimestamp("departure_time"),
 						rs.getTimestamp("arrival_time"), rs.getString("passenger_no"),
-						getCapacity(rs.getString("bus_ID"))));
+						getCapacity(rs.getString("bus_ID")), rs.getString("schedule_ID")));
 
 			}
 
@@ -313,12 +319,33 @@ public class SQLMethods {
 	
 	//Inserts new record into customer schedule table
 	
-	public static void bookRide() {
+	public static void bookRide(String snn, String schedule_ID, String passenger_no, String from_station, String to_station
+, Date arrival_date, Date departure_date, Timestamp arrival_time, Timestamp departure_time, String delete_flag ) throws SQLException, java.sql.SQLIntegrityConstraintViolationException {
 		
 		Connection con = SQLConnection.connector();
 		PreparedStatement ps; 
 		
+		String query = "INSERT INTO Customer_Schedule (SSN, schedule_ID, passenger_no, from_station, to_station, "
+				+ "arrival_date, departure_date, arrival_time, departure_time, delete_flag) VALUES(?,?,?,?,?,?,?,?,?,?)";
 		
+		ps = con.prepareStatement(query);
+		
+		ps.setString(1, snn);
+		ps.setString(2,schedule_ID);
+		ps.setString(3,passenger_no);
+		ps.setString(4,from_station);
+		ps.setString(5 ,to_station);
+		ps.setString(6, String.valueOf(arrival_date));
+		ps.setString(7, String.valueOf(departure_date));
+		ps.setString(8, String.valueOf(arrival_time));
+		ps.setString(9, String.valueOf(departure_time));
+		ps.setString(10, delete_flag);
+		
+		ps.executeUpdate(); 
+		
+		
+		ps.close();
+		con.close();
 		
 		
 	}

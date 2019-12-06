@@ -14,7 +14,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class BusSchedule {
 
 	
-	private SimpleStringProperty fromStation, toStation, numberOfPassengers, capacity; 
+	private SimpleStringProperty fromStation, toStation, numberOfPassengers, capacity, sceduleID; 
 	private Date arrivalDate, departureDate;
 	private Timestamp arrivalTime, departureTime;
 	
@@ -23,7 +23,7 @@ public class BusSchedule {
 	
 	public BusSchedule(String fromStation, String toStation,
 			Date arrivalDate, Date departureDate, Timestamp arrivalTime, Timestamp departureTime
-			, String numberOfPassengers, String capacity) {
+			, String numberOfPassengers, String capacity, String scheduleID) {
 	
 		this.fromStation = new SimpleStringProperty(fromStation);
 		this.toStation = new SimpleStringProperty(toStation);
@@ -33,7 +33,7 @@ public class BusSchedule {
 		this.departureDate = departureDate;
 		this.arrivalTime = arrivalTime;
 		this.departureTime = departureTime;
-		
+		this.sceduleID = new SimpleStringProperty(scheduleID);
 		
 		
 	}
@@ -150,7 +150,16 @@ public class BusSchedule {
 		this.capacity = capacity;
 	} 
 	
-	
+	public String getScheduleID() {
+		return sceduleID.get();
+	}
+
+
+
+
+	public void setScheduleID(SimpleStringProperty scheduleID) {
+		this.sceduleID = scheduleID;
+	} 
 	
 	
 		

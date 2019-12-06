@@ -87,8 +87,10 @@ public class HomeMenuController implements Initializable {
 	public void passCustomerInfo(Customer c) {
 		
 		this.customer = c; 
-		greet.setText("Welcome " + customer.getFirstName()+ ".");
 		
+		if(customer != null) {
+		greet.setText("Welcome " + customer.getFirstName());
+		}
 	}
 
 	
