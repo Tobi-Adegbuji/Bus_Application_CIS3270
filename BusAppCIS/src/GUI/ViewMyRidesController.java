@@ -84,6 +84,19 @@ public class ViewMyRidesController implements Initializable {
 
 	}
 	
+	@FXML
+	public void home(ActionEvent event) throws IOException, SQLException {
+
+		Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/HomeMenu.fxml"));
+
+		Scene loginScene = new Scene(loginParent);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(loginScene);
+		window.setResizable(false);
+
+	}	
 	
 	
 	
