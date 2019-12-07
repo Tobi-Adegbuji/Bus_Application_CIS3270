@@ -2,6 +2,7 @@ package database;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -367,11 +368,18 @@ public class SQLMethods {
 
 			rs = st.executeQuery(query);
 
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+			
 			while (rs.next()) {
 
+				String departureTime = sdf.format(rs.getTimestamp("departure_time"));
+				
+				String arrivalTime = sdf.format(rs.getTimestamp("arrival_time"));
+
+				
 				listOfAllRides.add(new BusSchedule(rs.getString("from_station"), rs.getString("to_station"),
-						rs.getDate("departure_date"), rs.getDate("arrival_date"), rs.getTimestamp("departure_time"),
-						rs.getTimestamp("arrival_time"), rs.getString("passenger_no"),
+						rs.getDate("departure_date"), rs.getDate("arrival_date"), departureTime,
+						arrivalTime, rs.getString("passenger_no"),
 						getCapacity(rs.getString("bus_ID")), rs.getString("schedule_ID")));
 
 			}
@@ -504,7 +512,7 @@ public class SQLMethods {
 	// Inserts new record into customer schedule table
 
 	public static void bookRide(String snn, String schedule_ID, String passenger_no, String from_station,
-			String to_station, Date arrival_date, Date departure_date, Timestamp arrival_time, Timestamp departure_time,
+			String to_station, Date arrival_date, Date departure_date, String arrival_time, String departure_time,
 			String delete_flag) throws SQLException, java.sql.SQLIntegrityConstraintViolationException {
 
 		Connection con = SQLConnection.connector();
@@ -513,6 +521,9 @@ public class SQLMethods {
 		String query = "INSERT INTO Customer_Schedule (SSN, schedule_ID, passenger_no, from_station, to_station, "
 				+ "arrival_date, departure_date, arrival_time, departure_time, delete_flag) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
+		String arrivalD = String.valueOf(arrival_date);
+		String departureD = String.valueOf(departure_date);
+		
 		try {
 
 			ps = con.prepareStatement(query);
@@ -524,8 +535,8 @@ public class SQLMethods {
 			ps.setString(5, to_station);
 			ps.setString(6, String.valueOf(arrival_date));
 			ps.setString(7, String.valueOf(departure_date));
-			ps.setString(8, String.valueOf(arrival_time));
-			ps.setString(9, String.valueOf(departure_time));
+			ps.setString(8, arrivalD + " " + arrival_time);
+			ps.setString(9, departureD + " " + departure_time);
 			ps.setString(10, delete_flag);
 
 			ps.executeUpdate();
