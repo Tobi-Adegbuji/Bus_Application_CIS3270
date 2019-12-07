@@ -29,105 +29,105 @@ import javafx.stage.Stage;
 
 public class BookRidesController implements Initializable {
 
-	
-	@FXML private TableView<BusSchedule> tableView; //The tableView is expecting BusSchedule objects
-	@FXML private TableColumn<BusSchedule, String> fromColumn;
-	@FXML private TableColumn<BusSchedule, String> toColumn;
-	@FXML private TableColumn<BusSchedule, Date> departureDateColumn;
-	@FXML private TableColumn<BusSchedule, Date> arriavalDateColumn;
-	@FXML private TableColumn<BusSchedule, Timestamp> departureTimeColumn;
-	@FXML private TableColumn<BusSchedule, Timestamp> arrivalTimeColumn;
-	@FXML private TableColumn<BusSchedule, String> numberOfPassengersColumn;
-	@FXML private TableColumn<BusSchedule, String> busCapacity;
-	@FXML private TableColumn<BusSchedule, String> scheduleIDColumn;
-	
-	private Customer customer; 
-	
-	
+	@FXML
+	private TableView<BusSchedule> tableView; // The tableView is expecting BusSchedule objects
+	@FXML
+	private TableColumn<BusSchedule, String> fromColumn;
+	@FXML
+	private TableColumn<BusSchedule, String> toColumn;
+	@FXML
+	private TableColumn<BusSchedule, Date> departureDateColumn;
+	@FXML
+	private TableColumn<BusSchedule, Date> arriavalDateColumn;
+	@FXML
+	private TableColumn<BusSchedule, Timestamp> departureTimeColumn;
+	@FXML
+	private TableColumn<BusSchedule, Timestamp> arrivalTimeColumn;
+	@FXML
+	private TableColumn<BusSchedule, String> numberOfPassengersColumn;
+	@FXML
+	private TableColumn<BusSchedule, String> busCapacity;
+	@FXML
+	private TableColumn<BusSchedule, String> scheduleIDColumn;
+
+	private Customer customer;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		fromColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("fromStation")); 
-		
-		toColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("toStation")); 
+		fromColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("fromStation"));
 
-		departureDateColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Date>("departureDate")); 
+		toColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("toStation"));
 
-		arriavalDateColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Date>("arrivalDate")); 
+		departureDateColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Date>("departureDate"));
 
-		departureTimeColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Timestamp>("departureTime")); 
+		arriavalDateColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Date>("arrivalDate"));
 
-		arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Timestamp>("arrivalTime")); 
+		departureTimeColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Timestamp>("departureTime"));
 
-		numberOfPassengersColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("numberOfPassengers")); 
+		arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Timestamp>("arrivalTime"));
 
-		busCapacity.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("capacity")); 
-		
-		scheduleIDColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("scheduleID")); 
+		numberOfPassengersColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("numberOfPassengers"));
 
-		
+		busCapacity.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("capacity"));
+
+		scheduleIDColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("scheduleID"));
+
 		tableView.setItems(getSchedule());
 
-		
 	}
-	
-	
-	public ObservableList<BusSchedule> getSchedule(){
-		
+
+	public ObservableList<BusSchedule> getSchedule() {
+
 		try {
 			return SQLMethods.getBusScheduleInfo();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		System.out.println("It returned Null");
-		return null; 
-		
+		return null;
+
 	}
-	
-	//must grab a customer and add them to customer schedule 
+
+	// must grab a customer and add them to customer schedule
 	@FXML
-	public void bookRide() throws IOException{
-		
+	public void bookRide() throws IOException {
+
 		ObservableList<BusSchedule> allRides, ridesSelected;
-		
+
 		allRides = tableView.getItems();
-		
-		ridesSelected = tableView.getSelectionModel().getSelectedItems(); 
-		
-		
+
+		ridesSelected = tableView.getSelectionModel().getSelectedItems();
+
 		System.out.println(ridesSelected.get(0).getFromStation());
-		
+
 		System.out.println(ridesSelected.get(0).getToStation());
 
-		
-		
-
 		try {
-			SQLMethods.bookRide(String.valueOf(customer.getSsn()),  ridesSelected.get(0).getScheduleID(), ridesSelected.get(0).getNumberOfPassengers(),
-					ridesSelected.get(0).getFromStation(),ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(),
-					ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(), ridesSelected.get(0).getDepartureTime(), 
-					"0");
-		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
-			
+
+			System.out.println(customer.getFirstName());
+
+			SQLMethods.bookRide(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID(),
+					ridesSelected.get(0).getNumberOfPassengers(), ridesSelected.get(0).getFromStation(),
+					ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(),
+					ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(),
+					ridesSelected.get(0).getDepartureTime(), "0");
+		} 
+		catch (java.sql.SQLIntegrityConstraintViolationException e) {
+
 			AlreadyScehduledAlertBoxController alert = new AlreadyScehduledAlertBoxController();
-			
+
 			alert.display();
-			
-			
-		}catch(SQLException e) {
-			
+
+		} catch (SQLException e) {
+
 			e.printStackTrace();
-			
+
 		}
-		
-		
-		
-		
+
 	}
-	
-	
+
 	@FXML
 	public void logOut(ActionEvent event) throws IOException, SQLException {
 
@@ -141,7 +141,7 @@ public class BookRidesController implements Initializable {
 		window.setResizable(false);
 
 	}
-	
+
 	@FXML
 	public void home(ActionEvent event) throws IOException, SQLException {
 
@@ -154,15 +154,13 @@ public class BookRidesController implements Initializable {
 		window.setScene(loginScene);
 		window.setResizable(false);
 
-	}	
-	
-	
-	public void passCustomerInfo(Customer c) {
-		
-		this.customer = c; 
-		
 	}
-	
-	
-	
+
+	public void passCustomerInfo(Customer c) {
+
+		this.customer = c;
+		System.out.println(this.customer);
+
+	}
+
 }

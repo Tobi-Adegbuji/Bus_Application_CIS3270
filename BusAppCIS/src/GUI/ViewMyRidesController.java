@@ -11,7 +11,9 @@ import java.util.ResourceBundle;
 
 import database.SQLMethods;
 import entities.BusSchedule;
+import entities.Customer;
 import entities.CustomerSchedule;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,56 +22,105 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ViewMyRidesController implements Initializable {
 
-	
-	@FXML private TableView<BusSchedule> tableView; //The tableView is expecting customerSchedule objects
-	@FXML private TableColumn<BusSchedule, String> fromColumn;
-	@FXML private TableColumn<BusSchedule, String> toColumn;
-	@FXML private TableColumn<BusSchedule, Date> departureDateColumn;
-	@FXML private TableColumn<BusSchedule, Date> arriavalDateColumn;
-	@FXML private TableColumn<BusSchedule, Timestamp> departureTimeColumn;
-	@FXML private TableColumn<BusSchedule, Timestamp> arrivalTimeColumn;
-	
-	
-	
-	
+	@FXML
+	private TableView<CustomerSchedule> tableView; // The tableView is expecting BusSchedule objects
+	@FXML
+	private TableColumn<CustomerSchedule, String> fromColumn;
+	@FXML
+	private TableColumn<CustomerSchedule, String> toColumn;
+	@FXML
+	private TableColumn<CustomerSchedule, Date> departureDateColumn;
+	@FXML
+	private TableColumn<CustomerSchedule, Date> arriavalDateColumn;
+	@FXML
+	private TableColumn<CustomerSchedule, Timestamp> departureTimeColumn;
+	@FXML
+	private TableColumn<CustomerSchedule, Timestamp> arrivalTimeColumn;
+	@FXML
+	private TableColumn<CustomerSchedule, String> numberOfPassengersColumn;
+	@FXML
+	private TableColumn<CustomerSchedule, String> busCapacity;
+	@FXML
+	private TableColumn<CustomerSchedule, String> scheduleIDColumn;
+
+	private Customer customer;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		fromColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("fromStation")); 
-		
-		toColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("toStation")); 
-
-		departureDateColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Date>("departureDate")); 
-
-		arriavalDateColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Date>("arrivalDate")); 
-
-		departureTimeColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Timestamp>("departureTime")); 
-
-		arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Timestamp>("arrivalTime")); 
-
+		tableView.setPlaceholder(new Label("Greetings!"));
 
 		
-		
-//		tableView.setItems(getSchedule());
+		fromColumn.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, String>("fromStation"));
 
-		
+		toColumn.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, String>("toStation"));
+
+		departureDateColumn.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, Date>("departureDate"));
+
+		arriavalDateColumn.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, Date>("arrivalDate"));
+
+		departureTimeColumn.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, Timestamp>("departureTime"));
+
+		arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, Timestamp>("arrivalTime"));
+
+		numberOfPassengersColumn
+				.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, String>("numberOfPassengers"));
+
+		busCapacity.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, String>("capacity"));
+
+		scheduleIDColumn.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, String>("scheduleID"));
+
+		Platform.runLater(() -> {
+
+			try {
+
+				ObservableList<CustomerSchedule> rides = SQLMethods.getCustomerScheduleInfo(String.valueOf(customer.getSsn()));
+				
+				tableView.setItems(rides);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+
+				e.printStackTrace();
+
+			}
+
+		});
+
 	}
-	
-	
-	
+
 //	public ObservableList<CustomerSchedule> getSchedule(){
 //		
-//		
+//	
 //		
 //	}
-	
+
+	// deletes a ride from customer schedule
+	@FXML
+	public void deleteRide() throws IOException {
+
+		ObservableList<CustomerSchedule> allRides, ridesSelected;
+
+		allRides = tableView.getItems();
+
+		ridesSelected = tableView.getSelectionModel().getSelectedItems();
+
+		System.out.println(ridesSelected.get(0).getFromStation());
+
+		System.out.println(ridesSelected.get(0).getToStation());
+
+	}
+
 	@FXML
 	public void logOut(ActionEvent event) throws IOException, SQLException {
 
@@ -83,7 +134,7 @@ public class ViewMyRidesController implements Initializable {
 		window.setResizable(false);
 
 	}
-	
+
 	@FXML
 	public void home(ActionEvent event) throws IOException, SQLException {
 
@@ -96,10 +147,12 @@ public class ViewMyRidesController implements Initializable {
 		window.setScene(loginScene);
 		window.setResizable(false);
 
-	}	
-	
-	
-	
-	
-	
+	}
+
+	public void passCustomerInfo(Customer c) {
+
+		this.customer = c;
+
+	}
+
 }

@@ -9,12 +9,11 @@ import javafx.beans.property.SimpleStringProperty;
 
 //Still working on this
 
-//We will most likely end up deleting a lot of the other classes in this package 
 
 public class CustomerSchedule {
 
 	
-	private SimpleStringProperty fromStation, toStation, numberOfPassengers, capacity; 
+	private SimpleStringProperty fromStation, toStation, numberOfPassengers, capacity, scheduleID; 
 	private Date arrivalDate, departureDate;
 	private Timestamp arrivalTime, departureTime;
 	
@@ -23,7 +22,7 @@ public class CustomerSchedule {
 	
 	public CustomerSchedule(String fromStation, String toStation,
 			Date arrivalDate, Date departureDate, Timestamp arrivalTime, Timestamp departureTime
-			, String numberOfPassengers, String capacity) {
+			, String numberOfPassengers, String capacity, String scheduleID) {
 	
 		this.fromStation = new SimpleStringProperty(fromStation);
 		this.toStation = new SimpleStringProperty(toStation);
@@ -33,7 +32,7 @@ public class CustomerSchedule {
 		this.departureDate = departureDate;
 		this.arrivalTime = arrivalTime;
 		this.departureTime = departureTime;
-		
+		this.scheduleID = new SimpleStringProperty(scheduleID);
 		
 		
 	}
@@ -150,7 +149,16 @@ public class CustomerSchedule {
 		this.capacity = capacity;
 	} 
 	
-	
+	public String getScheduleID() {
+		return scheduleID.get();
+	}
+
+
+
+
+	public void setScheduleID(SimpleStringProperty scheduleID) {
+		this.scheduleID = scheduleID;
+	} 
 	
 	
 		

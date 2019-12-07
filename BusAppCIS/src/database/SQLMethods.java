@@ -11,6 +11,7 @@ import java.util.List;
 
 import entities.BusSchedule;
 import entities.Customer;
+import entities.CustomerSchedule;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -291,6 +292,51 @@ public class SQLMethods {
 		return listOfAllRides;
 
 	}
+	
+	
+	
+	// Returns customer schedule records in an observable list to populate the customer's already viewed tableview
+		public static ObservableList<CustomerSchedule> getCustomerScheduleInfo(String ssn) throws Exception, SQLException {
+
+			
+			
+			Connection con = SQLConnection.connector();
+			PreparedStatement ps;
+			ResultSet rs;
+
+			ObservableList<CustomerSchedule> listOfAllRides = FXCollections.observableArrayList();
+
+			
+			String query = "SELECT * FROM Customer_Schedule WHERE SSN = ?";
+
+			try {
+
+				ps = con.prepareStatement(query); 
+
+				ps.setString(1, ssn);
+				
+				rs = ps.executeQuery();
+
+				while (rs.next()) {
+
+					listOfAllRides.add(new CustomerSchedule(rs.getString("from_station"), rs.getString("to_station"),
+							rs.getDate("departure_date"), rs.getDate("arrival_date"), rs.getTimestamp("departure_time"),
+							rs.getTimestamp("arrival_time"), rs.getString("passenger_no"),
+							getCapacity(getBusID(rs.getString("schedule_ID"))), rs.getString("schedule_ID")));
+
+				}
+
+			} finally {
+
+				con.close();
+			}
+
+			
+			return listOfAllRides;
+ 
+		}
+	
+	
 
 	public static String getCapacity(String busID) throws SQLException {
 
@@ -314,6 +360,32 @@ public class SQLMethods {
 
 		}
 	}
+	
+	public static String getBusID(String scheduleID) throws SQLException {
+
+		Connection con = SQLConnection.connector();
+		PreparedStatement preparedStatement;
+		ResultSet resultSet;
+		String query = "SELECT bus_ID FROM Bus_Schedule WHERE schedule_ID = ?";
+
+		preparedStatement = con.prepareStatement(query);
+
+		preparedStatement.setString(1, scheduleID);
+
+		resultSet = preparedStatement.executeQuery();
+
+		if (resultSet.next()) {
+
+			return resultSet.getString(1);
+
+		} else {
+			
+			
+			return null;
+
+		}
+	}
+	
 
 	
 	
