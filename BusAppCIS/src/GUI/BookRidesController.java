@@ -56,7 +56,7 @@ public class BookRidesController implements Initializable {
 	private TableColumn<BusSchedule, String> scheduleIDColumn;
 
 
-   //first called
+   //first calledd
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
