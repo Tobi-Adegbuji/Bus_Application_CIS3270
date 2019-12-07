@@ -8,14 +8,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="227.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlreadyScehduledAlertBoxController">
    <children>
-      <Label alignment="CENTER" layoutX="8.0" layoutY="203.0" prefHeight="25.0" prefWidth="212.0" text="You already booked this ride." textFill="WHITE">
+      <Label alignment="CENTER" layoutX="-7.0" layoutY="208.0" prefHeight="24.0" prefWidth="227.0" text="Sorry Bus is full already" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="14.0" />
+            <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <ImageView fitHeight="120.0" fitWidth="132.0" layoutX="55.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="119.0" fitWidth="120.0" layoutX="54.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../BusImages/alert2.png" />
+            <Image url="@../../BusImages/alert.png" />
          </image>
       </ImageView>
    </children>

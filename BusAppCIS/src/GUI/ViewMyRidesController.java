@@ -57,7 +57,7 @@ public class ViewMyRidesController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		tableView.setPlaceholder(new Label("Greetings!"));
+		tableView.setPlaceholder(new Label(""));
 
 		
 		fromColumn.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, String>("fromStation"));
@@ -115,9 +115,7 @@ public class ViewMyRidesController implements Initializable {
 
 		ridesSelected = tableView.getSelectionModel().getSelectedItems();
 
-		System.out.println(ridesSelected.get(0).getFromStation());
-
-		System.out.println(ridesSelected.get(0).getToStation());
+		//needs ssn and schedule_ID
 
 	}
 

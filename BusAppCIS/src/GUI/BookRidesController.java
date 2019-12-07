@@ -103,6 +103,13 @@ public class BookRidesController implements Initializable {
 		
 
 		try {
+			
+			int capacity = Integer.valueOf(ridesSelected.get(0).getCapacity());
+			
+			int currentNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers());
+
+			
+		if(currentNumberOfPassengers != capacity){
 
 			SQLMethods.bookRide(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID(),
 					ridesSelected.get(0).getNumberOfPassengers(), ridesSelected.get(0).getFromStation(),
@@ -115,14 +122,29 @@ public class BookRidesController implements Initializable {
 			
 			SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID );
 			
+		}else {
+			
+			throw new BusIsFullException();
+			
+		}
+			
 		} 
+		catch(BusIsFullException e) {
+			
+			BusIsFullAlertBoxController alert = new BusIsFullAlertBoxController();
+			
+			alert.display();
+			
+			
+		}
 		catch (java.sql.SQLIntegrityConstraintViolationException e) {
 
 			AlreadyScehduledAlertBoxController alert = new AlreadyScehduledAlertBoxController();
 
 			alert.display();
 
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) {
 
 			e.printStackTrace();
 

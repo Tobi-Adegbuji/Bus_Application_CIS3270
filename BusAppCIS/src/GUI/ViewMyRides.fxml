@@ -51,5 +51,13 @@
             <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
+      <Button alignment="CENTER" layoutX="1233.0" layoutY="615.0" mnemonicParsing="false" onAction="#deleteRide" prefHeight="39.0" prefWidth="122.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Delete Ride" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <padding>
+            <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
    </children>
 </AnchorPane>

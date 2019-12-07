@@ -14,7 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class AlreadyScehduledAlertBoxController {
+public class BusIsFullAlertBoxController {
 
 
 	
@@ -28,7 +28,7 @@ public void display() throws IOException {
 	
 	stage.initModality(Modality.APPLICATION_MODAL);
 
-	Parent parent = FXMLLoader.load(getClass().getResource("/GUI/AlreadyScheduledAlertBox.fxml"));
+	Parent parent = FXMLLoader.load(getClass().getResource("/GUI/BusIsFullAlertBox.fxml"));
 	
 	Scene scene = new Scene(parent);
 

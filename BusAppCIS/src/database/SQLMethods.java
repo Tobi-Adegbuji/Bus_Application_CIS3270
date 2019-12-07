@@ -357,13 +357,15 @@ public class SQLMethods {
 
 		ObservableList<CustomerSchedule> listOfAllRides = FXCollections.observableArrayList();
 
-		String query = "SELECT * FROM Customer_Schedule WHERE SSN = ?";
+		String query = "SELECT * FROM Customer_Schedule WHERE SSN = ? and delete_flag = ?";
 
 		try {
 
 			ps = con.prepareStatement(query);
 
 			ps.setString(1, ssn);
+
+			ps.setString(2, "0");
 
 			rs = ps.executeQuery();
 
@@ -497,52 +499,75 @@ public class SQLMethods {
 
 		}
 	}
-	
-	
+
 	public static void updateNumOfPassengers(String passengerNum, String schedule_ID) throws SQLException {
-		
+
 		Connection con = SQLConnection.connector();
-		PreparedStatement ps; 
-		PreparedStatement ps2; 
-		
+		PreparedStatement ps;
+		PreparedStatement ps2;
+
 		String query = "UPDATE Bus_Schedule SET passenger_no = ? WHERE schedule_ID = ?";
 		String query2 = "UPDATE Customer_Schedule SET passenger_no = ? WHERE schedule_ID = ?";
 
-		
 		try {
-			
+
 			ps = con.prepareStatement(query);
-			
+
 			ps2 = con.prepareStatement(query2);
-			
-			
+
 			ps.setString(1, passengerNum);
-			
+
 			ps.setString(2, schedule_ID);
-			
+
 			ps2.setString(1, passengerNum);
-			
+
 			ps2.setString(2, schedule_ID);
-			
-			ps.executeUpdate(); 
-			
-			ps2.executeUpdate(); 
-			
-		}
-		catch(SQLException e) {
-			
+
+			ps.executeUpdate();
+
+			ps2.executeUpdate();
+
+		} catch (SQLException e) {
+
 			throw new SQLException();
-			
-		}
-		finally {
-			
+
+		} finally {
+
 			con.close();
-			
+
 		}
-		
-		
+
 	}
-	
+
+	public static void deleteCustomerRide(String ssn, String scheduleID) throws SQLException {
+
+		Connection con = SQLConnection.connector();
+
+		PreparedStatement ps;
+
+		String query = " UPDATE Customer_Schedule SET delete_flag = 1 WHERE ssn = ? and schedule_ID = ?";
+
+		try {
+
+			ps = con.prepareStatement(query);
+
+			ps.setString(1, ssn);
+
+			ps.setString(2, scheduleID);
+			
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
+
+		}
+
+	}
 
 	public void addToCustomerSchedule(ObservableList<BusSchedule> ride) {
 
