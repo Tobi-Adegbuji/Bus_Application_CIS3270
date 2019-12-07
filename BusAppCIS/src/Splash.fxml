@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../BusImages/Splash.jpg" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="117.0" layoutY="86.0" prefHeight="229.0" prefWidth="366.0" style="-fx-background-color: rgba(0,0,0,0.5); -fx-background-radius: 5;">
+               <children>
+                  <Label layoutX="131.0" layoutY="173.0" prefHeight="31.0" prefWidth="105.0" text="Loading..." textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="108.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../BusImages/8a74982e-2b5d-4ebb-9109-703f9f2da3f5_200x200.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
