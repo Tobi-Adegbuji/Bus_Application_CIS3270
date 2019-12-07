@@ -67,7 +67,8 @@ public class BookRidesController implements Initializable {
 
 		arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, Timestamp>("arrivalTime"));
 
-		numberOfPassengersColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("numberOfPassengers"));
+		numberOfPassengersColumn
+				.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("numberOfPassengers"));
 
 		busCapacity.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("capacity"));
 
@@ -90,7 +91,6 @@ public class BookRidesController implements Initializable {
 
 	}
 
-	// must grab a customer and add them to customer schedule
 	@FXML
 	public void bookRide() throws IOException {
 
@@ -100,51 +100,77 @@ public class BookRidesController implements Initializable {
 
 		ridesSelected = tableView.getSelectionModel().getSelectedItems();
 
-		
-
 		try {
-			
+
 			int capacity = Integer.valueOf(ridesSelected.get(0).getCapacity());
-			
+
 			int currentNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers());
 
-			
-		if(currentNumberOfPassengers != capacity){
+			if (currentNumberOfPassengers != capacity) {
 
-			SQLMethods.bookRide(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID(),
-					ridesSelected.get(0).getNumberOfPassengers(), ridesSelected.get(0).getFromStation(),
-					ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(),
-					ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(),
-					ridesSelected.get(0).getDepartureTime(), "0");
-			
-			int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) + 1;
-			String scheduleID = ridesSelected.get(0).getScheduleID(); 
-			
-			SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID );
-			
-		}else {
-			
-			throw new BusIsFullException();
-			
-		}
-			
-		} 
-		catch(BusIsFullException e) {
-			
+				// Books Ride
+				SQLMethods.bookRide(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID(),
+						ridesSelected.get(0).getNumberOfPassengers(), ridesSelected.get(0).getFromStation(),
+						ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(),
+						ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(),
+						ridesSelected.get(0).getDepartureTime(), "0");
+
+				// updating number of passengers
+				int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) + 1;
+				String scheduleID = ridesSelected.get(0).getScheduleID();
+
+				SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID);
+
+				// Notifying customer they have been booked
+
+				new RideBookedAlertBoxController().display();
+				;
+
+				// Updating tableview
+				tableView.setItems(getSchedule());
+
+			} else {
+
+				throw new BusIsFullException();
+
+			}
+
+		} catch (BusIsFullException e) {
+
 			BusIsFullAlertBoxController alert = new BusIsFullAlertBoxController();
-			
-			alert.display();
-			
-			
-		}
-		catch (java.sql.SQLIntegrityConstraintViolationException e) {
-
-			AlreadyScehduledAlertBoxController alert = new AlreadyScehduledAlertBoxController();
 
 			alert.display();
 
-		} 
-		catch (SQLException e) {
+		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
+
+			try {
+
+				if (SQLMethods.isRideDeleted(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID())) {
+
+					// Updates passenegers again
+					int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) + 1;
+					String scheduleID = ridesSelected.get(0).getScheduleID();
+
+					SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID);
+
+					// Updates delete_flag to 0
+
+					SQLMethods.setDeleteFlag("0", String.valueOf(customer.getSsn()), scheduleID);
+
+					new RideBookedAlertBoxController().display();
+					}
+				else {
+					
+					new AlreadyScehduledAlertBoxController().display();
+					
+				}
+				
+			} catch (SQLException e2) {
+
+				e2.printStackTrace();
+			}
+
+		} catch (SQLException e) {
 
 			e.printStackTrace();
 
@@ -170,17 +196,17 @@ public class BookRidesController implements Initializable {
 	public void home(ActionEvent event) throws IOException, SQLException {
 
 		// Takes you to customer home menu
-		
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/HomeMenu.fxml"));
-		
+
 		Parent mainMenu = loader.load();
 
-		HomeMenuController hmc = loader.getController(); 
+		HomeMenuController hmc = loader.getController();
 
-		//This method sets the customer object in home menu controller  
-		
+		// This method sets the customer object in home menu controller
+
 		hmc.passCustomerInfo(customer);
-		
+
 		Scene mainMenuScene = new Scene(mainMenu);
 
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

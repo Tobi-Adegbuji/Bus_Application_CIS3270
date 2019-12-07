@@ -539,26 +539,30 @@ public class SQLMethods {
 
 	}
 
-	public static void deleteCustomerRide(String ssn, String scheduleID) throws SQLException {
+	public static void setDeleteFlag(String deleteFlag, String ssn, String scheduleID) throws SQLException {
 
 		Connection con = SQLConnection.connector();
 
 		PreparedStatement ps;
 
-		String query = " UPDATE Customer_Schedule SET delete_flag = 1 WHERE ssn = ? and schedule_ID = ?";
+		String query = " UPDATE Customer_Schedule SET delete_flag = ? WHERE SSN = ? and schedule_ID = ?";
 
 		try {
 
 			ps = con.prepareStatement(query);
 
-			ps.setString(1, ssn);
+			ps.setString(1, deleteFlag);			
+			
+			ps.setString(2, ssn);
 
-			ps.setString(2, scheduleID);
+			ps.setString(3, scheduleID);
 			
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
 
+			e.printStackTrace();
+			
 			throw new SQLException();
 
 		} finally {
@@ -569,6 +573,57 @@ public class SQLMethods {
 
 	}
 
+	
+	public static boolean isRideDeleted(String ssn, String scheduleID) throws SQLException {
+		
+		Connection con = SQLConnection.connector();
+
+		PreparedStatement ps;
+		
+		ResultSet rs;
+
+		String query = "SELECT delete_flag FROM Customer_Schedule WHERE SSN = ? AND schedule_ID = ? ";
+
+		try {
+
+			ps = con.prepareStatement(query);
+
+			ps.setString(1, ssn);
+
+			ps.setString(2, scheduleID);
+			
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			if(rs.getString("delete_flag").equals("1")) {
+				
+				return true;
+				
+			}else {
+				
+				return false;
+				
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
+
+		}
+
+	}
+	
+	
+	
+	
+	
 	public void addToCustomerSchedule(ObservableList<BusSchedule> ride) {
 
 	}

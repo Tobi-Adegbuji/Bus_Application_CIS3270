@@ -59,7 +59,6 @@ public class ViewMyRidesController implements Initializable {
 
 		tableView.setPlaceholder(new Label(""));
 
-		
 		fromColumn.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, String>("fromStation"));
 
 		toColumn.setCellValueFactory(new PropertyValueFactory<CustomerSchedule, String>("toStation"));
@@ -83,8 +82,9 @@ public class ViewMyRidesController implements Initializable {
 
 			try {
 
-				ObservableList<CustomerSchedule> rides = SQLMethods.getCustomerScheduleInfo(String.valueOf(customer.getSsn()));
-				
+				ObservableList<CustomerSchedule> rides = SQLMethods
+						.getCustomerScheduleInfo(String.valueOf(customer.getSsn()));
+
 				tableView.setItems(rides);
 
 			} catch (SQLException e) {
@@ -115,7 +115,34 @@ public class ViewMyRidesController implements Initializable {
 
 		ridesSelected = tableView.getSelectionModel().getSelectedItems();
 
-		//needs ssn and schedule_ID
+		try {
+
+			//Flags the delete column 
+			
+			SQLMethods.setDeleteFlag("1",String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID());
+
+			
+			//Updating number of passengers
+			
+			int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) - 1;
+
+			String scheduleID = ridesSelected.get(0).getScheduleID();
+
+			SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID);
+			
+			
+			//Updating table view
+			
+			ObservableList<CustomerSchedule> rides = SQLMethods
+					.getCustomerScheduleInfo(String.valueOf(customer.getSsn()));
+
+			tableView.setItems(rides);
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
 
 	}
 
@@ -137,17 +164,17 @@ public class ViewMyRidesController implements Initializable {
 	public void home(ActionEvent event) throws IOException, SQLException {
 
 		// Takes you to customer home menu
-		
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/HomeMenu.fxml"));
-		
+
 		Parent mainMenu = loader.load();
 
-		HomeMenuController hmc = loader.getController(); 
+		HomeMenuController hmc = loader.getController();
 
-		//This method sets the customer object in home menu controller  
-		
+		// This method sets the customer object in home menu controller
+
 		hmc.passCustomerInfo(customer);
-		
+
 		Scene mainMenuScene = new Scene(mainMenu);
 
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
