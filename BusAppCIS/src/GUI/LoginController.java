@@ -97,17 +97,21 @@ public class LoginController extends Application implements Initializable {
 
 			if (SQLMethods.isAdmin(user.getText())) { // Checks if user has admin access in database
 
-				Parent mainMenu = FXMLLoader.load(getClass().getResource("/GUI/AdminHomeMenu.fxml")); // LOADS NEW FXML
-																										// DOCUMENT INTO
-																										// mainMenu
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminHomeMenu.fxml"));
+				
+				Parent mainMenu = loader.load();
+ 
+				AdminHomeMenuContoller ahmc = loader.getController();
+				
+				//sets the customer object in admin home menu controller  
+				ahmc.passAdminInfo(createAdmin());
+				
+				Scene mainMenuScene = new Scene(mainMenu);
 
-				Scene mainMenuScene = new Scene(mainMenu); // This puts mainMenu control into new scene
+				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Getting the current window
-				// being used
-
-				window.setScene(mainMenuScene); // putting a new scene into the current window
-				window.setResizable(false); // Does not allow size of window to be resized.
+				window.setScene(mainMenuScene);
+				window.setResizable(false);
 
 			} else {
 
@@ -153,11 +157,17 @@ public class LoginController extends Application implements Initializable {
 	}
 
 	// Retrieves admin information temporarily
-//		public Admin createAdmin() {
-//			
-//			
-//			
-//		}
+	public Admin createAdmin() {
+
+		try {
+			return SQLMethods.getAdminInfo(user.getText());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+
+	}
 
 	// TAKES YOU TO SIGNUP PAGE
 

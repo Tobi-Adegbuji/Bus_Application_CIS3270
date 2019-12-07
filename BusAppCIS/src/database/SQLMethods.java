@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import entities.Admin;
 import entities.BusSchedule;
 import entities.Customer;
 import entities.CustomerSchedule;
@@ -102,7 +103,6 @@ public class SQLMethods {
 
 	}
 
-	// we need to make
 	public static Customer getCustomerInfo(String username) throws SQLException {
 
 		Customer customer;
@@ -142,6 +142,47 @@ public class SQLMethods {
 		}
 	}
 
+	
+	public static Admin getAdminInfo(String username) throws SQLException {
+
+		Admin admin;
+
+		Connection con = SQLConnection.connector();
+		PreparedStatement ps;
+		ResultSet rs;
+		String query = "SELECT * FROM Customer WHERE username = ?";
+
+		try {
+
+			ps = con.prepareStatement(query);
+
+			ps.setString(1, username);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				return admin = new Admin(Integer.parseInt(rs.getString("ssn")), rs.getString("first_name"),
+						rs.getString("last_name"), rs.getString("email"), rs.getString("username"),
+						rs.getString("password"), rs.getString("address"), rs.getString("city"), rs.getString("state"),
+						rs.getString("country"), rs.getString("zip"), rs.getString("security_question"),
+						rs.getString("security_answer"), rs.getString("id"), rs.getString("admin_access"));
+
+			} else {
+				return null;
+
+			}
+		} catch (SQLException e) {
+
+			throw new SQLException();
+		} finally {
+
+			con.close();
+
+		}
+	}
+	
+	
 	// Retrieves Security Question
 	public static String retrieveSecurityQuestion(String username) throws SQLException {
 

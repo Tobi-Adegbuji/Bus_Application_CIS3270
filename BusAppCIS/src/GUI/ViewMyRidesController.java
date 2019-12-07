@@ -10,6 +10,7 @@ import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 import database.SQLMethods;
+import entities.Admin;
 import entities.BusSchedule;
 import entities.Customer;
 import entities.CustomerSchedule;
@@ -31,6 +32,10 @@ import javafx.stage.Stage;
 
 public class ViewMyRidesController implements Initializable {
 
+	private Customer customer;
+
+	private Admin admin;
+
 	@FXML
 	private TableView<CustomerSchedule> tableView; // The tableView is expecting BusSchedule objects
 	@FXML
@@ -51,8 +56,6 @@ public class ViewMyRidesController implements Initializable {
 	private TableColumn<CustomerSchedule, String> busCapacity;
 	@FXML
 	private TableColumn<CustomerSchedule, String> scheduleIDColumn;
-
-	private Customer customer;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -82,68 +85,45 @@ public class ViewMyRidesController implements Initializable {
 
 			try {
 
-				ObservableList<CustomerSchedule> rides = SQLMethods
-						.getCustomerScheduleInfo(String.valueOf(customer.getSsn()));
+				ObservableList<CustomerSchedule> rides = SQLMethods.getCustomerScheduleInfo(String.valueOf(customer.getSsn()));
 
 				tableView.setItems(rides);
 
+			} catch (NullPointerException e) {
+
+				try {
+					ObservableList<CustomerSchedule> rides;
+					rides = SQLMethods.getCustomerScheduleInfo(String.valueOf(admin.getSsn()));
+					tableView.setItems(rides);
+
+				} catch (SQLException e1) {
+
+				}
+
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} catch (Exception e) {
-
-				e.printStackTrace();
-
 			}
 
 		});
 
 	}
 
-//	public ObservableList<CustomerSchedule> getSchedule(){
-//		
-//	
-//		
-//	}
 
 	// deletes a ride from customer schedule
 	@FXML
 	public void deleteRide() throws IOException {
 
-		ObservableList<CustomerSchedule> allRides, ridesSelected;
-
-		allRides = tableView.getItems();
-
-		ridesSelected = tableView.getSelectionModel().getSelectedItems();
-
-		try {
-
-			//Flags the delete column 
+		if(customer == null && admin != null) {
 			
-			SQLMethods.setDeleteFlag("1",String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID());
-
+			 deleteAdminRide();
 			
-			//Updating number of passengers
-			
-			int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) - 1;
-
-			String scheduleID = ridesSelected.get(0).getScheduleID();
-
-			SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID);
-			
-			
-			//Updating table view
-			
-			ObservableList<CustomerSchedule> rides = SQLMethods
-					.getCustomerScheduleInfo(String.valueOf(customer.getSsn()));
-
-			tableView.setItems(rides);
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-
 		}
-
+		else {
+			
+			deleteCustomerRide();
+			
+		}
+		
 	}
 
 	@FXML
@@ -160,33 +140,144 @@ public class ViewMyRidesController implements Initializable {
 
 	}
 
+	
+	public void deleteCustomerRide() {
+		
+		ObservableList<CustomerSchedule> allRides, ridesSelected;
+
+		allRides = tableView.getItems();
+
+		ridesSelected = tableView.getSelectionModel().getSelectedItems();
+
+		try {
+
+			// Flags the delete column
+
+			SQLMethods.setDeleteFlag("1", String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID());
+
+			// Updating number of passengers
+
+			int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) - 1;
+
+			String scheduleID = ridesSelected.get(0).getScheduleID();
+
+			SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID);
+
+			// Updating table view
+
+			ObservableList<CustomerSchedule> rides = SQLMethods.getCustomerScheduleInfo(String.valueOf(customer.getSsn()));
+
+			tableView.setItems(rides);
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
+		
+	}
+	
+	
+	
+public void deleteAdminRide() {
+		
+		ObservableList<CustomerSchedule> allRides, ridesSelected;
+
+		allRides = tableView.getItems();
+
+		ridesSelected = tableView.getSelectionModel().getSelectedItems();
+
+		try {
+
+			// Flags the delete column
+
+			SQLMethods.setDeleteFlag("1", String.valueOf(admin.getSsn()), ridesSelected.get(0).getScheduleID());
+
+			// Updating number of passengers
+
+			int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) - 1;
+
+			String scheduleID = ridesSelected.get(0).getScheduleID();
+
+			SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID);
+
+			// Updating table view
+
+			ObservableList<CustomerSchedule> rides = SQLMethods
+					.getCustomerScheduleInfo(String.valueOf(admin.getSsn()));
+
+			tableView.setItems(rides);
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
+		
+	}
+	
+	
+	
+	
+	
 	@FXML
 	public void home(ActionEvent event) throws IOException, SQLException {
 
-		// Takes you to customer home menu
+		if (customer == null && admin != null) {
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/HomeMenu.fxml"));
+			// Takes you to customer home menu
 
-		Parent mainMenu = loader.load();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminHomeMenu.fxml"));
 
-		HomeMenuController hmc = loader.getController();
+			Parent mainMenu = loader.load();
 
-		// This method sets the customer object in home menu controller
+			AdminHomeMenuContoller ahmc = loader.getController();
 
-		hmc.passCustomerInfo(customer);
+			// This method sets the customer object in home menu controller
 
-		Scene mainMenuScene = new Scene(mainMenu);
+			ahmc.passAdminInfo(admin);
 
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			Scene mainMenuScene = new Scene(mainMenu);
 
-		window.setScene(mainMenuScene);
-		window.setResizable(false);
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+			window.setScene(mainMenuScene);
+			window.setResizable(false);
+
+		}
+
+		else {
+			// Takes you to customer home menu
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/HomeMenu.fxml"));
+
+			Parent mainMenu = loader.load();
+
+			HomeMenuController hmc = loader.getController();
+
+			// This method sets the customer object in home menu controller
+
+			hmc.passCustomerInfo(customer);
+
+			Scene mainMenuScene = new Scene(mainMenu);
+
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+			window.setScene(mainMenuScene);
+			window.setResizable(false);
+		}
 
 	}
 
 	public void passCustomerInfo(Customer c) {
 
 		this.customer = c;
+
+	}
+
+	public void passAdminInfo(Admin a) {
+
+		this.admin = a;
 
 	}
 

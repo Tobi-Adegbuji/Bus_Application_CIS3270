@@ -10,6 +10,7 @@ import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 import database.SQLMethods;
+import entities.Admin;
 import entities.BusSchedule;
 import entities.Customer;
 import entities.CustomerSchedule;
@@ -29,6 +30,10 @@ import javafx.stage.Stage;
 
 public class BookRidesController implements Initializable {
 
+	private Customer customer;
+	
+	private Admin admin; 
+	
 	@FXML
 	private TableView<BusSchedule> tableView; // The tableView is expecting BusSchedule objects
 	@FXML
@@ -50,7 +55,7 @@ public class BookRidesController implements Initializable {
 	@FXML
 	private TableColumn<BusSchedule, String> scheduleIDColumn;
 
-	private Customer customer;
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -94,6 +99,173 @@ public class BookRidesController implements Initializable {
 	@FXML
 	public void bookRide() throws IOException {
 
+		if(customer == null && admin != null) {
+			
+			bookAdmin(); 
+			
+		}
+		else {
+			
+			bookCustomer();
+			
+		}
+		
+			
+		
+	}
+
+	@FXML
+	public void logOut(ActionEvent event) throws IOException, SQLException {
+
+		Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
+
+		Scene loginScene = new Scene(loginParent);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(loginScene);
+		window.setResizable(false);
+
+	}
+
+	public void home(ActionEvent event) throws IOException, SQLException {
+
+		if (customer == null && admin != null) {
+
+			// Takes you to customer home menu
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminHomeMenu.fxml"));
+
+			Parent mainMenu = loader.load();
+
+			AdminHomeMenuContoller ahmc = loader.getController();
+
+			// This method sets the customer object in home menu controller
+
+			ahmc.passAdminInfo(admin);
+
+			Scene mainMenuScene = new Scene(mainMenu);
+
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+			window.setScene(mainMenuScene);
+			window.setResizable(false);
+
+		}
+
+		else {
+			// Takes you to customer home menu
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/HomeMenu.fxml"));
+
+			Parent mainMenu = loader.load();
+
+			HomeMenuController hmc = loader.getController();
+
+			// This method sets the customer object in home menu controller
+
+			hmc.passCustomerInfo(customer);
+
+			Scene mainMenuScene = new Scene(mainMenu);
+
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+			window.setScene(mainMenuScene);
+			window.setResizable(false);
+		}
+
+	}
+
+	
+	
+	public void bookCustomer() throws IOException{
+	
+	ObservableList<BusSchedule> allRides, ridesSelected;
+
+	allRides = tableView.getItems();
+
+	ridesSelected = tableView.getSelectionModel().getSelectedItems();
+
+	try {
+
+		int capacity = Integer.valueOf(ridesSelected.get(0).getCapacity());
+
+		int currentNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers());
+
+		if (currentNumberOfPassengers != capacity) {
+
+			// Books Ride
+			SQLMethods.bookRide(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID(),
+					ridesSelected.get(0).getNumberOfPassengers(), ridesSelected.get(0).getFromStation(),
+					ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(),
+					ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(),
+					ridesSelected.get(0).getDepartureTime(), "0");
+
+			// updating number of passengers
+			int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) + 1;
+			String scheduleID = ridesSelected.get(0).getScheduleID();
+
+			SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID);
+
+			// Notifying customer they have been booked
+
+			new RideBookedAlertBoxController().display();
+			;
+
+			// Updating tableview
+			tableView.setItems(getSchedule());
+
+		} else {
+
+			throw new BusIsFullException();
+
+		}
+
+	} catch (BusIsFullException e) {
+
+		BusIsFullAlertBoxController alert = new BusIsFullAlertBoxController();
+
+		alert.display();
+
+	} catch (java.sql.SQLIntegrityConstraintViolationException e) {
+
+		try {
+
+			if (SQLMethods.isRideDeleted(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID())) {
+
+				// Updates passenegers again
+				int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) + 1;
+				String scheduleID = ridesSelected.get(0).getScheduleID();
+
+				SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID);
+
+				// Updates delete_flag to 0
+
+				SQLMethods.setDeleteFlag("0", String.valueOf(customer.getSsn()), scheduleID);
+
+				new RideBookedAlertBoxController().display();
+				}
+			else {
+				
+				new AlreadyScehduledAlertBoxController().display();
+				
+			}
+			
+		} catch (SQLException e2) {
+
+			e2.printStackTrace();
+		}
+
+	} catch (SQLException e) {
+
+		e.printStackTrace();
+
+	}
+	}
+	
+	
+	public void bookAdmin() throws IOException{
+		
 		ObservableList<BusSchedule> allRides, ridesSelected;
 
 		allRides = tableView.getItems();
@@ -109,7 +281,7 @@ public class BookRidesController implements Initializable {
 			if (currentNumberOfPassengers != capacity) {
 
 				// Books Ride
-				SQLMethods.bookRide(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID(),
+				SQLMethods.bookRide(String.valueOf(admin.getSsn()), ridesSelected.get(0).getScheduleID(),
 						ridesSelected.get(0).getNumberOfPassengers(), ridesSelected.get(0).getFromStation(),
 						ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(),
 						ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(),
@@ -145,7 +317,7 @@ public class BookRidesController implements Initializable {
 
 			try {
 
-				if (SQLMethods.isRideDeleted(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID())) {
+				if (SQLMethods.isRideDeleted(String.valueOf(admin.getSsn()), ridesSelected.get(0).getScheduleID())) {
 
 					// Updates passenegers again
 					int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) + 1;
@@ -155,7 +327,7 @@ public class BookRidesController implements Initializable {
 
 					// Updates delete_flag to 0
 
-					SQLMethods.setDeleteFlag("0", String.valueOf(customer.getSsn()), scheduleID);
+					SQLMethods.setDeleteFlag("0", String.valueOf(admin.getSsn()), scheduleID);
 
 					new RideBookedAlertBoxController().display();
 					}
@@ -175,51 +347,22 @@ public class BookRidesController implements Initializable {
 			e.printStackTrace();
 
 		}
-
-	}
-
-	@FXML
-	public void logOut(ActionEvent event) throws IOException, SQLException {
-
-		Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
-
-		Scene loginScene = new Scene(loginParent);
-
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-		window.setScene(loginScene);
-		window.setResizable(false);
-
-	}
-
-	@FXML
-	public void home(ActionEvent event) throws IOException, SQLException {
-
-		// Takes you to customer home menu
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/HomeMenu.fxml"));
-
-		Parent mainMenu = loader.load();
-
-		HomeMenuController hmc = loader.getController();
-
-		// This method sets the customer object in home menu controller
-
-		hmc.passCustomerInfo(customer);
-
-		Scene mainMenuScene = new Scene(mainMenu);
-
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-		window.setScene(mainMenuScene);
-		window.setResizable(false);
-	}
-
+		}
+	
+	
+	
 	public void passCustomerInfo(Customer c) {
 
 		this.customer = c;
 		System.out.println(this.customer);
 
 	}
+	
+	public void passAdminInfo(Admin a) {
+		
+		this.admin = a; 
+		
+	}
+	
 
 }
