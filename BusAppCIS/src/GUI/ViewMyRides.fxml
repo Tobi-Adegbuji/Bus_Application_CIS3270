@@ -30,11 +30,6 @@
             <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
-      <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="1126.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../BusImages/logout.png" />
-         </image>
-      </ImageView>
       <TableView fx:id="tableView" layoutX="21.0" layoutY="120.0" opacity="0.68" prefHeight="473.0" prefWidth="1345.0" style="-fx-background-color: black;" styleClass="tableView" stylesheets="@application.css">
         <columns>
           <TableColumn fx:id="fromColumn" prefWidth="150.0" text="From " />
@@ -48,7 +43,7 @@
             <TableColumn fx:id="scheduleIDColumn" minWidth="5.0" prefWidth="150.0" text="ID" />
         </columns>
       </TableView>
-      <Button alignment="CENTER" layoutX="1267.0" layoutY="23.0" mnemonicParsing="false" onAction="#home" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: darkgreen;" text="Home" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="1267.0" layoutY="23.0" mnemonicParsing="false" onAction="#home" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: #0E4607;" text="Home" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

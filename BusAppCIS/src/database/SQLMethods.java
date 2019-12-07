@@ -25,62 +25,81 @@ import javafx.stage.Stage;
 public class SQLMethods {
 
 	// HAVE TO CLOSE CONNECTIONS STILL
-	//HAVE TO MAKE EVERY METHOD THROW EXCEPTION TO LOGIC PART OF PROJECT(which is the controllers) 
-	//Controllers should handle any of the exceptions
-	
-	
-	
-	
+	// HAVE TO MAKE EVERY METHOD THROW EXCEPTION TO LOGIC PART OF PROJECT(which is
+	// the controllers)
+	// Controllers should handle any of the exceptions
 
 	// Checks if username and password is in database
 	public static boolean verify(String username, String password) throws SQLException {
 
 		Connection con = SQLConnection.connector();
-		PreparedStatement preparedStatement;
+		PreparedStatement ps;
 		ResultSet resultSet;
 		String query = "SELECT * FROM Customer WHERE username = ? AND password = ?";
 
-		preparedStatement = con.prepareStatement(query);
+		try {
 
-		preparedStatement.setString(1, username);
+			ps = con.prepareStatement(query);
 
-		preparedStatement.setString(2, password);
+			ps.setString(1, username);
 
-		resultSet = preparedStatement.executeQuery();
+			ps.setString(2, password);
 
-		if (resultSet.next()) {
+			resultSet = ps.executeQuery();
 
-			return true;
+			if (resultSet.next()) {
 
-		} else {
-			return false;
+				return true;
+
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
 
 		}
+
 	}
 
 	public static boolean isAdmin(String username) throws SQLException {
 
 		Connection con = SQLConnection.connector();
-		PreparedStatement preparedStatement;
+		PreparedStatement ps;
 		ResultSet resultSet;
 		String query = "SELECT * FROM Customer WHERE username = ? and admin_access = ?";
 
-		preparedStatement = con.prepareStatement(query);
+		try {
+			ps = con.prepareStatement(query);
 
-		preparedStatement.setString(1, username);
+			ps.setString(1, username);
 
-		preparedStatement.setString(2, "Y");
+			ps.setString(2, "Y");
 
-		resultSet = preparedStatement.executeQuery();
+			resultSet = ps.executeQuery();
 
-		if (resultSet.next()) {
+			if (resultSet.next()) {
 
-			return true;
+				return true;
 
-		} else {
-			return false;
+			} else {
+				return false;
+
+			}
+		} catch (SQLException e) {
+
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
 
 		}
+
 	}
 
 	// we need to make
@@ -89,26 +108,36 @@ public class SQLMethods {
 		Customer customer;
 
 		Connection con = SQLConnection.connector();
-		PreparedStatement preparedStatement;
+		PreparedStatement ps;
 		ResultSet rs;
 		String query = "SELECT * FROM Customer WHERE username = ?";
 
-		preparedStatement = con.prepareStatement(query);
+		try {
 
-		preparedStatement.setString(1, username);
+			ps = con.prepareStatement(query);
 
-		rs = preparedStatement.executeQuery();
+			ps.setString(1, username);
 
-		if (rs.next()) {
+			rs = ps.executeQuery();
 
-			return customer = new Customer(Integer.parseInt(rs.getString("ssn")), rs.getString("first_name"),
-					rs.getString("last_name"), rs.getString("email"), rs.getString("username"),
-					rs.getString("password"), rs.getString("address"), rs.getString("city"), rs.getString("state"),
-					rs.getString("country"), rs.getString("zip"), rs.getString("security_question"),
-					rs.getString("security_answer"), rs.getString("id"), rs.getString("admin_access"));
+			if (rs.next()) {
 
-		} else {
-			return null;
+				return customer = new Customer(Integer.parseInt(rs.getString("ssn")), rs.getString("first_name"),
+						rs.getString("last_name"), rs.getString("email"), rs.getString("username"),
+						rs.getString("password"), rs.getString("address"), rs.getString("city"), rs.getString("state"),
+						rs.getString("country"), rs.getString("zip"), rs.getString("security_question"),
+						rs.getString("security_answer"), rs.getString("id"), rs.getString("admin_access"));
+
+			} else {
+				return null;
+
+			}
+		} catch (SQLException e) {
+
+			throw new SQLException();
+		} finally {
+
+			con.close();
 
 		}
 	}
@@ -117,22 +146,33 @@ public class SQLMethods {
 	public static String retrieveSecurityQuestion(String username) throws SQLException {
 
 		Connection con = SQLConnection.connector();
-		PreparedStatement preparedStatement;
+		PreparedStatement ps;
 		ResultSet resultSet;
 		String query = "SELECT * FROM Customer WHERE username = ?";
 
-		preparedStatement = con.prepareStatement(query);
+		try {
 
-		preparedStatement.setString(1, username);
+			ps = con.prepareStatement(query);
 
-		resultSet = preparedStatement.executeQuery();
+			ps.setString(1, username);
 
-		if (resultSet.next()) {
+			resultSet = ps.executeQuery();
 
-			return resultSet.getNString(12);
+			if (resultSet.next()) {
 
-		} else {
-			return null;
+				return resultSet.getNString(12);
+
+			} else {
+				return null;
+
+			}
+		} catch (SQLException e) {
+
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
 
 		}
 	}
@@ -141,32 +181,44 @@ public class SQLMethods {
 	public static String retrieveAnswer(String username) throws SQLException {
 
 		Connection con = SQLConnection.connector();
-		PreparedStatement preparedStatement;
+		PreparedStatement ps;
 		ResultSet resultSet;
 		String query = "SELECT * FROM Customer WHERE username = ?";
 
-		preparedStatement = con.prepareStatement(query);
+		try {
 
-		preparedStatement.setString(1, username);
+			ps = con.prepareStatement(query);
 
-		resultSet = preparedStatement.executeQuery();
+			ps.setString(1, username);
 
-		if (resultSet.next()) {
+			resultSet = ps.executeQuery();
 
-			return resultSet.getNString(13);
+			if (resultSet.next()) {
 
-		} else {
+				return resultSet.getNString(13);
 
-			System.out.println("There is an issue");
+			} else {
 
-			return null;
+				System.out.println("There is an issue");
+
+				return null;
+
+			}
+		} catch (SQLException e) {
+
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
 
 		}
+
 	}
 
 	// Updates password
 
-	public static void newPassword(String password, String username) throws Exception {
+	public static void newPassword(String password, String username) throws SQLException {
 
 		Connection con = SQLConnection.connector();
 		PreparedStatement ps;
@@ -199,7 +251,7 @@ public class SQLMethods {
 	// Creates a new customer.
 	public static void toRegister(String ssn, String firstName, String lastName, String email, String city,
 			String address, String country, String state, String zipcode, String username, String password,
-			String securityQuestion, String securityAnswer, String id, String admin_access) throws Exception {
+			String securityQuestion, String securityAnswer, String id, String admin_access) throws SQLException {
 
 		Connection con = SQLConnection.connector();
 		PreparedStatement ps;
@@ -247,8 +299,7 @@ public class SQLMethods {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-			;
+			throw new SQLException();
 
 		} finally {
 
@@ -259,7 +310,7 @@ public class SQLMethods {
 	}
 
 	// Returns bus schedule records in an observable list to populate the tableview
-	public static ObservableList<BusSchedule> getBusScheduleInfo() throws Exception {
+	public static ObservableList<BusSchedule> getBusScheduleInfo() throws SQLException {
 
 		Connection con = SQLConnection.connector();
 		Statement st;
@@ -283,60 +334,59 @@ public class SQLMethods {
 						getCapacity(rs.getString("bus_ID")), rs.getString("schedule_ID")));
 
 			}
+			return listOfAllRides;
+
+		} catch (SQLException e) {
+
+			throw new SQLException();
 
 		} finally {
 
 			con.close();
 		}
 
-		return listOfAllRides;
+	}
+
+	// Returns customer schedule records in an observable list to populate the
+	// customer's already viewed tableview
+	public static ObservableList<CustomerSchedule> getCustomerScheduleInfo(String ssn) throws SQLException {
+
+		Connection con = SQLConnection.connector();
+		PreparedStatement ps;
+		ResultSet rs;
+
+		ObservableList<CustomerSchedule> listOfAllRides = FXCollections.observableArrayList();
+
+		String query = "SELECT * FROM Customer_Schedule WHERE SSN = ?";
+
+		try {
+
+			ps = con.prepareStatement(query);
+
+			ps.setString(1, ssn);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				listOfAllRides.add(new CustomerSchedule(rs.getString("from_station"), rs.getString("to_station"),
+						rs.getDate("departure_date"), rs.getDate("arrival_date"), rs.getTimestamp("departure_time"),
+						rs.getTimestamp("arrival_time"), rs.getString("passenger_no"),
+						getCapacity(getBusID(rs.getString("schedule_ID"))), rs.getString("schedule_ID")));
+
+			}
+			return listOfAllRides;
+
+		} catch (SQLException e) {
+
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
+		}
 
 	}
-	
-	
-	
-	// Returns customer schedule records in an observable list to populate the customer's already viewed tableview
-		public static ObservableList<CustomerSchedule> getCustomerScheduleInfo(String ssn) throws Exception, SQLException {
-
-			
-			
-			Connection con = SQLConnection.connector();
-			PreparedStatement ps;
-			ResultSet rs;
-
-			ObservableList<CustomerSchedule> listOfAllRides = FXCollections.observableArrayList();
-
-			
-			String query = "SELECT * FROM Customer_Schedule WHERE SSN = ?";
-
-			try {
-
-				ps = con.prepareStatement(query); 
-
-				ps.setString(1, ssn);
-				
-				rs = ps.executeQuery();
-
-				while (rs.next()) {
-
-					listOfAllRides.add(new CustomerSchedule(rs.getString("from_station"), rs.getString("to_station"),
-							rs.getDate("departure_date"), rs.getDate("arrival_date"), rs.getTimestamp("departure_time"),
-							rs.getTimestamp("arrival_time"), rs.getString("passenger_no"),
-							getCapacity(getBusID(rs.getString("schedule_ID"))), rs.getString("schedule_ID")));
-
-				}
-
-			} finally {
-
-				con.close();
-			}
-
-			
-			return listOfAllRides;
- 
-		}
-	
-	
 
 	public static String getCapacity(String busID) throws SQLException {
 
@@ -345,22 +395,34 @@ public class SQLMethods {
 		ResultSet resultSet;
 		String query = "SELECT capacity FROM Bus WHERE bus_ID = ?";
 
-		preparedStatement = con.prepareStatement(query);
+		try {
 
-		preparedStatement.setString(1, busID);
+			preparedStatement = con.prepareStatement(query);
 
-		resultSet = preparedStatement.executeQuery();
+			preparedStatement.setString(1, busID);
 
-		if (resultSet.next()) {
+			resultSet = preparedStatement.executeQuery();
 
-			return resultSet.getString(1);
+			if (resultSet.next()) {
 
-		} else {
-			return null;
+				return resultSet.getString(1);
+
+			} else {
+				return null;
+
+			}
+		} catch (SQLException e) {
+
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
 
 		}
+
 	}
-	
+
 	public static String getBusID(String scheduleID) throws SQLException {
 
 		Connection con = SQLConnection.connector();
@@ -368,59 +430,119 @@ public class SQLMethods {
 		ResultSet resultSet;
 		String query = "SELECT bus_ID FROM Bus_Schedule WHERE schedule_ID = ?";
 
-		preparedStatement = con.prepareStatement(query);
+		try {
 
-		preparedStatement.setString(1, scheduleID);
+			preparedStatement = con.prepareStatement(query);
 
-		resultSet = preparedStatement.executeQuery();
+			preparedStatement.setString(1, scheduleID);
 
-		if (resultSet.next()) {
+			resultSet = preparedStatement.executeQuery();
 
-			return resultSet.getString(1);
+			if (resultSet.next()) {
 
-		} else {
-			
-			
-			return null;
+				return resultSet.getString(1);
+
+			} else {
+
+				return null;
+
+			}
+		} catch (SQLException e) {
+
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
+
+		}
+	}
+
+	// Inserts new record into customer schedule table
+
+	public static void bookRide(String snn, String schedule_ID, String passenger_no, String from_station,
+			String to_station, Date arrival_date, Date departure_date, Timestamp arrival_time, Timestamp departure_time,
+			String delete_flag) throws SQLException, java.sql.SQLIntegrityConstraintViolationException {
+
+		Connection con = SQLConnection.connector();
+		PreparedStatement ps;
+
+		String query = "INSERT INTO Customer_Schedule (SSN, schedule_ID, passenger_no, from_station, to_station, "
+				+ "arrival_date, departure_date, arrival_time, departure_time, delete_flag) VALUES(?,?,?,?,?,?,?,?,?,?)";
+
+		try {
+
+			ps = con.prepareStatement(query);
+
+			ps.setString(1, snn);
+			ps.setString(2, schedule_ID);
+			ps.setString(3, passenger_no);
+			ps.setString(4, from_station);
+			ps.setString(5, to_station);
+			ps.setString(6, String.valueOf(arrival_date));
+			ps.setString(7, String.valueOf(departure_date));
+			ps.setString(8, String.valueOf(arrival_time));
+			ps.setString(9, String.valueOf(departure_time));
+			ps.setString(10, delete_flag);
+
+			ps.executeUpdate();
+
+		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
+
+			throw new java.sql.SQLIntegrityConstraintViolationException();
+
+		} finally {
+
+			con.close();
 
 		}
 	}
 	
-
 	
-	
-	//Inserts new record into customer schedule table
-	
-	public static void bookRide(String snn, String schedule_ID, String passenger_no, String from_station, String to_station
-, Date arrival_date, Date departure_date, Timestamp arrival_time, Timestamp departure_time, String delete_flag ) throws SQLException, java.sql.SQLIntegrityConstraintViolationException {
+	public static void updateNumOfPassengers(String passengerNum, String schedule_ID) throws SQLException {
 		
 		Connection con = SQLConnection.connector();
 		PreparedStatement ps; 
+		PreparedStatement ps2; 
 		
-		String query = "INSERT INTO Customer_Schedule (SSN, schedule_ID, passenger_no, from_station, to_station, "
-				+ "arrival_date, departure_date, arrival_time, departure_time, delete_flag) VALUES(?,?,?,?,?,?,?,?,?,?)";
+		String query = "UPDATE Bus_Schedule SET passenger_no = ? WHERE schedule_ID = ?";
+		String query2 = "UPDATE Customer_Schedule SET passenger_no = ? WHERE schedule_ID = ?";
+
 		
-		ps = con.prepareStatement(query);
-		
-		ps.setString(1, snn);
-		ps.setString(2,schedule_ID);
-		ps.setString(3,passenger_no);
-		ps.setString(4,from_station);
-		ps.setString(5 ,to_station);
-		ps.setString(6, String.valueOf(arrival_date));
-		ps.setString(7, String.valueOf(departure_date));
-		ps.setString(8, String.valueOf(arrival_time));
-		ps.setString(9, String.valueOf(departure_time));
-		ps.setString(10, delete_flag);
-		
-		ps.executeUpdate(); 
-		
-		
-		ps.close();
-		con.close();
+		try {
+			
+			ps = con.prepareStatement(query);
+			
+			ps2 = con.prepareStatement(query2);
+			
+			
+			ps.setString(1, passengerNum);
+			
+			ps.setString(2, schedule_ID);
+			
+			ps2.setString(1, passengerNum);
+			
+			ps2.setString(2, schedule_ID);
+			
+			ps.executeUpdate(); 
+			
+			ps2.executeUpdate(); 
+			
+		}
+		catch(SQLException e) {
+			
+			throw new SQLException();
+			
+		}
+		finally {
+			
+			con.close();
+			
+		}
 		
 		
 	}
+	
 
 	public void addToCustomerSchedule(ObservableList<BusSchedule> ride) {
 

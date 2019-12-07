@@ -100,19 +100,21 @@ public class BookRidesController implements Initializable {
 
 		ridesSelected = tableView.getSelectionModel().getSelectedItems();
 
-		System.out.println(ridesSelected.get(0).getFromStation());
-
-		System.out.println(ridesSelected.get(0).getToStation());
+		
 
 		try {
-
-			System.out.println(customer.getFirstName());
 
 			SQLMethods.bookRide(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID(),
 					ridesSelected.get(0).getNumberOfPassengers(), ridesSelected.get(0).getFromStation(),
 					ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(),
 					ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(),
 					ridesSelected.get(0).getDepartureTime(), "0");
+			
+			int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) + 1;
+			String scheduleID = ridesSelected.get(0).getScheduleID(); 
+			
+			SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID );
+			
 		} 
 		catch (java.sql.SQLIntegrityConstraintViolationException e) {
 
