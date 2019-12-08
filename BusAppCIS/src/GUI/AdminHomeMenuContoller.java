@@ -88,5 +88,25 @@ public class AdminHomeMenuContoller {
 			
 		}
 		
+		
+		@FXML
+		public void editRides(ActionEvent event) throws IOException, SQLException {
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/EditRides.fxml"));
+
+			Parent mainMenu = loader.load();
+			
+			EditRidesController erc = loader.getController();
+			
+			erc.passAdminInfo(admin);
+			
+			Scene mainMenuScene = new Scene(mainMenu);
+
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+			window.setScene(mainMenuScene);
+			window.setResizable(false);
+			
+		}
 	
 }
