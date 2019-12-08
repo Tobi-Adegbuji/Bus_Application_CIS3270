@@ -39,7 +39,7 @@ public class EditRidesController implements Initializable {
 	
 	
 	@FXML
-	private TableView<BusSchedule> tableView; // The tableView is expecting BusSchedule objects
+	private TableView<BusSchedule> tableView; 
 	@FXML
 	private TableColumn<BusSchedule, String> fromColumn;
 	@FXML

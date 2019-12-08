@@ -350,7 +350,8 @@ public class SQLMethods {
 		}
 
 	}
-
+	
+	
 	// Returns bus schedule records in an observable list to populate the tableview
 	public static ObservableList<BusSchedule> getBusScheduleInfo() throws SQLException {
 
@@ -557,6 +558,8 @@ public class SQLMethods {
 
 		}
 	}
+	
+
 
 	public static void updateNumOfPassengers(String passengerNum, String schedule_ID) throws SQLException {
 
@@ -684,6 +687,47 @@ public class SQLMethods {
 	
 	public void addToCustomerSchedule(ObservableList<BusSchedule> ride) {
 
+	}
+	
+	
+	
+//Creates new BusSchedule 
+	
+	public static void toBusSchedule(String fromStation, String toStation,
+			Date arrivalDate, Date departureDate, String arrivalTime, String departureTime
+			, String numberOfPassengers, String capacity, String scheduleID) throws SQLException, java.sql.SQLIntegrityConstraintViolationException {
+				
+		Connection con = SQLConnection.connector();
+		PreparedStatement ps;
+				
+		String query = "INSERT INTO Bus_Schedule  (fromStation, toStation, arrivalDate, departureDate, " + 
+		"arrivalTime, departureTime, numberOfPassengers, capacity, scheduleID)  VALUES(?,?,?,?,?,?,?,?,?,?)";
+				
+		try {
+			ps = con.prepareStatement(query);
+
+			ps.setString(1, fromStation);
+			ps.setString(2, toStation);
+			ps.setDate(3, arrivalDate);
+			ps.setDate(4, departureDate);
+			ps.setString(5, arrivalTime);
+			ps.setString(6, departureTime);
+			ps.setString(7, numberOfPassengers);
+			ps.setString(8, capacity);
+			ps.setString(9, scheduleID);
+
+					
+			ps.executeUpdate();
+					
+		}catch (java.sql.SQLIntegrityConstraintViolationException e) {
+					
+			throw new java.sql.SQLIntegrityConstraintViolationException();
+
+		}finally {
+			con.close();
+		}
+				
+				
 	}
 
 }
