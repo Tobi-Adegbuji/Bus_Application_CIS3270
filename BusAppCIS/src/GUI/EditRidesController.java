@@ -121,11 +121,44 @@ public class EditRidesController implements Initializable {
 	
 	
 	
+	@FXML
+	public void logOut(ActionEvent event) throws IOException, SQLException {
+
+		Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
+
+		Scene loginScene = new Scene(loginParent);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(loginScene);
+		window.setResizable(false);
+
+	}
 	
 	
 	
-	
-	
+	public void home(ActionEvent event) throws IOException, SQLException {
+
+		
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminHomeMenu.fxml"));
+
+			Parent mainMenu = loader.load();
+
+			AdminHomeMenuContoller ahmc = loader.getController();
+
+			// This method sets the customer object in home menu controller
+
+			ahmc.passAdminInfo(admin);
+
+			Scene mainMenuScene = new Scene(mainMenu);
+
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+			window.setScene(mainMenuScene);
+			window.setResizable(false);
+
+		}
 	
 	
 	
