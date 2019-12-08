@@ -162,7 +162,6 @@ public class EditRidesController implements Initializable {
 
 		addRideController arc = loader.getController(); 
 
-		//This method set the customer object in book rides controller 
 			
 		arc.passAdminInfo(admin);
 		
