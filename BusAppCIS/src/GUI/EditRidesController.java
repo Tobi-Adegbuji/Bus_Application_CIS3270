@@ -32,8 +32,7 @@ import javafx.stage.Stage;
 public class EditRidesController implements Initializable {
 
 	
-	Stage window;
-	Scene scene;
+	
 	
 	
 	private Admin admin;
