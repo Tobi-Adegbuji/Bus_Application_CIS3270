@@ -71,7 +71,36 @@ public class addRideController {
 		
 	}
 	
+	@FXML 
+	public void create(ActionEvent event) throws IOException, SQLException {
+		
+		addRide();
+		
+		Parent editRidesParent = FXMLLoader.load(getClass().getResource("/GUI/EditRides.fxml")); 
+		
+		Scene editRidesScene = new Scene(editRidesParent);
+		
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		
+		window.setScene(editRidesScene);
+		window.setResizable(false);
+		
+		
+	}
 	
+	@FXML
+	public void backToEdit(ActionEvent event) throws IOException, SQLException {
+		
+		Parent editRidesParent = FXMLLoader.load(getClass().getResource("/GUI/EditRides.fxml"));
+
+		Scene editRidesScene = new Scene(editRidesParent);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(editRidesScene);
+		window.setResizable(false);
+		
+	}
 	
 	
 	

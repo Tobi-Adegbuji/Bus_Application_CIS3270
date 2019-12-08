@@ -64,7 +64,7 @@
             <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
-      <Button alignment="CENTER" layoutX="203.0" layoutY="728.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="127.0" style="-fx-border-color: black; -fx-background-color: green;" text="Add" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="203.0" layoutY="728.0" mnemonicParsing="false" onAction="#add" prefHeight="55.0" prefWidth="127.0" style="-fx-border-color: black; -fx-background-color: green;" text="Add" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="31.0" />
          </font>

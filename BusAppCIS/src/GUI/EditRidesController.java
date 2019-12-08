@@ -101,15 +101,6 @@ public class EditRidesController implements Initializable {
 	}
 	
 	
-	public void addTrip(ActionEvent event) throws IOException, SQLException {
-		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/addTrip"));
-		
-		
-		
-		
-		
-	}
 	
 	
 	
