@@ -187,6 +187,7 @@ public void deleteAdminRide() {
 
 		ridesSelected = tableView.getSelectionModel().getSelectedItems();
 
+		
 		try {
 
 			// Flags the delete column
@@ -203,8 +204,7 @@ public void deleteAdminRide() {
 
 			// Updating table view
 
-			ObservableList<CustomerSchedule> rides = SQLMethods
-					.getCustomerScheduleInfo(String.valueOf(admin.getSsn()));
+			ObservableList<CustomerSchedule> rides = SQLMethods.getCustomerScheduleInfo(String.valueOf(admin.getSsn()));
 
 			tableView.setItems(rides);
 

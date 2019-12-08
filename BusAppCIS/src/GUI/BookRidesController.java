@@ -194,10 +194,11 @@ public class BookRidesController implements Initializable {
 
 		if (currentNumberOfPassengers != capacity) {
 
+			
 			// Books Ride
 			SQLMethods.bookRide(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID(),
 					ridesSelected.get(0).getNumberOfPassengers(), ridesSelected.get(0).getFromStation(),
-					ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(),
+					ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(), 
 					ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(),
 					ridesSelected.get(0).getDepartureTime(), "0");
 
@@ -223,9 +224,8 @@ public class BookRidesController implements Initializable {
 
 	} catch (BusIsFullException e) {
 
-		BusIsFullAlertBoxController alert = new BusIsFullAlertBoxController();
+		 new BusIsFullAlertBoxController().display();
 
-		alert.display();
 
 	} catch (java.sql.SQLIntegrityConstraintViolationException e) {
 

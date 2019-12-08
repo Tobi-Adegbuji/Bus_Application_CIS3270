@@ -361,6 +361,9 @@ public class SQLMethods {
 		ObservableList<BusSchedule> listOfAllRides = FXCollections.observableArrayList();
 
 		String query = "SELECT * FROM Bus_Schedule";
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+
 
 		try {
 
@@ -368,18 +371,16 @@ public class SQLMethods {
 
 			rs = st.executeQuery(query);
 
-			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 			
 			while (rs.next()) {
-
-				String departureTime = sdf.format(rs.getTimestamp("departure_time"));
 				
+			String departureTime =	sdf.format(rs.getTimestamp("departure_time"));
 				String arrivalTime = sdf.format(rs.getTimestamp("arrival_time"));
-
+				
 				
 				listOfAllRides.add(new BusSchedule(rs.getString("from_station"), rs.getString("to_station"),
-						rs.getDate("departure_date"), rs.getDate("arrival_date"), departureTime,
-						arrivalTime, rs.getString("passenger_no"),
+						rs.getDate("departure_date"), rs.getDate("arrival_date"), arrivalTime,
+						departureTime, rs.getString("passenger_no"),
 						getCapacity(rs.getString("bus_ID")), rs.getString("schedule_ID")));
 
 			}
@@ -408,8 +409,12 @@ public class SQLMethods {
 
 		String query = "SELECT * FROM Customer_Schedule WHERE SSN = ? and delete_flag = ?";
 
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+
 		try {
 
+			
+			
 			ps = con.prepareStatement(query);
 
 			ps.setString(1, ssn);
@@ -419,10 +424,11 @@ public class SQLMethods {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-
+				
+				
 				listOfAllRides.add(new CustomerSchedule(rs.getString("from_station"), rs.getString("to_station"),
-						rs.getDate("departure_date"), rs.getDate("arrival_date"), rs.getTimestamp("departure_time"),
-						rs.getTimestamp("arrival_time"), rs.getString("passenger_no"),
+						rs.getDate("departure_date"), rs.getDate("arrival_date"), rs.getString("arrival_time"),
+						rs.getString("departure_time"), rs.getString("passenger_no"),
 						getCapacity(getBusID(rs.getString("schedule_ID"))), rs.getString("schedule_ID")));
 
 			}
@@ -430,6 +436,8 @@ public class SQLMethods {
 
 		} catch (SQLException e) {
 
+			e.printStackTrace();
+			
 			throw new SQLException();
 
 		} finally {
@@ -521,13 +529,11 @@ public class SQLMethods {
 		String query = "INSERT INTO Customer_Schedule (SSN, schedule_ID, passenger_no, from_station, to_station, "
 				+ "arrival_date, departure_date, arrival_time, departure_time, delete_flag) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-		String arrivalD = String.valueOf(arrival_date);
-		String departureD = String.valueOf(departure_date);
-		
 		try {
 
 			ps = con.prepareStatement(query);
 
+			
 			ps.setString(1, snn);
 			ps.setString(2, schedule_ID);
 			ps.setString(3, passenger_no);
@@ -535,8 +541,8 @@ public class SQLMethods {
 			ps.setString(5, to_station);
 			ps.setString(6, String.valueOf(arrival_date));
 			ps.setString(7, String.valueOf(departure_date));
-			ps.setString(8, arrivalD + " " + arrival_time);
-			ps.setString(9, departureD + " " + departure_time);
+			ps.setString(8, arrival_time);
+			ps.setString(9, departure_time);
 			ps.setString(10, delete_flag);
 
 			ps.executeUpdate();

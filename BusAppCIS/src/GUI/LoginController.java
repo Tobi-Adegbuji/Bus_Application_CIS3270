@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 import javafx.scene.Node;
 
 public class LoginController extends Application implements Initializable {
@@ -205,5 +206,9 @@ public class LoginController extends Application implements Initializable {
 	public Label getNotify() {
 		return notify;
 	}
+	
+	
+	                    
+	                    
 
 }

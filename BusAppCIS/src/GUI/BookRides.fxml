@@ -10,29 +10,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="954.0" prefWidth="1556.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.BookRidesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1556.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.BookRidesController">
    <children>
-      <ImageView fitHeight="716.0" fitWidth="518.6" layoutX="519.0" layoutY="154.0" pickOnBounds="true">
+      <ImageView fitHeight="716.0" fitWidth="518.6" layoutX="519.0" pickOnBounds="true">
          <image>
             <Image url="@../../BusImages/viewrides2.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="716.0" fitWidth="518.6" layoutX="1037.0" layoutY="154.0" pickOnBounds="true">
+      <ImageView fitHeight="716.0" fitWidth="518.6" layoutX="1037.0" layoutY="1.0" pickOnBounds="true">
          <image>
             <Image url="@../../BusImages/view_rides5.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="716.0" fitWidth="518.6" layoutY="154.0" pickOnBounds="true">
+      <ImageView fitHeight="716.0" fitWidth="518.6" pickOnBounds="true">
          <image>
             <Image url="@../../BusImages/view_rides3.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="604.0" layoutY="72.0" text="Book a Ride" textFill="WHITE">
+      <Label layoutX="198.0" layoutY="35.0" text="Book a Ride" textFill="WHITE">
          <font>
             <Font name="System Bold" size="50.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="1319.0" layoutY="23.0" mnemonicParsing="false" onAction="#logOut" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: navy;" text="Log Out" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="1319.0" layoutY="53.0" mnemonicParsing="false" onAction="#logOut" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: navy;" text="Log Out" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -40,7 +40,7 @@
             <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
-      <Button alignment="CENTER" layoutX="1219.0" layoutY="23.0" mnemonicParsing="false" onAction="#home" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: #0E4607;" text="Home" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="1219.0" layoutY="53.0" mnemonicParsing="false" onAction="#home" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: #0E4607;" text="Home" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -48,7 +48,7 @@
             <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
-      <Button alignment="CENTER" layoutX="726.0" layoutY="722.0" mnemonicParsing="false" onAction="#bookRide" prefHeight="55.0" prefWidth="127.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Book" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="726.0" layoutY="608.0" mnemonicParsing="false" onAction="#bookRide" prefHeight="55.0" prefWidth="127.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Book" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="31.0" />
          </font>
@@ -56,22 +56,22 @@
             <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
-      <ImageView fitHeight="151.0" fitWidth="192.0" layoutX="52.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="108.0" fitWidth="127.0" layoutX="52.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../BusImages/8a74982e-2b5d-4ebb-9109-703f9f2da3f5_200x200.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableView" layoutX="93.0" layoutY="266.0" opacity="0.68" prefHeight="428.0" prefWidth="1329.0" style="-fx-background-color: black;" stylesheets="@application.css">
+      <TableView fx:id="tableView" layoutX="93.0" layoutY="132.0" opacity="0.68" prefHeight="428.0" prefWidth="1329.0" style="-fx-background-color: black;" stylesheets="@application.css">
         <columns>
           <TableColumn fx:id="fromColumn" prefWidth="140.0" text="From" />
           <TableColumn fx:id="toColumn" minWidth="0.0" prefWidth="140.0" text="To" />
             <TableColumn fx:id="departureDateColumn" prefWidth="140.0" text="Departure Date" />
             <TableColumn fx:id="arriavalDateColumn" minWidth="0.0" prefWidth="140.0" text="Arrival Date" />
-            <TableColumn fx:id="arrivalTimeColumn" prefWidth="140.0" text="Arrival Time" />
             <TableColumn fx:id="departureTimeColumn" prefWidth="140.0" text="Departure Time" />
+            <TableColumn fx:id="arrivalTimeColumn" prefWidth="140.0" text="Arrival Time" />
             <TableColumn fx:id="numberOfPassengersColumn" prefWidth="216.6666259765625" text="Number of Passengers" />
             <TableColumn fx:id="busCapacity" minWidth="0.0" prefWidth="125.3333740234375" text="Bus Capacity" />
-            <TableColumn fx:id="scheduleIDColumn" prefWidth="147.0" text="Schedule ID" />
+            <TableColumn fx:id="scheduleIDColumn" prefWidth="147.0" text=" ID" />
         </columns>
       </TableView>
    </children>
