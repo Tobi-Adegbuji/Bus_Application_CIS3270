@@ -14,8 +14,10 @@ public class BusSchedule {
 
 	
 	private SimpleStringProperty fromStation, toStation, numberOfPassengers, capacity, scheduleID, arrivalTime, departureTime;
+; 
 	private Date arrivalDate, departureDate;
-	 
+	
+	
 	
 	
 	public BusSchedule(String fromStation, String toStation,
@@ -115,7 +117,7 @@ public class BusSchedule {
 
 
 
-	public void String(SimpleStringProperty arrival_time) {
+	public void setArrivalTime(SimpleStringProperty arrival_time) {
 		this.arrivalTime = arrival_time;
 	}
 

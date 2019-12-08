@@ -13,15 +13,14 @@ import javafx.beans.property.SimpleStringProperty;
 public class CustomerSchedule {
 
 	
-	private SimpleStringProperty fromStation, toStation, numberOfPassengers, capacity, scheduleID; 
+	private SimpleStringProperty fromStation, toStation, numberOfPassengers, capacity, scheduleID ,arrivalTime, departureTime;
+	; 
 	private Date arrivalDate, departureDate;
-	private Timestamp arrivalTime, departureTime;
-	
 	
 	
 	
 	public CustomerSchedule(String fromStation, String toStation,
-			Date arrivalDate, Date departureDate, Timestamp arrivalTime, Timestamp departureTime
+			Date arrivalDate, Date departureDate, String arrivalTime, String departureTime
 			, String numberOfPassengers, String capacity, String scheduleID) {
 	
 		this.fromStation = new SimpleStringProperty(fromStation);
@@ -30,8 +29,8 @@ public class CustomerSchedule {
 		this.arrivalDate = arrivalDate;
 		this.capacity = new SimpleStringProperty(capacity); 
 		this.departureDate = departureDate;
-		this.arrivalTime = arrivalTime;
-		this.departureTime = departureTime;
+		this.arrivalTime = new SimpleStringProperty(arrivalTime); ;
+		this.departureTime = new SimpleStringProperty(departureTime); 
 		this.scheduleID = new SimpleStringProperty(scheduleID);
 		
 		
@@ -110,28 +109,28 @@ public class CustomerSchedule {
 
 
 
-	public Timestamp getArrivalTime() {
-		return arrivalTime;
+	public String getArrivalTime() {
+		return arrivalTime.get();
 	}
 
 
 
 
-	public void setArrivalTime(Timestamp arrival_time) {
+	public void setArrivalTime(SimpleStringProperty arrival_time) {
 		this.arrivalTime = arrival_time;
 	}
 
 
 
 
-	public Timestamp getDepartureTime() {
-		return departureTime;
+	public String getDepartureTime() {
+		return departureTime.get();
 	}
 
 
 
 
-	public void setDepartureTime(Timestamp departure_time) {
+	public void setDepartureTime(SimpleStringProperty departure_time) {
 		this.departureTime = departure_time;
 	}
 
