@@ -705,7 +705,6 @@ public class SQLMethods {
 				
 		try {
 			ps = con.prepareStatement(query);
-
 			ps.setString(1, fromStation);
 			ps.setString(2, toStation);
 			ps.setString(3, arrivalDate);
@@ -715,19 +714,27 @@ public class SQLMethods {
 			ps.setString(7, numberOfPassengers);
 			ps.setString(8, capacity);
 			ps.setString(9, scheduleID);
-
-					
-			ps.executeUpdate();
-					
-		}catch (java.sql.SQLIntegrityConstraintViolationException e) {
-					
+			ps.executeUpdate();	
+		}catch (java.sql.SQLIntegrityConstraintViolationException e) {	
 			throw new java.sql.SQLIntegrityConstraintViolationException();
-
 		}finally {
 			con.close();
-		}
-				
-				
+		}		
 	}
+	
+	
+	/*			Delete Bus Schedule from Table (Admin)
+	 public static void deleteBusSchedule() throws SQLException, java.sql.SQLIntegrityConstraintViolationException {
+	 
+	 
+	 Connection con = SQLConnection.connector();
+	 PreparedStatement ps;
+	 
+	 Sting query = "DELETE FROM Bus_Schedule Where 
+	  
+	}
+	  
+	  
+	 */
 
 }
