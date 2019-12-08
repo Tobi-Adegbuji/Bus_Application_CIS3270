@@ -20,7 +20,7 @@ import javafx.stage.StageStyle;
 
 
 
-public class addRideController {
+public class AddRideController {
 	
 	
 	

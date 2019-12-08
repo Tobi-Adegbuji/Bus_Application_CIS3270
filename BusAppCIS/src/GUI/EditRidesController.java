@@ -160,7 +160,7 @@ public class EditRidesController implements Initializable {
 		
 		Parent mainMenu = loader.load();
 
-		addRideController arc = loader.getController(); 
+		AddRideController arc = loader.getController(); 
 
 			
 		arc.passAdminInfo(admin);
