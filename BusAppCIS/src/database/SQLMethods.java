@@ -694,7 +694,7 @@ public class SQLMethods {
 //Creates new BusSchedule 
 	
 	public static void toBusSchedule(String fromStation, String toStation,
-			Date arrivalDate, Date departureDate, String arrivalTime, String departureTime
+			String arrivalDate, String departureDate, String arrivalTime, String departureTime
 			, String numberOfPassengers, String capacity, String scheduleID) throws SQLException, java.sql.SQLIntegrityConstraintViolationException {
 				
 		Connection con = SQLConnection.connector();
@@ -708,8 +708,8 @@ public class SQLMethods {
 
 			ps.setString(1, fromStation);
 			ps.setString(2, toStation);
-			ps.setDate(3, arrivalDate);
-			ps.setDate(4, departureDate);
+			ps.setString(3, arrivalDate);
+			ps.setString(4, departureDate);
 			ps.setString(5, arrivalTime);
 			ps.setString(6, departureTime);
 			ps.setString(7, numberOfPassengers);

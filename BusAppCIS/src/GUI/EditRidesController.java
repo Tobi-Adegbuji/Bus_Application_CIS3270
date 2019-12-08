@@ -162,7 +162,28 @@ public class EditRidesController implements Initializable {
 	
 	
 	
-	
+	public void add(ActionEvent event) throws IOException, SQLException{
+		
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AddRide.fxml"));
+		
+		Parent mainMenu = loader.load();
+
+		addRideController arc = loader.getController(); 
+
+		//This method set the customer object in book rides controller 
+			
+		arc.passAdminInfo(admin);
+		
+		Scene mainMenuScene = new Scene(mainMenu);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(mainMenuScene);
+		window.setResizable(false);
+		
+		
+	}
 	
 	
 	

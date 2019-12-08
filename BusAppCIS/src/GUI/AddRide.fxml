@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox layoutX="14.0" layoutY="63.0" prefHeight="250.0" prefWidth="270.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="274.0" text="From Station" />
+            <TextField fx:id="fromStation" />
+            <Label prefHeight="17.0" prefWidth="269.0" text="To Station" />
+            <TextField fx:id="toStation" />
+            <Label prefHeight="17.0" prefWidth="270.0" text="Arrival Date" />
+            <TextField fx:id="arrivalDate" />
+            <Label prefHeight="17.0" prefWidth="270.0" text="Departure Date" />
+            <TextField fx:id="departureDate" />
+            <Label prefHeight="17.0" prefWidth="270.0" text="Arrival Date" />
+            <TextField fx:id="arrivalTime" />
+         </children>
+      </VBox>
+      <VBox layoutX="288.0" layoutY="86.0" prefHeight="204.0" prefWidth="298.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="298.0" text="Departure Time" />
+            <TextField fx:id="departureTime" />
+            <Label prefHeight="17.0" prefWidth="303.0" text="Number of Passegners" />
+            <TextField fx:id="numberOfPassengers" />
+            <Label prefHeight="17.0" prefWidth="298.0" text="Capacity" />
+            <TextField fx:id="capacity" />
+            <Label prefHeight="17.0" prefWidth="298.0" text="Schedule ID" />
+            <TextField fx:id="scheduleID" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
