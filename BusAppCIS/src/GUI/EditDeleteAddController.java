@@ -111,7 +111,11 @@ public class EditDeleteAddController implements Initializable {
 
 			//verify if location is in database 
 			if (!SQLMethods.verifyLocationExist(from.getText().toUpperCase(), to.getText().toUpperCase())) {
-
+ 
+				//displays alert box
+				new LocationNotFoundAlertBoxController().display();
+				
+				
 			//Regex used to verify correct input
 			} else if (!((String) departureDate.getText()).matches("\\d{4}-\\d{2}-\\d{2}")) {
 
