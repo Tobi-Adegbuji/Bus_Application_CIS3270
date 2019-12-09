@@ -109,14 +109,13 @@ public class EditDeleteAddController implements Initializable {
 
 		try {
 
-			//verify if location is in database 
+			// verify if location is in database
 			if (!SQLMethods.verifyLocationExist(from.getText().toUpperCase(), to.getText().toUpperCase())) {
- 
-				//displays alert box
+
+				// displays alert box
 				new LocationNotFoundAlertBoxController().display();
-				
-				
-			//Regex used to verify correct input
+
+				// Regex used to verify correct input
 			} else if (!((String) departureDate.getText()).matches("\\d{4}-\\d{2}-\\d{2}")) {
 
 				departureDate.setText("Date format must be: yyyy-mm-dd");
@@ -136,7 +135,6 @@ public class EditDeleteAddController implements Initializable {
 			} else if (!arrivalTime.getText().matches("\\d{2}:\\d{2}")) {
 
 				arrivalTime.setText("Time format must be: HH:mm (MT)");
-				
 
 			} else if (!SQLMethods.verifyBusID(busNum.getText())) {
 
@@ -145,11 +143,11 @@ public class EditDeleteAddController implements Initializable {
 			} else {
 
 				// Formatting time text field to a DATETIME
-				
+
 				String dTime = formatTime(departureTime.getText(), departureDate.getText());
 
 				String aTime = formatTime(arrivalTime.getText(), arrivalDate.getText());
-				
+
 				SQLMethods.addBusRide(from.getText(), to.getText(), departureDate.getText(), arrivalDate.getText(),
 						dTime, aTime, busNum.getText());
 			}
@@ -162,6 +160,26 @@ public class EditDeleteAddController implements Initializable {
 
 			System.out.println("Issue with user input");
 
+		}
+
+	}
+
+	@FXML
+	public void deleteRide() throws IOException {
+
+		ObservableList<BusSchedule> allRides, ridesSelected;
+
+		allRides = tableView.getItems();
+
+		ridesSelected = tableView.getSelectionModel().getSelectedItems();
+
+		try {
+
+			SQLMethods.deleteBusRide(ridesSelected.get(0).getScheduleID());
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
 		}
 
 	}
@@ -203,9 +221,7 @@ public class EditDeleteAddController implements Initializable {
 
 	}
 
-	
-	
-	//Method used to format time into datetime
+	// Method used to format time into datetime
 	public String formatTime(String userTime, String date) {
 
 		int n = Integer.parseInt(userTime.substring(0, 2)) + 4;
@@ -253,6 +269,7 @@ public class EditDeleteAddController implements Initializable {
 
 	}
 
+	// used to pass admin object
 	public void passAdminInfo(Admin a) {
 
 		this.admin = a;

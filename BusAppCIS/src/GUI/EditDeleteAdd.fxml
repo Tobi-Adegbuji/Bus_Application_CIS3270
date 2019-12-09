@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1556.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EditDeleteAddController">
    <children>
-      <Label layoutX="835.0" layoutY="17.0" text="Book a Ride" textFill="WHITE">
+      <Label layoutX="835.0" layoutY="17.0" text="Edit Rides" textFill="WHITE">
          <font>
             <Font name="System Bold" size="50.0" />
          </font>
@@ -131,6 +131,14 @@
          </padding>
       </VBox>
       <Button alignment="CENTER" layoutX="186.0" layoutY="653.0" mnemonicParsing="false" onAction="#addRide" prefHeight="39.0" prefWidth="112.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Add Ride" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <padding>
+            <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <Button alignment="CENTER" layoutX="960.0" layoutY="603.0" mnemonicParsing="false" onAction="#home" prefHeight="39.0" prefWidth="119.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Delete Ride" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

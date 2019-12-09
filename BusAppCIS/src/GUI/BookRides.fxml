@@ -14,12 +14,12 @@
    <children>
       <ImageView fitHeight="716.0" fitWidth="518.6" layoutX="519.0" pickOnBounds="true">
          <image>
-            <Image url="@../../BusImages/viewrides2.jpg" />
+            <Image url="@../../BusImages/view_rides5.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="716.0" fitWidth="518.6" layoutX="1037.0" layoutY="1.0" pickOnBounds="true">
          <image>
-            <Image url="@../../BusImages/view_rides5.jpg" />
+            <Image url="@../../BusImages/viewrides2.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="716.0" fitWidth="518.6" pickOnBounds="true">

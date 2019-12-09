@@ -783,5 +783,36 @@ public class SQLMethods {
 
 		}
 	}
+	
+	public static void deleteBusRide(String id) throws SQLException {
+		
+		Connection con = SQLConnection.connector();
+		PreparedStatement ps;
+		String query = "UPDATE Bus_Schedule SET delete_flag = ? schedule_ID = ?";
+		
+		try {
+			
+			ps = con.prepareStatement(query);
+			
+			ps.setString(1, id);
+			
+		}
+		catch(SQLException e) {
+			
+			e.printStackTrace();
+			
+			throw new SQLException();
+		}
+		finally {
+			
+			con.close();
+			
+		}
+		
+		
+	}
+
+		
+	
 
 }
