@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1556.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EditDeleteAddController">
+   <children>
+      <Label layoutX="835.0" layoutY="17.0" text="Book a Ride" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+      <Button alignment="CENTER" layoutX="1319.0" layoutY="23.0" mnemonicParsing="false" onAction="#logOut" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: navy;" text="Log Out" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <padding>
+            <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <Button alignment="CENTER" layoutX="1219.0" layoutY="23.0" mnemonicParsing="false" onAction="#home" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: #0E4607;" text="Home" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <padding>
+            <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <ImageView fitHeight="108.0" fitWidth="127.0" layoutX="612.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../BusImages/8a74982e-2b5d-4ebb-9109-703f9f2da3f5_200x200.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableView" layoutX="485.0" layoutY="197.0" opacity="0.68" prefHeight="352.0" prefWidth="1018.0" style="-fx-background-color: white;">
+        <columns>
+          <TableColumn fx:id="fromColumn" prefWidth="140.0" text="From" />
+          <TableColumn fx:id="toColumn" minWidth="0.0" prefWidth="140.0" text="To" />
+            <TableColumn fx:id="departureDateColumn" prefWidth="140.0" text="Departure Date" />
+            <TableColumn fx:id="arriavalDateColumn" minWidth="0.0" prefWidth="114.66668701171875" text="Arrival Date" />
+            <TableColumn fx:id="departureTimeColumn" prefWidth="114.33331298828125" text="Departure Time" />
+            <TableColumn fx:id="arrivalTimeColumn" prefWidth="80.6666259765625" text="Arrival Time" />
+            <TableColumn fx:id="numberOfPassengersColumn" prefWidth="135.6666259765625" text="Number of Passengers" />
+            <TableColumn fx:id="busCapacity" minWidth="0.0" prefWidth="87.0" text="Bus Capacity" />
+            <TableColumn fx:id="scheduleIDColumn" prefWidth="383.0" text=" ID" />
+        </columns>
+      </TableView>
+      <VBox layoutX="76.0" layoutY="32.0" opacity="0.68" prefHeight="613.0" prefWidth="330.0" spacing="10.0" style="-fx-background-color: white;">
+         <children>
+            <Label prefHeight="35.0" prefWidth="136.0" text="From">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="from" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="129.0" text="To">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="to" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="181.0" text="Departure Date">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="departureDate" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="38.0" prefWidth="194.0" text="Arrival Date">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="arrivalDate" alignment="CENTER" prefHeight="40.0" prefWidth="296.0" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="38.0" prefWidth="194.0" text="Departure Time">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="departureTime" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="38.0" prefWidth="194.0" text="Arrival Time">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="arrivalTime" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label prefHeight="38.0" prefWidth="194.0" text="Bus #">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="busNum" alignment="CENTER" styleClass="registerInput" stylesheets="@application.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" />
+         </padding>
+      </VBox>
+      <Button alignment="CENTER" layoutX="186.0" layoutY="653.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="112.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Add Ride" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <padding>
+            <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+   </children>
+</AnchorPane>

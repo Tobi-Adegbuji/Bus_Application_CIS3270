@@ -682,59 +682,100 @@ public class SQLMethods {
 	}
 	
 	
-	
-	
-	
-	public void addToCustomerSchedule(ObservableList<BusSchedule> ride) {
+	public static void addBusRide(String from, String to, String departureDate, String arrivalDate, String departureTime,
+			String arrivalTime ,String busID ) throws SQLException {
+		
+		Connection con = SQLConnection.connector();
+		PreparedStatement ps; 
+		
+		String query = "INSERT INTO Bus_Schedule( bus_ID, passenger_no, from_station, to_station, arrival_date, "
+				+ "departure_date, arrival_time, departure_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			
+			ps = con.prepareStatement(query); 
+			
+			ps.setString(1, busID);
+			ps.setString(2, "0");
+			ps.setString(3, from);
+			ps.setString(4, to);
+			ps.setString(5, String.valueOf(arrivalDate));
+			ps.setString(6, String.valueOf(departureDate));
+			ps.setString(7, arrivalTime);
+			ps.setString(8, departureTime);
+			
+			ps.executeUpdate(); 
+			
+		}
+		catch (SQLException e) {
 
+			e.printStackTrace();
+			
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
+
+		}
 	}
 	
 	
-	
-//Creates new BusSchedule 
-	
-	public static void toBusSchedule(String fromStation, String toStation,
-			String arrivalDate, String departureDate, String arrivalTime, String departureTime
-			, String numberOfPassengers, String capacity, String scheduleID) throws SQLException, java.sql.SQLIntegrityConstraintViolationException {
-				
+	public static boolean verifyLocationExist(String from, String to) throws SQLException {
+
 		Connection con = SQLConnection.connector();
 		PreparedStatement ps;
-				
-		String query = "INSERT INTO Bus_Schedule  (fromStation, toStation, arrivalDate, departureDate, " + 
-		"arrivalTime, departureTime, numberOfPassengers, capacity, scheduleID)  VALUES(?,?,?,?,?,?,?,?,?,?)";
-				
+		PreparedStatement ps2;
+		ResultSet rs;
+		
+		String query = "SELECT * FROM Bus_Station WHERE station_name = ?";
+		String query2 = "SELECT * FROM Bus_Station WHERE station_name = ?";
+		
 		try {
+
 			ps = con.prepareStatement(query);
-			ps.setString(1, fromStation);
-			ps.setString(2, toStation);
-			ps.setString(3, arrivalDate);
-			ps.setString(4, departureDate);
-			ps.setString(5, arrivalTime);
-			ps.setString(6, departureTime);
-			ps.setString(7, numberOfPassengers);
-			ps.setString(8, capacity);
-			ps.setString(9, scheduleID);
-			ps.executeUpdate();	
-		}catch (java.sql.SQLIntegrityConstraintViolationException e) {	
-			throw new java.sql.SQLIntegrityConstraintViolationException();
-		}finally {
+
+			ps2 = con.prepareStatement(query2);
+			
+			ps.setString(1, from);
+
+			ps2.setString(1, to);
+			
+
+			rs = ps.executeQuery();
+
+			int count = 0; 
+			
+			while(rs.next()) {
+				
+				count++; 
+				
+			}
+			
+			if(count == 2) {
+				
+				return true;
+				
+			}else {
+				
+				return false; 
+				
+			}
+				
+			
+		} catch (SQLException e) {
+
+			throw new SQLException();
+
+		} finally {
+
 			con.close();
-		}		
+
+		}
+
 	}
+
 	
-	
-	/*			Delete Bus Schedule from Table (Admin)
-	 public static void deleteBusSchedule() throws SQLException, java.sql.SQLIntegrityConstraintViolationException {
-	 
-	 
-	 Connection con = SQLConnection.connector();
-	 PreparedStatement ps;
-	 
-	 Sting query = "DELETE FROM Bus_Schedule Where 
-	  
-	}
-	  
-	  
-	 */
+
 
 }

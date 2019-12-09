@@ -82,23 +82,19 @@ public class AdminHomeMenuContoller {
 
 		}
 		
-		public void passAdminInfo(Admin a) {
-			
-			this.admin = a; 
-			
-		}
-		
-		//comment
 		@FXML
 		public void editRides(ActionEvent event) throws IOException, SQLException {
-			
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/EditRides.fxml"));
 
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/EditDeleteAdd.fxml"));
+			
 			Parent mainMenu = loader.load();
+
+			EditDeleteAddController edac = loader.getController(); 
+
+			//This method set the customer object in book rides controller 
 			
-			EditRidesController erc = loader.getController();
+			edac.passAdminInfo(admin);
 			
-			erc.passAdminInfo(admin);
 			
 			Scene mainMenuScene = new Scene(mainMenu);
 
@@ -106,7 +102,18 @@ public class AdminHomeMenuContoller {
 
 			window.setScene(mainMenuScene);
 			window.setResizable(false);
+
+		}
+		
+	
+		
+		public void passAdminInfo(Admin a) {
+			
+			this.admin = a; 
 			
 		}
+		
+		//comment
+		
 	
 }
