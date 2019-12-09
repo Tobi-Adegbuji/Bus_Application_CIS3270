@@ -175,6 +175,8 @@ public class EditDeleteAddController implements Initializable {
 
 		try {
 
+			System.out.println(ridesSelected.get(0).getScheduleID());
+			
 			SQLMethods.deleteBusRide(ridesSelected.get(0).getScheduleID());
 
 		} catch (SQLException e) {

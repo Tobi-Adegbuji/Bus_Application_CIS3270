@@ -792,13 +792,14 @@ public class SQLMethods {
 		
 		Connection con = SQLConnection.connector();
 		PreparedStatement ps;
-		String query = "UPDATE Bus_Schedule SET delete_flag = ? schedule_ID = ?";
+		String query = "UPDATE Bus_Schedule SET delete_flag = ? WHERE schedule_ID = ?";
 		
 		try {
 			
 			ps = con.prepareStatement(query);
 			
-			ps.setString(1, id);
+			ps.setString(1, "1");
+			ps.setString(2, id);
 			
 		}
 		catch(SQLException e) {
