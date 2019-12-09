@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="227.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlreadyScehduledAlertBoxController">
+   <children>
+      <VBox layoutX="34.0" layoutY="48.0" opacity="0.68" prefHeight="231.0" prefWidth="159.0" spacing="10.0" style="-fx-background-color: white;">
+         <children>
+            <Label prefHeight="35.0" prefWidth="136.0" text="Atlanta">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label prefHeight="35.0" prefWidth="129.0" text="New York City">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label prefHeight="35.0" prefWidth="181.0" text="Charlotte">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label prefHeight="38.0" prefWidth="194.0" text="Miami">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label prefHeight="38.0" prefWidth="194.0" text="Birmingham">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" />
+         </padding>
+      </VBox>
+      <Label alignment="CENTER" layoutX="-6.0" layoutY="9.0" prefHeight="24.0" prefWidth="227.0" text="All of our locations.." textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
