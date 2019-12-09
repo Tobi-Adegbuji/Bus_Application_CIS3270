@@ -819,6 +819,38 @@ public class SQLMethods {
 		
 	}
 
+	
+	public static void setDeleteFlagAsAdmin(String scheduleID) throws SQLException {
+
+		Connection con = SQLConnection.connector();
+
+		PreparedStatement ps;
+
+		String query = " UPDATE Customer_Schedule SET delete_flag = ? WHERE schedule_ID = ?";
+
+		try {
+
+			ps = con.prepareStatement(query);
+
+			ps.setString(1, "1");
+
+			ps.setString(2, scheduleID);
+
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
+
+		}
+
+	}
 		
 	
 

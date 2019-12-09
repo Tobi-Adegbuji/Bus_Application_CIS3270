@@ -184,6 +184,8 @@ public class EditDeleteAddController implements Initializable {
 			
 			SQLMethods.deleteBusRide(ridesSelected.get(0).getScheduleID());
 
+			SQLMethods.setDeleteFlagAsAdmin(ridesSelected.get(0).getScheduleID());
+			
 			ObservableList<BusSchedule> rides = SQLMethods.getBusScheduleInfo();
 
 			tableView.setItems(rides);
