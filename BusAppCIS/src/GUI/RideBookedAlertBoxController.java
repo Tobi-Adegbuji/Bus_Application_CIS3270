@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -16,9 +17,8 @@ import javafx.stage.StageStyle;
 
 public class RideBookedAlertBoxController {
 
-
-	
-	
+@FXML
+private Label label; 
 	
 public void display() throws IOException {
 	
@@ -40,5 +40,13 @@ public void display() throws IOException {
 
 	
 }
+
+public Label getLabel() {
+	return label;
+}
+
+
+
+
 	
 }

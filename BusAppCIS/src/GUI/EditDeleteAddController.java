@@ -151,19 +151,26 @@ public class EditDeleteAddController implements Initializable {
 
 				SQLMethods.addBusRide(from.getText(), to.getText(), departureDate.getText(), arrivalDate.getText(),
 						dTime, aTime, busNum.getText());
+				
+				from.setText("");
+				to.setText("");
+				departureDate.setText("");
+				arrivalDate.setText("");
+				departureTime.setText("");
+				arrivalTime.setText("");
+				busNum.setText("");
+				
 			}
-			
-			
-			
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 
+			e.printStackTrace();
+			
 			from.setStyle("-fx-text-fill: black;");
 
-			System.out.println("Issue with user input");
+			System.out.println("Issue");
 
 		}
 
@@ -181,15 +188,15 @@ public class EditDeleteAddController implements Initializable {
 		try {
 
 			System.out.println(ridesSelected.get(0).getScheduleID());
-			
+
 			SQLMethods.deleteBusRide(ridesSelected.get(0).getScheduleID());
 
 			SQLMethods.setDeleteFlagAsAdmin(ridesSelected.get(0).getScheduleID());
-			
+
 			ObservableList<BusSchedule> rides = SQLMethods.getBusScheduleInfo();
 
 			tableView.setItems(rides);
-			
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
