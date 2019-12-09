@@ -105,43 +105,58 @@ public class EditDeleteAddController implements Initializable {
 	}
 
 	@FXML
-	public void addRide() {
-		
+	public void addRide(ActionEvent event) {
+
 		try {
-			
-			
-			if(!SQLMethods.verifyLocationExist(from.getText(), to.getText())) {
-				
-				throw new SQLException();
-			
-			}
-			else if(!((String) departureDate.getText()).matches("\\d{4}-\\d{2}-\\d{2}")) {
-				
+
+			if (!SQLMethods.verifyLocationExist(from.getText().toUpperCase(), to.getText().toUpperCase())) {
+
+
+			} else if (!((String) departureDate.getText()).matches("\\d{4}-\\d{2}-\\d{2}")) {
+
 				departureDate.setText("Date format must be: yyyy-mm-dd");
-				
-				throw new Exception(); 
-				
-			}
-			else if(!((String) arrivalDate.getText()).matches("\\d{4}-\\d{2}-\\d{2}")) {
-				
-				departureDate.setText("Date format must be: yyyy-mm-dd");
-				
+
 				throw new Exception();
+
+			} else if (!((String) arrivalDate.getText()).matches("\\d{4}-\\d{2}-\\d{2}")) {
+
+				arrivalDate.setText("Date format must be: yyyy-mm-dd");
+
+				throw new Exception();
+
+			} else if (!departureTime.getText().matches("\\d{2}:\\d{2}")) {
+
+				departureTime.setText("Time format must be: HH:mm (MT)");
+
+			} else if (!arrivalTime.getText().matches("\\d{2}:\\d{2}")) {
+
+				arrivalTime.setText("Time format must be: HH:mm (MT)");
 				
+
+			} else if (!SQLMethods.verifyBusID(busNum.getText())) {
+
+				busNum.setText("This bus # doesn't exist");
+
+			} else {
+
+				// Formatting time text field to a DATETIME
+				
+				String dTime = formatTime(departureTime.getText(), departureDate.getText());
+
+				String aTime = formatTime(arrivalTime.getText(), arrivalDate.getText());
+				
+				SQLMethods.addBusRide(from.getText(), to.getText(), departureDate.getText(), arrivalDate.getText(),
+						dTime, aTime, busNum.getText());
 			}
-			
-			
-			SQLMethods.addBusRide(from.getText(), to.getText(), departureDate.getText(), arrivalDate.getText(),
-					departureTime.getText(), arrivalTime.getText(), busNum.getText());
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		catch(Exception e) {
-			
-			e.printStackTrace();
-			
+		} catch (Exception e) {
+
+			from.setStyle("-fx-text-fill: black;");
+
+			System.out.println("Issue with user input");
+
 		}
 
 	}
@@ -180,6 +195,56 @@ public class EditDeleteAddController implements Initializable {
 
 		window.setScene(mainMenuScene);
 		window.setResizable(false);
+
+	}
+
+	
+	
+	//Method used to format time into datetime
+	public String formatTime(String userTime, String date) {
+
+		int n = Integer.parseInt(userTime.substring(0, 2)) + 4;
+
+		switch (n) {
+
+		case 24:
+			n = 0;
+			break;
+
+		case 25:
+			n = 1;
+			break;
+
+		case 26:
+			n = 2;
+			break;
+
+		case 27:
+			n = 3;
+			break;
+		default:
+			break;
+
+		}
+
+		// extracting hour
+		String hourChange = String.valueOf(n);
+
+		StringBuilder time = new StringBuilder(userTime);
+
+		if (hourChange.length() == 1) {
+
+			time.replace(0, 2, "0" + hourChange);
+
+		} else {
+
+			time.replace(0, 2, hourChange);
+
+		}
+
+		String formattedString = date + " " + time + ":00";
+
+		return formattedString;
 
 	}
 

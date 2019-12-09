@@ -143,7 +143,6 @@ public class SQLMethods {
 		}
 	}
 
-	
 	public static Admin getAdminInfo(String username) throws SQLException {
 
 		Admin admin;
@@ -182,8 +181,7 @@ public class SQLMethods {
 
 		}
 	}
-	
-	
+
 	// Retrieves Security Question
 	public static String retrieveSecurityQuestion(String username) throws SQLException {
 
@@ -350,8 +348,7 @@ public class SQLMethods {
 		}
 
 	}
-	
-	
+
 	// Returns bus schedule records in an observable list to populate the tableview
 	public static ObservableList<BusSchedule> getBusScheduleInfo() throws SQLException {
 
@@ -362,9 +359,8 @@ public class SQLMethods {
 		ObservableList<BusSchedule> listOfAllRides = FXCollections.observableArrayList();
 
 		String query = "SELECT * FROM Bus_Schedule";
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
 		try {
 
@@ -372,17 +368,15 @@ public class SQLMethods {
 
 			rs = st.executeQuery(query);
 
-			
 			while (rs.next()) {
-				
-			String departureTime =	sdf.format(rs.getTimestamp("departure_time"));
+
+				String departureTime = sdf.format(rs.getTimestamp("departure_time"));
 				String arrivalTime = sdf.format(rs.getTimestamp("arrival_time"));
-				
-				
+
 				listOfAllRides.add(new BusSchedule(rs.getString("from_station"), rs.getString("to_station"),
-						rs.getDate("departure_date"), rs.getDate("arrival_date"), arrivalTime,
-						departureTime, rs.getString("passenger_no"),
-						getCapacity(rs.getString("bus_ID")), rs.getString("schedule_ID")));
+						rs.getDate("departure_date"), rs.getDate("arrival_date"), arrivalTime, departureTime,
+						rs.getString("passenger_no"), getCapacity(rs.getString("bus_ID")),
+						rs.getString("schedule_ID")));
 
 			}
 			return listOfAllRides;
@@ -414,8 +408,6 @@ public class SQLMethods {
 
 		try {
 
-			
-			
 			ps = con.prepareStatement(query);
 
 			ps.setString(1, ssn);
@@ -425,8 +417,7 @@ public class SQLMethods {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				
-				
+
 				listOfAllRides.add(new CustomerSchedule(rs.getString("from_station"), rs.getString("to_station"),
 						rs.getDate("departure_date"), rs.getDate("arrival_date"), rs.getString("arrival_time"),
 						rs.getString("departure_time"), rs.getString("passenger_no"),
@@ -438,7 +429,7 @@ public class SQLMethods {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-			
+
 			throw new SQLException();
 
 		} finally {
@@ -534,7 +525,6 @@ public class SQLMethods {
 
 			ps = con.prepareStatement(query);
 
-			
 			ps.setString(1, snn);
 			ps.setString(2, schedule_ID);
 			ps.setString(3, passenger_no);
@@ -558,8 +548,6 @@ public class SQLMethods {
 
 		}
 	}
-	
-
 
 	public static void updateNumOfPassengers(String passengerNum, String schedule_ID) throws SQLException {
 
@@ -612,18 +600,18 @@ public class SQLMethods {
 
 			ps = con.prepareStatement(query);
 
-			ps.setString(1, deleteFlag);			
-			
+			ps.setString(1, deleteFlag);
+
 			ps.setString(2, ssn);
 
 			ps.setString(3, scheduleID);
-			
+
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-			
+
 			throw new SQLException();
 
 		} finally {
@@ -634,13 +622,12 @@ public class SQLMethods {
 
 	}
 
-	
 	public static boolean isRideDeleted(String ssn, String scheduleID) throws SQLException {
-		
+
 		Connection con = SQLConnection.connector();
 
 		PreparedStatement ps;
-		
+
 		ResultSet rs;
 
 		String query = "SELECT delete_flag FROM Customer_Schedule WHERE SSN = ? AND schedule_ID = ? ";
@@ -652,25 +639,25 @@ public class SQLMethods {
 			ps.setString(1, ssn);
 
 			ps.setString(2, scheduleID);
-			
+
 			rs = ps.executeQuery();
-			
+
 			rs.next();
-			
-			if(rs.getString("delete_flag").equals("1")) {
-				
+
+			if (rs.getString("delete_flag").equals("1")) {
+
 				return true;
-				
-			}else {
-				
+
+			} else {
+
 				return false;
-				
+
 			}
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-			
+
 			throw new SQLException();
 
 		} finally {
@@ -680,37 +667,35 @@ public class SQLMethods {
 		}
 
 	}
-	
-	
-	public static void addBusRide(String from, String to, String departureDate, String arrivalDate, String departureTime,
-			String arrivalTime ,String busID ) throws SQLException {
-		
+
+	public static void addBusRide(String from, String to, String departureDate, String arrivalDate,
+			String departureTime, String arrivalTime, String busID) throws SQLException {
+
 		Connection con = SQLConnection.connector();
-		PreparedStatement ps; 
-		
+		PreparedStatement ps;
+
 		String query = "INSERT INTO Bus_Schedule( bus_ID, passenger_no, from_station, to_station, arrival_date, "
 				+ "departure_date, arrival_time, departure_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-		
+
 		try {
-			
-			ps = con.prepareStatement(query); 
-			
+
+			ps = con.prepareStatement(query);
+
 			ps.setString(1, busID);
 			ps.setString(2, "0");
-			ps.setString(3, from);
-			ps.setString(4, to);
+			ps.setString(3, from.toUpperCase());
+			ps.setString(4, to.toUpperCase());
 			ps.setString(5, String.valueOf(arrivalDate));
 			ps.setString(6, String.valueOf(departureDate));
 			ps.setString(7, arrivalTime);
 			ps.setString(8, departureTime);
-			
-			ps.executeUpdate(); 
-			
-		}
-		catch (SQLException e) {
+
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
 
 			e.printStackTrace();
-			
+
 			throw new SQLException();
 
 		} finally {
@@ -719,51 +704,40 @@ public class SQLMethods {
 
 		}
 	}
-	
-	
+
 	public static boolean verifyLocationExist(String from, String to) throws SQLException {
 
 		Connection con = SQLConnection.connector();
 		PreparedStatement ps;
 		PreparedStatement ps2;
 		ResultSet rs;
-		
-		String query = "SELECT * FROM Bus_Station WHERE station_name = ?";
-		String query2 = "SELECT * FROM Bus_Station WHERE station_name = ?";
-		
+		ResultSet rs2;
+
+		String query = "SELECT station_name FROM Bus_Station WHERE station_name = ?";
+		String query2 = "SELECT station_name FROM Bus_Station WHERE station_name = ?";
+
 		try {
 
 			ps = con.prepareStatement(query);
 
 			ps2 = con.prepareStatement(query2);
-			
+
 			ps.setString(1, from);
 
 			ps2.setString(1, to);
-			
 
 			rs = ps.executeQuery();
+			rs2 = ps2.executeQuery();
 
-			int count = 0; 
-			
-			while(rs.next()) {
-				
-				count++; 
-				
-			}
-			
-			if(count == 2) {
-				
+			if (rs.next() && rs2.next())
 				return true;
-				
-			}else {
-				
-				return false; 
-				
-			}
-				
-			
+
+			else
+				return false;
+
 		} catch (SQLException e) {
+
+			e.printStackTrace();
 
 			throw new SQLException();
 
@@ -775,7 +749,39 @@ public class SQLMethods {
 
 	}
 
-	
+	public static Boolean verifyBusID(String busNum) throws SQLException {
 
+		Connection con = SQLConnection.connector();
+		PreparedStatement preparedStatement;
+		ResultSet resultSet;
+		String query = "SELECT bus_ID FROM Bus WHERE bus_ID = ?";
+
+		try {
+
+			preparedStatement = con.prepareStatement(query);
+
+			preparedStatement.setString(1, busNum);
+
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+
+				return true;
+
+			} else {
+
+				return false;
+
+			}
+		} catch (SQLException e) {
+
+			throw new SQLException();
+
+		} finally {
+
+			con.close();
+
+		}
+	}
 
 }
