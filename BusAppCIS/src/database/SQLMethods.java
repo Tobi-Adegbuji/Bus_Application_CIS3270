@@ -353,20 +353,22 @@ public class SQLMethods {
 	public static ObservableList<BusSchedule> getBusScheduleInfo() throws SQLException {
 
 		Connection con = SQLConnection.connector();
-		Statement st;
+		PreparedStatement ps;
 		ResultSet rs;
 
 		ObservableList<BusSchedule> listOfAllRides = FXCollections.observableArrayList();
 
-		String query = "SELECT * FROM Bus_Schedule";
+		String query = "SELECT * FROM Bus_Schedule WHERE delete_flag = ?";
 
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
 		try {
 
-			st = con.createStatement();
+			ps = con.prepareStatement(query);
 
-			rs = st.executeQuery(query);
+			ps.setString(1, "0");
+			
+			rs = ps.executeQuery();
 
 			while (rs.next()) {
 
@@ -383,6 +385,8 @@ public class SQLMethods {
 
 		} catch (SQLException e) {
 
+			e.printStackTrace();
+			
 			throw new SQLException();
 
 		} finally {
@@ -402,7 +406,7 @@ public class SQLMethods {
 
 		ObservableList<CustomerSchedule> listOfAllRides = FXCollections.observableArrayList();
 
-		String query = "SELECT * FROM Customer_Schedule WHERE SSN = ? and delete_flag = ?";
+		String query = "SELECT * FROM Customer_Schedule WHERE SSN = ? AND delete_flag = ?";
 
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
