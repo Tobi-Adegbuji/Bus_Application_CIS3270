@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import database.SQLMethods;
 import entities.Admin;
 import entities.BusSchedule;
+import entities.CustomerSchedule;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -151,6 +152,10 @@ public class EditDeleteAddController implements Initializable {
 				SQLMethods.addBusRide(from.getText(), to.getText(), departureDate.getText(), arrivalDate.getText(),
 						dTime, aTime, busNum.getText());
 			}
+			
+			
+			
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -179,6 +184,10 @@ public class EditDeleteAddController implements Initializable {
 			
 			SQLMethods.deleteBusRide(ridesSelected.get(0).getScheduleID());
 
+			ObservableList<BusSchedule> rides = SQLMethods.getBusScheduleInfo();
+
+			tableView.setItems(rides);
+			
 		} catch (SQLException e) {
 
 			e.printStackTrace();

@@ -801,6 +801,8 @@ public class SQLMethods {
 			ps.setString(1, "1");
 			ps.setString(2, id);
 			
+			ps.executeUpdate(); 
+			
 		}
 		catch(SQLException e) {
 			
