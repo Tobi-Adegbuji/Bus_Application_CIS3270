@@ -152,6 +152,11 @@ public class EditDeleteAddController implements Initializable {
 				SQLMethods.addBusRide(from.getText(), to.getText(), departureDate.getText(), arrivalDate.getText(),
 						dTime, aTime, busNum.getText());
 				
+				
+				ObservableList<BusSchedule> rides = SQLMethods.getBusScheduleInfo();
+
+				tableView.setItems(rides);
+				
 				from.setText("");
 				to.setText("");
 				departureDate.setText("");

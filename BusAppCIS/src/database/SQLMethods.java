@@ -367,7 +367,7 @@ public class SQLMethods {
 			ps = con.prepareStatement(query);
 
 			ps.setString(1, "0");
-			
+
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -386,7 +386,7 @@ public class SQLMethods {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-			
+
 			throw new SQLException();
 
 		} finally {
@@ -787,39 +787,39 @@ public class SQLMethods {
 
 		}
 	}
+
+	//Updates delete_flag column in bus_schedule table  
 	
 	public static void deleteBusRide(String id) throws SQLException {
-		
+
 		Connection con = SQLConnection.connector();
 		PreparedStatement ps;
 		String query = "UPDATE Bus_Schedule SET delete_flag = ? WHERE schedule_ID = ?";
-		
+
 		try {
-			
+
 			ps = con.prepareStatement(query);
-			
+
 			ps.setString(1, "1");
 			ps.setString(2, id);
-			
-			ps.executeUpdate(); 
-			
-		}
-		catch(SQLException e) {
-			
-			e.printStackTrace();
-			
-			throw new SQLException();
-		}
-		finally {
-			
-			con.close();
-			
-		}
-		
-		
-	}
 
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+			throw new SQLException();
+		} finally {
+
+			con.close();
+
+		}
+
+	}
 	
+	//Updates delete_flag column in customer_schedule table  
+
 	public static void setDeleteFlagAsAdmin(String scheduleID) throws SQLException {
 
 		Connection con = SQLConnection.connector();
@@ -851,7 +851,54 @@ public class SQLMethods {
 		}
 
 	}
-		
 	
+	
+	//Updates a row in bus_schedule table 
+
+	public static void editRide(String from, String to, String arrivalDate, String departureDate,
+			String arrivalTime, String departureTime) throws SQLException {
+		
+		
+		Connection con = SQLConnection.connector(); 
+		
+		PreparedStatement ps; 
+		
+		String query = "UPDATE Bus_Schedule SET from_station = ?, to_station = ?, "
+				+ "arrival_date = ?, departure_date = ?, arrival_time = ?, "
+				+ "departure_time = ?"; 
+		
+		try {
+			
+			
+			ps = con.prepareStatement(query); 
+			
+			ps.setString(1, from);
+			ps.setString(2, to);
+			ps.setString(3, arrivalDate);
+			ps.setString(4, departureDate);
+			ps.setString(5, arrivalTime);
+			ps.setString(6, departureTime);
+			
+			
+			ps.executeUpdate(); 
+			
+			
+		}
+		catch(SQLException e) {
+			
+			e.printStackTrace();
+			
+			throw new SQLException();
+			
+		
+		}
+		finally {
+			
+			con.close();
+			
+			
+		}
+		
+	}
 
 }

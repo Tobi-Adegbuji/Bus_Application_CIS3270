@@ -94,6 +94,7 @@ public class LoginController extends Application implements Initializable {
 	@FXML
 	public void login(ActionEvent event) throws IOException, SQLException {
 
+		
 		if (SQLMethods.verify(user.getText(), pass.getText())) {
 
 			if (SQLMethods.isAdmin(user.getText())) { // Checks if user has admin access in database
@@ -141,7 +142,8 @@ public class LoginController extends Application implements Initializable {
 			notify.setText("Invalid Username or Password");
 
 		}
-
+		
+		
 	}
 
 	// Retrieves a customers information so it can be passed from scene to scene

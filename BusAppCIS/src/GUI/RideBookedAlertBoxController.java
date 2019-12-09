@@ -41,9 +41,6 @@ public void display() throws IOException {
 	
 }
 
-public Label getLabel() {
-	return label;
-}
 
 
 
