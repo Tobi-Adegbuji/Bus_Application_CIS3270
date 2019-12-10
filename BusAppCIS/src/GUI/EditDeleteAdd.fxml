@@ -154,5 +154,10 @@
             <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
+      <Label fx:id="updateNotify" alignment="CENTER" layoutX="703.0" layoutY="107.0" prefHeight="34.0" prefWidth="515.0" textFill="#3ac935">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

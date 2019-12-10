@@ -226,7 +226,7 @@ public void deleteAdminRide() {
 
 		if (customer == null && admin != null) {
 
-			// Takes you to customer home menu
+			// Takes you to Admin home menu
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminHomeMenu.fxml"));
 

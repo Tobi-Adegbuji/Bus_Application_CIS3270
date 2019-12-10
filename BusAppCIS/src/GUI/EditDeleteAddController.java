@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -46,6 +47,10 @@ public class EditDeleteAddController implements Initializable {
 	private TextField arrivalTime;
 	@FXML
 	private TextField busNum;
+	@FXML
+	private Label updateNotify; 
+	
+	
 
 	@FXML
 	private TableView<BusSchedule> tableView; // The tableView is expecting BusSchedule objects
@@ -72,6 +77,7 @@ public class EditDeleteAddController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		
 		fromColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("fromStation"));
 
 		toColumn.setCellValueFactory(new PropertyValueFactory<BusSchedule, String>("toStation"));
@@ -173,6 +179,8 @@ public class EditDeleteAddController implements Initializable {
 			e.printStackTrace();
 		} catch (Exception e) {
 
+			System.out.println("Somemthing went wrong.");
+			
 			e.printStackTrace();
 
 			from.setStyle("-fx-text-fill: black;");
@@ -348,6 +356,13 @@ public class EditDeleteAddController implements Initializable {
 		this.admin = a;
 
 	}
+	
+	public void passUpdateNotification(String update) {
+
+		this.updateNotify.setText(update);
+
+	}
+	
 	
 	
 

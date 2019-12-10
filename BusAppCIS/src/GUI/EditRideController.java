@@ -86,7 +86,7 @@ public class EditRideController implements Initializable {
 	}
 
 	@FXML
-	public void updateRide() {
+	public void updateRide(ActionEvent event) {
 
 		
 		
@@ -133,6 +133,25 @@ public class EditRideController implements Initializable {
 
 				SQLMethods.editRide(from.getText(), to.getText(), arrivalDate.getText(), departureDate.getText(),
 						aTime, dTime, Integer.parseInt(busNum.getText()), schedule.getScheduleID());
+				
+				//Takes you back to previous screen
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/EditDeleteAdd.fxml"));
+
+				Parent editDeleteAdd = loader.load();
+
+				EditDeleteAddController edac = loader.getController();
+
+				// This method sets the customer object in home menu controller
+
+				edac.passUpdateNotification("Ride was Updated");
+
+				Scene editDeleteAddScene = new Scene(editDeleteAdd);
+
+				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+				window.setScene(editDeleteAddScene);
+				window.setResizable(false);
+				
 
 			}
 		}
@@ -222,5 +241,9 @@ public class EditRideController implements Initializable {
 		this.bus = bus;
 
 	}
+	
+	
+	
+	
 
 }
