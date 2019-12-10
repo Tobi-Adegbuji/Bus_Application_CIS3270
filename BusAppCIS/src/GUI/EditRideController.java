@@ -198,7 +198,7 @@ public class EditRideController implements Initializable {
 
 		AdminHomeMenuContoller ahmc = loader.getController();
 
-		// This method sets the admin object in home admin home menu controller
+		// This method sets the admin object in home adminHomeMenu controller
 
 		System.out.println(admin.getPassword());
 		
