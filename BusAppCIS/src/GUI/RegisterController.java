@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import database.SQLConnection;
 import database.SQLMethods; //
@@ -65,7 +66,7 @@ public class RegisterController {
 	@FXML
 	public void complete(ActionEvent event) throws IOException, SQLException {
 
-		register();
+		if(register()) {
 
 		Parent loginParent = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
 
@@ -75,11 +76,19 @@ public class RegisterController {
 
 		window.setScene(loginScene);
 		window.setResizable(false);
+		}
+		
+		else {
+			
+			
+			System.out.println("Something went wrong with user input");
+			
+		}
 
 	}
 
-	// Checks page
-	public void register() {
+	// Registers user
+	public boolean register() {
 
 		try {
 
@@ -89,10 +98,24 @@ public class RegisterController {
 					"1000", "N");
 
 			System.out.println("Complete");
+			
+			return true; 
 
-		} catch (Exception e) {
+		}
+		catch(SQLIntegrityConstraintViolationException e) {
+			
+			return false;
+			
+		}
+		catch(SQLException e) {
+					
+			return false;
+					
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("There is an issue");
+			return false; 
 
 		}
 

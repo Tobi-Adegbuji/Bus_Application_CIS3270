@@ -291,7 +291,7 @@ public class SQLMethods {
 	// Creates a new customer.
 	public static void toRegister(String ssn, String firstName, String lastName, String email, String city,
 			String address, String country, String state, String zipcode, String username, String password,
-			String securityQuestion, String securityAnswer, String id, String admin_access) throws SQLException {
+			String securityQuestion, String securityAnswer, String id, String admin_access) throws SQLException, SQLIntegrityConstraintViolationException {
 
 		Connection con = SQLConnection.connector();
 		PreparedStatement ps;
@@ -337,7 +337,13 @@ public class SQLMethods {
 
 			System.out.println("User was registered");
 
-		} catch (SQLException e) {
+		}
+		catch (SQLIntegrityConstraintViolationException e) {
+
+			throw new SQLIntegrityConstraintViolationException();
+
+		}
+		catch (SQLException e) {
 
 			throw new SQLException();
 
