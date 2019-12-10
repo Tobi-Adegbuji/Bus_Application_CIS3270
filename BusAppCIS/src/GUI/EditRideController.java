@@ -64,11 +64,7 @@ public class EditRideController implements Initializable {
 	TextField busNum;
 
 	// used to pass admin object
-	public void passAdminInfo(Admin a) {
-
-		this.admin = a;
-
-	}
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -144,6 +140,8 @@ public class EditRideController implements Initializable {
 				// This method sets the customer object in home menu controller
 
 				edac.passUpdateNotification("Ride was Updated");
+				
+				edac.passAdminInfo(admin);
 
 				Scene editDeleteAddScene = new Scene(editDeleteAdd);
 
@@ -185,7 +183,7 @@ public class EditRideController implements Initializable {
 	// Method used to format time into datetime
 		public static String formatTime(String userTime, String date) {
 
-			int n = Integer.parseInt(userTime.substring(0, 2)) + 5;
+			int n = Integer.parseInt(userTime.substring(0, 2)) + 4;
 
 			switch (n) {
 
@@ -241,6 +239,13 @@ public class EditRideController implements Initializable {
 		this.bus = bus;
 
 	}
+	
+	public void passAdminInfo(Admin a) {
+
+		this.admin = a;
+
+	}
+	
 	
 	
 	

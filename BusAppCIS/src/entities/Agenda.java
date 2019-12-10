@@ -17,9 +17,7 @@ public class Agenda {
 	// delete agenda before class
 	
 	//Delete classes not being used
-	
-	//When admin updates ride show confirmation
-	
+		
 	
 	
 	

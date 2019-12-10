@@ -291,6 +291,8 @@ public class EditDeleteAddController implements Initializable {
 
 		// This method sets the admin object in home admin home menu controller
 
+		System.out.println(admin.getPassword());
+		
 		ahmc.passAdminInfo(admin);
 
 		Scene mainMenuScene = new Scene(mainMenu);
