@@ -94,7 +94,7 @@
             <Insets bottom="20.0" left="15.0" right="15.0" />
          </padding>
       </VBox>
-      <Button alignment="CENTER" layoutX="421.0" layoutY="614.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="129.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Update Ride" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="421.0" layoutY="614.0" mnemonicParsing="false" onAction="#updateRide" prefHeight="39.0" prefWidth="129.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Update Ride" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -151,5 +151,13 @@
             <Insets bottom="20.0" left="15.0" right="15.0" />
          </padding>
       </VBox>
+      <Button alignment="CENTER" layoutX="421.0" layoutY="72.0" mnemonicParsing="false" onAction="#back" prefHeight="39.0" prefWidth="129.0" style="-fx-border-color: black; -fx-background-color: #0E4607;" text="Back" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <padding>
+            <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
    </children>
 </AnchorPane>

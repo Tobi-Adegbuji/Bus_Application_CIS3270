@@ -859,7 +859,7 @@ public class SQLMethods {
 	//Updates a row in bus_schedule table 
 
 	public static void editRide(String from, String to, String arrivalDate, String departureDate,
-			String arrivalTime, String departureTime, int busID) throws SQLException {
+			String arrivalTime, String departureTime, int busID, String schedule_ID) throws SQLException {
 		
 		
 		Connection con = SQLConnection.connector(); 
@@ -868,7 +868,7 @@ public class SQLMethods {
 		
 		String query = "UPDATE Bus_Schedule SET from_station = ?, to_station = ?, "
 				+ "arrival_date = ?, departure_date = ?, arrival_time = ?, "
-				+ "departure_time = ?, bus_ID = ? "; 
+				+ "departure_time = ?, bus_ID = ?  WHERE schedule_ID = ?"; 
 		
 		try {
 			
@@ -881,7 +881,8 @@ public class SQLMethods {
 			ps.setString(4, departureDate);
 			ps.setString(5, arrivalTime);
 			ps.setString(6, departureTime);
-			ps.setString(6, String.valueOf(busID));
+			ps.setString(7, String.valueOf(busID));
+			ps.setString(8, "");
 			
 			
 			ps.executeUpdate(); 
