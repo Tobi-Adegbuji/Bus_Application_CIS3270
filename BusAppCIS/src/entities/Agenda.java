@@ -12,8 +12,6 @@ public class Agenda {
 	
 	//Delete view account info 
 	
-	//Edit kinda fixed it
-	
 	//put images on blank gui
 	
 	// delete agenda before class

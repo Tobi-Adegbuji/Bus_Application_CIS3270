@@ -42,8 +42,8 @@ public class LoginController extends Application implements Initializable {
 
 	@FXML
 	private Label isConnected;
-
-	LoginModel loginModel = new LoginModel();
+	
+	Connection connection = SQLConnection.connector();
 
 	Stage window;
 
@@ -52,8 +52,7 @@ public class LoginController extends Application implements Initializable {
 		launch(args);
 	}
 
-	// LOADS THE LOGIN SCREEN (will probably have to load splash screen first
-	// instead of login)
+	// LOADS THE LOGIN SCREEN 
 	@Override
 	public void start(Stage window) throws IOException {
 
@@ -74,7 +73,7 @@ public class LoginController extends Application implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
-			if (loginModel.isDBConnected()) {
+			if (isDBConnected()) {
 				isConnected.setText("Status: Connected");
 			} else {
 				isConnected.setText("Status: Not Connected");
@@ -207,6 +206,17 @@ public class LoginController extends Application implements Initializable {
 
 	public Label getNotify() {
 		return notify;
+	}
+	
+public boolean isDBConnected() throws NullPointerException{
+		
+		try {
+			return !connection.isClosed(); //simply returns true if connection is closed
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false; 
+		} 
+		
 	}
 	
 	

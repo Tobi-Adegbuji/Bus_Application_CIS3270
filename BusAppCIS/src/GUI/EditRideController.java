@@ -2,9 +2,11 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import database.SQLConnection;
 import database.SQLMethods;
 import entities.Admin;
 import entities.Bus;
@@ -29,6 +31,7 @@ public class EditRideController implements Initializable {
 	private BusSchedule schedule;
 
 	private Bus bus;
+	
 
 	@FXML
 	Label labelFrom;
