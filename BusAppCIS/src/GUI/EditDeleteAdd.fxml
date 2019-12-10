@@ -14,6 +14,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1556.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EditDeleteAddController">
    <children>
+      <ImageView fitHeight="817.0" fitWidth="1556.0" opacity="0.43" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../BusImages/action-america-architecture-avenue-378570.jpg" />
+         </image>
+      </ImageView>
       <Label layoutX="835.0" layoutY="17.0" text="Edit Rides" textFill="WHITE">
          <font>
             <Font name="System Bold" size="50.0" />
@@ -130,7 +135,7 @@
             <Insets bottom="20.0" left="15.0" right="15.0" />
          </padding>
       </VBox>
-      <Button alignment="CENTER" layoutX="186.0" layoutY="653.0" mnemonicParsing="false" onAction="#addRide" prefHeight="39.0" prefWidth="112.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Add Ride" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="186.0" layoutY="653.0" mnemonicParsing="false" onAction="#addRide" prefHeight="39.0" prefWidth="112.0" style="-fx-border-color: black; -fx-background-color: purple;" text="Add Ride" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

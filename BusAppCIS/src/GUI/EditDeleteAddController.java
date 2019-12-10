@@ -283,6 +283,7 @@ public class EditDeleteAddController implements Initializable {
 
 	}
 
+	@FXML
 	public void home(ActionEvent event) throws IOException, SQLException {
 
 		// Takes you to customer home menu

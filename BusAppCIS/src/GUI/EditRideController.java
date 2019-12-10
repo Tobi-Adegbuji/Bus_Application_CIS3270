@@ -187,6 +187,32 @@ public class EditRideController implements Initializable {
 		window.setResizable(false);
 	}
 	
+	@FXML
+	public void home(ActionEvent event) throws IOException, SQLException {
+
+		// Takes you to customer home menu
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminHomeMenu.fxml"));
+
+		Parent mainMenu = loader.load();
+
+		AdminHomeMenuContoller ahmc = loader.getController();
+
+		// This method sets the admin object in home admin home menu controller
+
+		System.out.println(admin.getPassword());
+		
+		ahmc.passAdminInfo(admin);
+
+		Scene mainMenuScene = new Scene(mainMenu);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(mainMenuScene);
+		window.setResizable(false);
+
+	}
+	
 	// Method used to format time into datetime
 		public static String formatTime(String userTime, String date) {
 
