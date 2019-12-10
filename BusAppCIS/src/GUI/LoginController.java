@@ -65,7 +65,7 @@ public class LoginController extends Application implements Initializable {
 		scene.getStylesheets().add(getClass().getResource("/GUI/application.css").toExternalForm());
 		window.setScene(scene);
 		window.setResizable(false);
-		window.setTitle("Edge Xpress Login");
+		window.setTitle("Edge Xpress");
 		window.show();
 
 	}

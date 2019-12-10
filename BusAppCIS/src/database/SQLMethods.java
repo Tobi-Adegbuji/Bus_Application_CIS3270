@@ -875,14 +875,14 @@ public class SQLMethods {
 			
 			ps = con.prepareStatement(query); 
 			
-			ps.setString(1, from);
-			ps.setString(2, to);
+			ps.setString(1, from.toUpperCase());
+			ps.setString(2, to.toUpperCase());
 			ps.setString(3, arrivalDate);
 			ps.setString(4, departureDate);
 			ps.setString(5, arrivalTime);
 			ps.setString(6, departureTime);
 			ps.setString(7, String.valueOf(busID));
-			ps.setString(8, "");
+			ps.setString(8, schedule_ID);
 			
 			
 			ps.executeUpdate(); 
