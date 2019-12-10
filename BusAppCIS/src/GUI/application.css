@@ -93,3 +93,18 @@
     -fx-text-fill:black;
 
 }
+
+registerInput{
+	
+	-fx-border-style: hidden hidden solid hidden; 
+	
+	-fx-border-width: 3px;
+	
+	-fx-border-color: black; 
+	
+	-fx-background-color: none; 
+	
+	-fx-text-fill: white; 
+	
+	
+}

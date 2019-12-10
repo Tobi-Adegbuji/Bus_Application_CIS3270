@@ -52,7 +52,7 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="6.0" layoutY="40.0" prefHeight="24.0" prefWidth="227.0" text="All of our locations" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="6.0" layoutY="40.0" prefHeight="24.0" prefWidth="227.0" text="All of our stations are below" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>

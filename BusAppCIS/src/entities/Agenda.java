@@ -10,10 +10,6 @@ public class Agenda {
 	
 	//CODING 
 	
-	//Delete view account info 
-	
-	//put images on blank gui
-	
 	// delete agenda before class
 	
 	//Delete classes not being used
