@@ -124,9 +124,9 @@ public class EditRideController implements Initializable {
 
 				// Formatting time text field to a DATETIME
 
-				String dTime = EditDeleteAddController.formatTime(departureTime.getText(), departureDate.getText());
+				String dTime = formatTime(departureTime.getText(), departureDate.getText());
 
-				String aTime = EditDeleteAddController.formatTime(arrivalTime.getText(), arrivalDate.getText());
+				String aTime = formatTime(arrivalTime.getText(), arrivalDate.getText());
 
 				SQLMethods.editRide(from.getText(), to.getText(), arrivalDate.getText(), departureDate.getText(),
 						aTime, dTime, Integer.parseInt(busNum.getText()), schedule.getScheduleID());
@@ -159,6 +159,54 @@ public class EditRideController implements Initializable {
 		window.setResizable(false);
 
 	}
+	
+	// Method used to format time into datetime
+		public static String formatTime(String userTime, String date) {
+
+			int n = Integer.parseInt(userTime.substring(0, 2)) + 5;
+
+			switch (n) {
+
+			case 24:
+				n = 0;
+				break;
+
+			case 25:
+				n = 1;
+				break;
+
+			case 26:
+				n = 2;
+				break;
+
+			case 27:
+				n = 3;
+				break;
+			default:
+				break;
+
+			}
+
+			// extracting hour
+			String hourChange = String.valueOf(n);
+
+			StringBuilder time = new StringBuilder(userTime);
+
+			if (hourChange.length() == 1) {
+
+				time.replace(0, 2, "0" + hourChange);
+
+			} else {
+
+				time.replace(0, 2, hourChange);
+
+			}
+
+			String formattedString = date + " " + time + ":00";
+
+			return formattedString;
+
+		}
 
 	public void passBusScheduleInfo(BusSchedule schedule) {
 
