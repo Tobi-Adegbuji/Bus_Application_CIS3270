@@ -307,7 +307,7 @@ public class EditDeleteAddController implements Initializable {
 	// Method used to format time into datetime
 	public static String formatTime(String userTime, String date) {
 
-		int n = Integer.parseInt(userTime.substring(0, 2)) + 4;
+		int n = Integer.parseInt(userTime.substring(0, 2)) + 5;
 
 		switch (n) {
 
