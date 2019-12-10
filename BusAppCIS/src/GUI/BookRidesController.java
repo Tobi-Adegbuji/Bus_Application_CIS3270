@@ -31,9 +31,9 @@ import javafx.stage.Stage;
 public class BookRidesController implements Initializable {
 
 	private Customer customer;
-	
-	private Admin admin; 
-	
+
+	private Admin admin;
+
 	@FXML
 	private TableView<BusSchedule> tableView; // The tableView is expecting BusSchedule objects
 	@FXML
@@ -55,8 +55,7 @@ public class BookRidesController implements Initializable {
 	@FXML
 	private TableColumn<BusSchedule, String> scheduleIDColumn;
 
-
-   //first calledd
+	// first calledd
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -99,19 +98,31 @@ public class BookRidesController implements Initializable {
 	@FXML
 	public void bookRide() throws IOException {
 
-		if(customer == null && admin != null) {
+		ObservableList<BusSchedule> rides;
+		try {
+			rides = SQLMethods.getBusScheduleInfo();
+
+			if (customer == null && admin != null) {
+
+				bookAdmin();
+
+			} else {
+
+				bookCustomer();
+				
+			}
+
+		} catch (SQLException e) {
+
+			System.out.println("There was an error with sql.");
+			e.printStackTrace();
 			
-			bookAdmin(); 
-			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
 		}
-		else {
-			
-			bookCustomer();
-			
-		}
-		
-			
-		
+
 	}
 
 	@FXML
@@ -176,96 +187,87 @@ public class BookRidesController implements Initializable {
 
 	}
 
-	
-	
-	public void bookCustomer() throws IOException{
-	
-	ObservableList<BusSchedule> allRides, ridesSelected;
+	public void bookCustomer() throws IOException {
 
-	allRides = tableView.getItems();
+		ObservableList<BusSchedule> allRides, ridesSelected;
 
-	ridesSelected = tableView.getSelectionModel().getSelectedItems();
+		allRides = tableView.getItems();
 
-	try {
-
-		int capacity = Integer.valueOf(ridesSelected.get(0).getCapacity());
-
-		int currentNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers());
-
-		if (currentNumberOfPassengers != capacity) {
-
-			
-			// Books Ride
-			SQLMethods.bookRide(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID(),
-					ridesSelected.get(0).getNumberOfPassengers(), ridesSelected.get(0).getFromStation(),
-					ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(), 
-					ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(),
-					ridesSelected.get(0).getDepartureTime(), "0");
-
-			// updating number of passengers
-			int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) + 1;
-			String scheduleID = ridesSelected.get(0).getScheduleID();
-
-			SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID);
-
-			// Notifying customer they have been booked
-
-			new RideBookedAlertBoxController().display();
-			;
-
-			// Updating tableview
-			tableView.setItems(getSchedule());
-
-		} else {
-
-			throw new BusIsFullException();
-
-		}
-
-	} catch (BusIsFullException e) {
-
-		 new BusIsFullAlertBoxController().display();
-
-
-	} catch (java.sql.SQLIntegrityConstraintViolationException e) {
+		ridesSelected = tableView.getSelectionModel().getSelectedItems();
 
 		try {
 
-			if (SQLMethods.isRideDeleted(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID())) {
+			int capacity = Integer.valueOf(ridesSelected.get(0).getCapacity());
 
-				// Updates passenegers again
+			int currentNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers());
+
+			if (currentNumberOfPassengers != capacity) {
+
+				// Books Ride
+				SQLMethods.bookRide(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID(),
+						ridesSelected.get(0).getNumberOfPassengers(), ridesSelected.get(0).getFromStation(),
+						ridesSelected.get(0).getToStation(), ridesSelected.get(0).getArrivalDate(),
+						ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(),
+						ridesSelected.get(0).getDepartureTime(), "0");
+
+				// updating number of passengers
 				int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) + 1;
 				String scheduleID = ridesSelected.get(0).getScheduleID();
 
 				SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID);
 
-				// Updates delete_flag to 0
-
-				SQLMethods.setDeleteFlag("0", String.valueOf(customer.getSsn()), scheduleID);
+				// Notifying customer they have been booked
 
 				new RideBookedAlertBoxController().display();
-				}
-			else {
-				
-				new AlreadyScehduledAlertBoxController().display();
-				
+				;
+
+			} else {
+
+				throw new BusIsFullException();
+
 			}
-			
-		} catch (SQLException e2) {
 
-			e2.printStackTrace();
+		} catch (BusIsFullException e) {
+
+			new BusIsFullAlertBoxController().display();
+
+		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
+
+			try {
+
+				if (SQLMethods.isRideDeleted(String.valueOf(customer.getSsn()), ridesSelected.get(0).getScheduleID())) {
+
+					// Updates passenegers again
+					int newNumberOfPassengers = Integer.valueOf(ridesSelected.get(0).getNumberOfPassengers()) + 1;
+					String scheduleID = ridesSelected.get(0).getScheduleID();
+
+					SQLMethods.updateNumOfPassengers(String.valueOf(newNumberOfPassengers), scheduleID);
+
+					// Updates delete_flag to 0
+
+					SQLMethods.setDeleteFlag("0", String.valueOf(customer.getSsn()), scheduleID);
+
+					new RideBookedAlertBoxController().display();
+				} else {
+
+					new AlreadyScehduledAlertBoxController().display();
+
+				}
+
+			} catch (SQLException e2) {
+
+				e2.printStackTrace();
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
 		}
-
-	} catch (SQLException e) {
-
-		e.printStackTrace();
-
 	}
-	}
-	
-	
-	public void bookAdmin() throws IOException{
-		
+
+	public void bookAdmin() throws IOException {
+
 		ObservableList<BusSchedule> allRides, ridesSelected;
 
 		allRides = tableView.getItems();
@@ -330,13 +332,12 @@ public class BookRidesController implements Initializable {
 					SQLMethods.setDeleteFlag("0", String.valueOf(admin.getSsn()), scheduleID);
 
 					new RideBookedAlertBoxController().display();
-					}
-				else {
-					
+				} else {
+
 					new AlreadyScehduledAlertBoxController().display();
-					
+
 				}
-				
+
 			} catch (SQLException e2) {
 
 				e2.printStackTrace();
@@ -347,22 +348,19 @@ public class BookRidesController implements Initializable {
 			e.printStackTrace();
 
 		}
-		}
-	
-	
-	
+	}
+
 	public void passCustomerInfo(Customer c) {
 
 		this.customer = c;
 		System.out.println(this.customer);
 
 	}
-	
+
 	public void passAdminInfo(Admin a) {
-		
-		this.admin = a; 
-		
+
+		this.admin = a;
+
 	}
-	
 
 }
