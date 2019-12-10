@@ -243,6 +243,8 @@ public class EditDeleteAddController implements Initializable {
 		//sets the BusSchedule object within the EditRide Controller
 		erc.passBusScheduleInfo(edit);
 		
+		erc.passAdminInfo(admin);
+		
 		try {
 			 Bus bus = new Bus(Integer.parseInt(SQLMethods.getBusID(ridesSelected.get(0).getScheduleID())));
 			 erc.passBusID(bus);

@@ -70,6 +70,8 @@ public class AdminHomeMenuContoller {
 
 			//This method set the customer object in book rides controller 
 			
+			System.out.println(admin.getPassword());
+			
 			brc.passAdminInfo(admin);
 			
 			

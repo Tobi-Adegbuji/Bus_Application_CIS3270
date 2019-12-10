@@ -137,7 +137,7 @@ public class EditRideController implements Initializable {
 
 				EditDeleteAddController edac = loader.getController();
 
-				// This method sets the customer object in home menu controller
+				// This method sets the admin object in editAddDelete controller
 
 				edac.passUpdateNotification("Ride was Updated");
 				
@@ -168,16 +168,23 @@ public class EditRideController implements Initializable {
 	@FXML
 	public void back(ActionEvent event) throws IOException {
 
-		Parent editDeleteAdd = FXMLLoader.load(getClass().getResource("/GUI/EditDeleteAdd.fxml"));
+		//Takes you back to previous screen
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/EditDeleteAdd.fxml"));
+
+		Parent editDeleteAdd = loader.load();
+
+		EditDeleteAddController edac = loader.getController();
+
+		// This method sets the admin object in editAddDelete controller
+		
+		edac.passAdminInfo(admin);
 
 		Scene editDeleteAddScene = new Scene(editDeleteAdd);
 
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 		window.setScene(editDeleteAddScene);
-
 		window.setResizable(false);
-
 	}
 	
 	// Method used to format time into datetime
