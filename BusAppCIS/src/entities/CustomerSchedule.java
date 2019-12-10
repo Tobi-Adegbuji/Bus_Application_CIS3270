@@ -7,8 +7,6 @@ import java.time.LocalTime;
 
 import javafx.beans.property.SimpleStringProperty;
 
-//Still working on this
-
 
 public class CustomerSchedule {
 
@@ -24,7 +22,7 @@ public class CustomerSchedule {
 			Date arrivalDate, Date departureDate, String arrivalTime, String departureTime
 			, String numberOfPassengers, String capacity, String scheduleID) {
 	
-		//Remove shadowing 
+		 
 		this.fromStation = new SimpleStringProperty(fromStation);
 		this.toStation = new SimpleStringProperty(toStation);
 		this.numberOfPassengers = new SimpleStringProperty(numberOfPassengers);

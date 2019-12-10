@@ -130,7 +130,6 @@ public class EditDeleteAddController implements Initializable {
 
 				departureDate.setText("Date format must be: yyyy-mm-dd");
 
-				throw new Exception();
 
 			} else if (!((String) arrivalDate.getText()).matches("\\d{4}-\\d{2}-\\d{2}")) {
 
@@ -180,12 +179,8 @@ public class EditDeleteAddController implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
-
-			System.out.println("Somemthing went wrong.");
 			
 			e.printStackTrace();
-
-			from.setStyle("-fx-text-fill: black;");
 
 			System.out.println("Issue");
 
