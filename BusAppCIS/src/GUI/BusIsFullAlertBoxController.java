@@ -19,12 +19,12 @@ public class BusIsFullAlertBoxController {
 
 	
 	
+	// alert displayed to prevent over booking
+	public void display() throws IOException {
 	
-public void display() throws IOException {
+		Stage stage = new Stage();
 	
-	Stage stage = new Stage();
-	
-	stage.initStyle(StageStyle.DECORATED);
+		stage.initStyle(StageStyle.DECORATED);
 	
 	stage.initModality(Modality.APPLICATION_MODAL);
 

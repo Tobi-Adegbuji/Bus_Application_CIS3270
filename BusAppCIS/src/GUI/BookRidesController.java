@@ -29,6 +29,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class BookRidesController implements Initializable {
+	//Declaring Private attributes
 
 	private Customer customer;
 

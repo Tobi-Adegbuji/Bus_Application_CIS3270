@@ -19,7 +19,7 @@ public class AlreadyScehduledAlertBoxController {
 
 	
 	
-	
+	// alert displayed to prevent double booking
 public void display() throws IOException {
 	
 	Stage stage = new Stage();
@@ -33,7 +33,7 @@ public void display() throws IOException {
 	Scene scene = new Scene(parent);
 
 	stage.setResizable(false);
-
+    
 	stage.setScene(scene);
 
 	stage.showAndWait();

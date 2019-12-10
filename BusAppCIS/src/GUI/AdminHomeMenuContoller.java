@@ -17,7 +17,7 @@ public class AdminHomeMenuContoller {
 
 	Admin admin; 
 	
-	
+	// Action for logout Button
 	@FXML
 	public void logOut(ActionEvent event) throws IOException, SQLException  {
 	
@@ -58,7 +58,7 @@ public class AdminHomeMenuContoller {
 
 
 		}
-
+		// action for book rides button, sends to book rides page
 		@FXML
 		public void bookRides(ActionEvent event) throws IOException, SQLException {
 
@@ -83,7 +83,7 @@ public class AdminHomeMenuContoller {
 			window.setResizable(false);
 
 		}
-		
+		// action for edit rides button, sends to edit ride page
 		@FXML
 		public void editRides(ActionEvent event) throws IOException, SQLException {
 
@@ -108,7 +108,7 @@ public class AdminHomeMenuContoller {
 		}
 		
 	
-		
+		// method to pass admin object
 		public void passAdminInfo(Admin a) {
 			
 			this.admin = a; 

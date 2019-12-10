@@ -1,16 +1,20 @@
 package entities;
 
 public abstract class User {
+	
+	//Declaring Private attributes
 
 	private int ssn;
 
 	private String firstName, lastName, email, username, password, address, city, state, country, zip, securityQuestion,
 			securityAnswer, id, adminAccess;
 
+	//User Constructor
 	public User(int ssn, String firstName, String lastName, String email, String username, String password,
 			String address, String city, String state, String country, String zip, String securityQuestion,
 			String securityAnswer, String id, String adminAccess) {
-
+		
+		//remove shadowing
 		this.ssn = ssn;
 		this.firstName = firstName;
 		this.lastName = lastName;

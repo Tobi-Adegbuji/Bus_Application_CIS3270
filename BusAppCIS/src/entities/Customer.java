@@ -1,7 +1,8 @@
 package entities;
 
 public class Customer extends User {
-
+	
+	// Customer Constructor
 	public Customer(int ssn, String firstName, String lastName, String email, String username, String password,
 			String address, String city, String state, String country, String zip, String securityQuestion,
 			String securityAnswer, String id, String adminAccess) {
