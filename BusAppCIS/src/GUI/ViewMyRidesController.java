@@ -103,6 +103,7 @@ public class ViewMyRidesController implements Initializable {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
 
 		});
 

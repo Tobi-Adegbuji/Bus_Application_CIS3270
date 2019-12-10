@@ -10,30 +10,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="645.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EditDeleteAddController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="970.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EditRideController">
    <children>
-      <Button alignment="CENTER" layoutX="475.0" layoutY="222.0" mnemonicParsing="false" onAction="#logOut" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: navy;" text="Log Out" textAlignment="JUSTIFY" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-         <padding>
-            <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
-         </padding>
-      </Button>
-      <Button alignment="CENTER" layoutX="475.0" layoutY="175.0" mnemonicParsing="false" onAction="#home" prefHeight="32.0" prefWidth="88.0" style="-fx-border-color: black; -fx-background-color: #0E4607;" text="Home" textAlignment="JUSTIFY" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-         <padding>
-            <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
-         </padding>
-      </Button>
-      <ImageView fitHeight="108.0" fitWidth="127.0" layoutX="476.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="108.0" fitWidth="127.0" layoutX="431.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../BusImages/8a74982e-2b5d-4ebb-9109-703f9f2da3f5_200x200.png" />
          </image>
       </ImageView>
-      <VBox layoutX="76.0" layoutY="32.0" opacity="0.68" prefHeight="613.0" prefWidth="330.0" spacing="10.0" style="-fx-background-color: white;">
+      <VBox layoutX="56.0" layoutY="72.0" opacity="0.68" prefHeight="613.0" prefWidth="330.0" spacing="10.0" style="-fx-background-color: white;">
          <children>
             <Label prefHeight="35.0" prefWidth="136.0" text="From">
                <font>
@@ -110,7 +94,7 @@
             <Insets bottom="20.0" left="15.0" right="15.0" />
          </padding>
       </VBox>
-      <Button alignment="CENTER" layoutX="186.0" layoutY="653.0" mnemonicParsing="false" onAction="#addRide" prefHeight="39.0" prefWidth="112.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Add Ride" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="421.0" layoutY="614.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="129.0" style="-fx-border-color: black; -fx-background-color: darkred;" text="Update Ride" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -118,5 +102,54 @@
             <Insets bottom="6.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
+      <VBox layoutX="586.0" layoutY="70.0" opacity="0.68" prefHeight="613.0" prefWidth="330.0" spacing="10.0" style="-fx-background-color: white;">
+         <children>
+            <Label prefHeight="35.0" prefWidth="136.0" text="From">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelFrom" prefHeight="23.0" prefWidth="138.0" styleClass="registerInput" stylesheets="@application.css" />
+            <Label prefHeight="35.0" prefWidth="129.0" text="To">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelTo" prefHeight="23.0" prefWidth="138.0" styleClass="registerInput" stylesheets="@application.css" />
+            <Label prefHeight="35.0" prefWidth="181.0" text="Departure Date">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelDepartureDate" prefHeight="23.0" prefWidth="138.0" styleClass="registerInput" stylesheets="@application.css" />
+            <Label prefHeight="38.0" prefWidth="194.0" text="Arrival Date">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelArrivalDate" prefHeight="23.0" prefWidth="138.0" styleClass="registerInput" stylesheets="@application.css" />
+            <Label prefHeight="38.0" prefWidth="194.0" text="Departure Time">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelDepartureTime" prefHeight="23.0" prefWidth="138.0" styleClass="registerInput" stylesheets="@application.css" />
+            <Label prefHeight="38.0" prefWidth="194.0" text="Arrival Time">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelArrivalTime" prefHeight="23.0" prefWidth="138.0" styleClass="registerInput" stylesheets="@application.css" />
+            <Label prefHeight="38.0" prefWidth="194.0" text="Bus #">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelBusNum" prefHeight="23.0" prefWidth="138.0" styleClass="registerInput" stylesheets="@application.css" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>

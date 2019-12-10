@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import database.SQLMethods;
 import entities.Admin;
+import entities.Bus;
 import entities.BusSchedule;
 import entities.CustomerSchedule;
 import javafx.collections.ObservableList;
@@ -23,11 +24,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class EditDeleteAddController implements Initializable {
 
 	private Admin admin;
+
 
 	@FXML
 	private TextField from;
@@ -209,11 +212,48 @@ public class EditDeleteAddController implements Initializable {
 	}
 
 	@FXML
-	public void editRide() {
+	public void editRide(ActionEvent event) throws IOException {
 
+		ObservableList<BusSchedule> allRides, ridesSelected;
+
+		allRides = tableView.getItems();
+
+		ridesSelected = tableView.getSelectionModel().getSelectedItems();
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/EditRide.fxml"));
+		
+		Parent editRide = loader.load();
+
+		EditRideController erc = loader.getController();
+		
+		//Creating bus schedule object in order to store information 
+				BusSchedule edit = new BusSchedule(ridesSelected.get(0).getFromStation(),ridesSelected.get(0).getToStation()
+				, ridesSelected.get(0).getArrivalDate(), ridesSelected.get(0).getDepartureDate(), ridesSelected.get(0).getArrivalTime(), 
+				ridesSelected.get(0).getDepartureTime(), ridesSelected.get(0).getNumberOfPassengers(), ridesSelected.get(0).getCapacity(), 
+				ridesSelected.get(0).getScheduleID());  
+		
+		//sets the BusSchedule object within the EditRide Controller
+		erc.passBusScheduleInfo(edit);
+		
+		try {
+			 Bus bus = new Bus(Integer.parseInt(SQLMethods.getBusID(ridesSelected.get(0).getScheduleID())));
+			 erc.passBusID(bus);
+			 
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			System.out.println("SQL Exception occured");
+		} 
 		
 		
-		
+		Scene editRideScene = new Scene(editRide);
+
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(editRideScene);
+		window.setResizable(false);
+		window.show();
+
 		
 	}
 
@@ -241,7 +281,7 @@ public class EditDeleteAddController implements Initializable {
 
 		AdminHomeMenuContoller ahmc = loader.getController();
 
-		// This method sets the customer object in home menu controller
+		// This method sets the admin object in home admin home menu controller
 
 		ahmc.passAdminInfo(admin);
 
@@ -308,5 +348,7 @@ public class EditDeleteAddController implements Initializable {
 		this.admin = a;
 
 	}
+	
+	
 
 }
