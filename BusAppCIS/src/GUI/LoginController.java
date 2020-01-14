@@ -104,7 +104,7 @@ public class LoginController extends Application implements Initializable {
  
 				AdminHomeMenuContoller ahmc = loader.getController();
 				
-				//sets the customer object in admin home menu controller  
+				//sets the admin object in admin home menu controller  
 				ahmc.passAdminInfo(createAdmin());
 				
 				Scene mainMenuScene = new Scene(mainMenu);
